@@ -1,9 +1,0 @@
-authtoken: 7Y92eNS948crSat975m3X_UKRRgSVfAZVZqwNQXbfR
-region: eu
-tunnels:
-  mongo:
-    proto: tcp
-    addr: 27017
-  rabbitmq:
-    proto: tcp
-    addr: 5672
