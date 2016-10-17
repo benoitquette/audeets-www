@@ -1,0 +1,20 @@
+{
+  "title": "Crawl Task Schema",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "nodeUrl": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "url",
+    "project",
+    "nodeUrl"
+  ]
+}

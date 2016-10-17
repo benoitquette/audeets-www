@@ -1,0 +1,51 @@
+{
+  "title": "Audit Result Schema",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "check": {
+            "type": "boolean"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule",
+          "title",
+          "check",
+          "source"
+        ]
+      }
+    }
+  },
+  "required": [
+    "timestamp",
+    "url",
+    "project",
+    "rules",
+    "category"
+  ]
+}

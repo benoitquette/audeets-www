@@ -1,0 +1,32 @@
+[
+  {
+    "rule": "include-h1",
+    "title": "Include a H1 header in the markup",
+    "check": true,
+    "source": "internal"
+  },
+  {
+    "rule": "include-page-title",
+    "title": "Include a page title",
+    "check": true,
+    "source": "internal"
+  },
+  {
+    "rule": "page-title-length",
+    "title": "Ensure the page title is less than 65 characters",
+    "check": true,
+    "source": "internal"
+  },
+  {
+    "rule": "include-meta-description",
+    "title": "Include a meta tag that describes the content of the page",
+    "check": true,
+    "source": "internal"
+  },
+  {
+    "rule": "meta-description-length",
+    "title": "Ensure the page title is less than 150 characters",
+    "check": false,
+    "source": "internal"
+  }
+]

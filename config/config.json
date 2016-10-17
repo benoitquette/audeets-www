@@ -1,0 +1,30 @@
+{
+  "amqp": {
+    "connect": "amqp://192.168.99.100"
+  },
+  "mongo": {
+    "connect": "mongodb://192.168.99.100/web-audits"
+  },
+  "gpsi": {
+    "api_key": "AIzaSyBlS12_ahTcltvHKkn_rjv278IKQXLSZFg"
+  },
+  "logging": {
+    "default": {
+      "console": {
+        "level": "debug",
+        "colorize": true,
+        "timestamp": true,
+        "label": "tbd"
+      },
+      "file": {
+        "level": "debug",
+        "filename": "log/audits.log",
+        "timestamp": true,
+        "label": "tbd",
+        "json": false,
+        "maxsize": 500000,
+        "maxFiles": 10
+      }
+    }
+  }
+}

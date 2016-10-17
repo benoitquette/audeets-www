@@ -1,0 +1,1048 @@
+{
+  "kind": "pagespeedonline#result",
+  "id": "http://www.lemonde.fr/",
+  "responseCode": 200,
+  "title": "Le Monde.fr - Actualité à la Une",
+  "ruleGroups": {
+    "SPEED": {
+      "score": 76
+    }
+  },
+  "pageStats": {
+    "numberResources": 227,
+    "numberHosts": 78,
+    "totalRequestBytes": "50890",
+    "numberStaticResources": 97,
+    "htmlResponseBytes": "505589",
+    "cssResponseBytes": "414148",
+    "imageResponseBytes": "581262",
+    "javascriptResponseBytes": "1114261",
+    "otherResponseBytes": "99758",
+    "numberJsResources": 74,
+    "numberCssResources": 6
+  },
+  "formattedResults": {
+    "locale": "en_US",
+    "ruleResults": {
+      "AvoidLandingPageRedirects": {
+        "localizedRuleName": "Avoid landing page redirects",
+        "ruleImpact": 0,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Your page has no redirects. Learn more about {{BEGIN_LINK}}avoiding landing page redirects{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/AvoidRedirects"
+            }
+          ]
+        }
+      },
+      "EnableGzipCompression": {
+        "localizedRuleName": "Enable compression",
+        "ruleImpact": 5.792600000000001,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Compressing resources with gzip or deflate can reduce the number of bytes sent over the network."
+        },
+        "urlBlocks": [
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Enable compression{{END_LINK}} for the following resources to reduce their transfer size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/EnableCompression"
+                },
+                {
+                  "type": "BYTES",
+                  "key": "SIZE_IN_BYTES",
+                  "value": "56.5KiB"
+                },
+                {
+                  "type": "PERCENTAGE",
+                  "key": "PERCENTAGE",
+                  "value": "66%"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/31b5f009e6c5098de3649c3dd8caf85f/img/textes/decodeurs/decodeurs200x24.svg"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "12.6KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "76%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/afrique/8038b8a81c833325b646008a01a26869/img/logos/lemonde-afrique.svg"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "7.4KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "67%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://ib.adnxs.com/ttj?id=1028245&size=300x250&promo_sizes=&promo_alignment=center&referrer=lemonde.fr&cb=3702754641&pt1=http://ww690.smartadserver.com/call2/pubj/50270/361313/21485/S/4460099624/origine%3Dasq?"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "6.2KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "63%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://ib.adnxs.com/ttj?id=3675570&size=300x250&promo_alignment=center&referrer=lemonde.fr&cb=1473444760&pt1=http://ww690.smartadserver.com/call/pubj/50270/616582/21484/S/4460099624/origine%3Dasqfirst?"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "6.2KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "63%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/1.2.694/img/placeholder/ratio-7.svg"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "6KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "59%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/1.2.694/img/placeholder/ratio-3.svg"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "5.7KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "59%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/f5767dae36794b2594a925ff83836df5/img/textes/elections/election_americaines_2016.svg"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "5.6KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "69%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/4371d6df04cf6c5f7cd8a8c3263032af/img/evenementiel/sport/euro-2016/logo_euro_2016_1000.svg"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "3.5KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "59%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://image6.pubmatic.com/AdServer/PugMaster?rnd=16912712&p=154037&s=154038&a=0&ptask=ALL&np=0&fp=0&mpc=0&spug=1&coppa=0&kdntuid=1"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "1.5KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "71%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://ip.casalemedia.com/usermatch?s=179394&cb=http%3A%2F%2Frtb-csync.smartadserver.com%2Fredir%2F%3Fpartnerid%3D33%26partneruserid%3D&C=1"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "1.1KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "66%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/377b1d170a2cb5acc1528e4687d1b34f/img/mmag/m_nav.svg"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "592B"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "49%"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "LeverageBrowserCaching": {
+        "localizedRuleName": "Leverage browser caching",
+        "ruleImpact": 5.477011408730158,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Setting an expiry date or a maximum age in the HTTP headers for static resources instructs the browser to load previously downloaded resources from local disk rather than over the network."
+        },
+        "urlBlocks": [
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Leverage browser caching{{END_LINK}} for the following cacheable resources:",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/LeverageBrowserCaching"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/bootstrap/list-early-load.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/bootstrap/www/6d179b7b7d9c695da09bd718a7ae031e.css?m[]=normalize%40screen&m[]=fonts%40screen&m[]=grille%40screen&m[]=base%40screen&m[]=header%40screen&m[]=footer%40screen&m[]=rubrique%40screen&m[]=article%40screen&m[]=friends%2Fpaves%40screen&m[]=col_droite%40screen&m[]=ticker%40screen&m[]=couleurs%40screen&m[]=marketing%2Fmeter%40screen&m[]=evenementiel%2Fcoupe-du-monde%40screen&m[]=friends%2Fnewsweb%2Flivescore%40screen&m[]=friends%2Fnewsweb%2Flivescore_tennis%40screen&m[]=une%40screen&m[]=friends%2Fnewsweb%2Fbase%40screen&m[]=friends%2Fnewsweb%2Fdatabox%40screen"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/bootstrap/www/main.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/conf.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://www.googletagmanager.com/gtm.js?id=GTM-MS62MT"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "15.4 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://connect.facebook.net/en_US/fbevents.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "20 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://a.visualrevenue.com/vrs.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "60 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://publi.lemonde.fr/autopromotion/mondefestival2016/200x40.jpg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "60 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://gum.criteo.com/sync?c=30&r=2&j=cr_handle_data_a"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "60 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://static.kameleoon.com/css/customers/r9u0567aww/0/kameleoon.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2 hours"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://www.google-analytics.com/ga.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2 hours"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "MainResourceServerResponseTime": {
+        "localizedRuleName": "Reduce server response time",
+        "ruleImpact": 0,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Your server responded quickly. Learn more about {{BEGIN_LINK}}server response time optimization{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/Server"
+            }
+          ]
+        }
+      },
+      "MinifyCss": {
+        "localizedRuleName": "Minify CSS",
+        "ruleImpact": 0,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Your CSS is minified. Learn more about {{BEGIN_LINK}}minifying CSS{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/MinifyResources"
+            }
+          ]
+        }
+      },
+      "MinifyHTML": {
+        "localizedRuleName": "Minify HTML",
+        "ruleImpact": 0,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Your HTML is minified. Learn more about {{BEGIN_LINK}}minifying HTML{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/MinifyResources"
+            }
+          ]
+        }
+      },
+      "MinifyJavaScript": {
+        "localizedRuleName": "Minify JavaScript",
+        "ruleImpact": 0.3085,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Compacting JavaScript code can save many bytes of data and speed up downloading, parsing, and execution time."
+        },
+        "urlBlocks": [
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Minify JavaScript{{END_LINK}} for the following resources to reduce their size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/MinifyResources"
+                },
+                {
+                  "type": "BYTES",
+                  "key": "SIZE_IN_BYTES",
+                  "value": "2.6KiB"
+                },
+                {
+                  "type": "PERCENTAGE",
+                  "key": "PERCENTAGE",
+                  "value": "37%"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "Minifying {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction) after compression.",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/1.2.694/js/lmd/core/ux/sync.js"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "2.6KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "37%"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "MinimizeRenderBlockingResources": {
+        "localizedRuleName": "Eliminate render-blocking JavaScript and CSS in above-the-fold content",
+        "ruleImpact": 16,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Your page has {{NUM_SCRIPTS}} blocking script resources and {{NUM_CSS}} blocking CSS resources. This causes a delay in rendering your page.",
+          "args": [
+            {
+              "type": "INT_LITERAL",
+              "key": "NUM_SCRIPTS",
+              "value": "7"
+            },
+            {
+              "type": "INT_LITERAL",
+              "key": "NUM_CSS",
+              "value": "6"
+            }
+          ]
+        },
+        "urlBlocks": [
+          {
+            "header": {
+              "format": "None of the above-the-fold content on your page could be rendered without waiting for the following resources to load. Try to defer or asynchronously load blocking resources, or inline the critical portions of those resources directly in the HTML."
+            }
+          },
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Remove render-blocking JavaScript{{END_LINK}}:",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/BlockingJS"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/bootstrap/list-early-load.js"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/min/medias/web/4e079d767f7665eed53e4592229e0c55/js/lmd/core/mobile-redirect.js"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/conf.js"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/min/medias/web/80424277255f6c135bdc1ea48f1b531a/js/lmd/module/abonnes/redirection.js"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/1.2.694/js/lib/require/core/current/require.js"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/bootstrap/www/main.js"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/1.2.694/js/lmd/module/meter/toggle-off.js?14671958"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Optimize CSS Delivery{{END_LINK}} of the following:",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/bootstrap/www/6d179b7b7d9c695da09bd718a7ae031e.css?m[]=normalize%40screen&m[]=fonts%40screen&m[]=grille%40screen&m[]=base%40screen&m[]=header%40screen&m[]=footer%40screen&m[]=rubrique%40screen&m[]=article%40screen&m[]=friends%2Fpaves%40screen&m[]=col_droite%40screen&m[]=ticker%40screen&m[]=couleurs%40screen&m[]=marketing%2Fmeter%40screen&m[]=evenementiel%2Fcoupe-du-monde%40screen&m[]=friends%2Fnewsweb%2Flivescore%40screen&m[]=friends%2Fnewsweb%2Flivescore_tennis%40screen&m[]=une%40screen&m[]=friends%2Fnewsweb%2Fbase%40screen&m[]=friends%2Fnewsweb%2Fdatabox%40screen"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/package/www/main-499ba18067c6311b7bddbc544115105c.css"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/min/medias/web/f47f849c0ae1fd5c34f50b8ef86237d6/css/marketing/meter.css"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/min/medias/web/41f29a4a972377640fc8cef5639dc117/css/evenementiel/coupe-du-monde.css"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/package/www/livescore-tennis-9d9243132bcaafd07f190bbcd9175f6e.css"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/min/medias/web/18a57807a13415dca11ef310f9398009/css/une.css"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "OptimizeImages": {
+        "localizedRuleName": "Optimize images",
+        "ruleImpact": 2.0322,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "Properly formatting and compressing images can save many bytes of data."
+        },
+        "urlBlocks": [
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Optimize the following images{{END_LINK}} to reduce their size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/OptimizeImages"
+                },
+                {
+                  "type": "BYTES",
+                  "key": "SIZE_IN_BYTES",
+                  "value": "19.5KiB"
+                },
+                {
+                  "type": "PERCENTAGE",
+                  "key": "PERCENTAGE",
+                  "value": "17%"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "Losslessly compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/76f5986997539210ea49c34b9a19a243/img/sprites/sprite.png"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "15.9KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "16%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Losslessly compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/c0d414c977e3635b6df8f1d758f8be5c/img/habillage/pixels_deroule_nl.png"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "1.1KiB"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "47%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Losslessly compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/928ed031bf0fb793dbe80c0abc391960/img/textes/m-le-mag/logo_M_lemagazine-horizontal-bloc-1000px.png"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "678B"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "20%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Losslessly compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/b465178d21386f5755ebdb24e3bfb903/img/friends/logos/marqueur-campus.png"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "642B"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "27%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Losslessly compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/f60596723bd29f3db5648a52f31842ba/img/habillage/sprite_tetieres_blogs.png"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "609B"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "12%"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "Losslessly compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "http://s1.lemde.fr/medias/web/b1724a807667f5f85fbbb01d99595df4/img/friends/logos/lemonde-monster_petit.png"
+                    },
+                    {
+                      "type": "BYTES",
+                      "key": "SIZE_IN_BYTES",
+                      "value": "588B"
+                    },
+                    {
+                      "type": "PERCENTAGE",
+                      "key": "PERCENTAGE",
+                      "value": "25%"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "PrioritizeVisibleContent": {
+        "localizedRuleName": "Prioritize visible content",
+        "ruleImpact": 0,
+        "groups": [
+          "SPEED"
+        ],
+        "summary": {
+          "format": "You have the above-the-fold content properly prioritized. Learn more about {{BEGIN_LINK}}prioritizing visible content{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "version": {
+    "major": 1,
+    "minor": 15
+  }
+}

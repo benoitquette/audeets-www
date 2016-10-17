@@ -1,0 +1,70 @@
+[
+  {
+    "exchange": "audit",
+    "type": "fanout",
+    "options": {
+      "durable": true
+    },
+    "bindings": [
+      {
+        "destination": {
+          "queue": "audit-performance-gpsi",
+          "messageSchema": {},
+          "options": {
+            "noAck": false
+          }
+        },
+        "args": {}
+      },
+      {
+        "destination": {
+          "queue": "audit-search-basic",
+          "messageSchema": {},
+          "options": {
+            "noAck": false
+          }
+        },
+        "args": {}
+      }
+    ]
+  },
+  {
+    "exchange": "store",
+    "type": "fanout",
+    "options": {
+      "durable": true
+    },
+    "bindings": [
+      {
+        "destination": {
+          "queue": "store-mongo",
+          "messageSchema": {},
+          "options": {
+            "noAck": false
+          }
+        },
+        "args": {}
+      }
+    ]
+  },
+  {
+    "exchange": "crawl",
+    "type": "fanout",
+    "options": {
+      "durable": true
+    },
+    "bindings": [
+      {
+        "destination": {
+          "queue": "crawler",
+          "messageSchema": {},
+          "options": {
+            "noAck": false
+          }
+        },
+        "args": {}
+      }
+    ]
+  }
+]
+

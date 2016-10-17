@@ -1,0 +1,16 @@
+{
+  "title": "Audit Task Schema",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "url",
+    "project"
+  ]
+}
