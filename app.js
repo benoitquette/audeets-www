@@ -22,7 +22,7 @@ require('./models/Projects');
 require('./models/Results');
 const config = require('./config/config.json');
 const api = require('./routes/index');
-const webpackConfig = require('./config/webpack.config');
+const webpackConfig = require('./webpack/webpack.config');
 
 // connect to mongodb
 mongoose.connect(config.mongo.connect);

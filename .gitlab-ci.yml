@@ -2,7 +2,7 @@ stages:
   - test
   - build
 
-unit_tests:
+tests:
   image: node
   stage: test
   script:

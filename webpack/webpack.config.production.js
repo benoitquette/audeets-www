@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const Config = require('webpack-config').default;
 
-module.exports = new Config().extend('config/webpack.config.shared.js').merge({
+module.exports = new Config().extend('webpack/webpack.config.shared.js').merge({
   devtool: 'cheap-module-source-map',
   plugins: [
     new webpack.DefinePlugin({

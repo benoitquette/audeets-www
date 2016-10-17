@@ -6,7 +6,7 @@
   "author": "Benoit Quette",
   "main": "app.js",
   "scripts": {
-    "webpack": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack -p --display-error-details --config ./config/webpack.config.js",
+    "webpack": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack -p --display-error-details --config ./webpack/webpack.config.js",
     "lint": "node ./node_modules/eslint/bin/eslint  --ext .js --ext .jsx .",
     "test": "npm run coverage && npm run check-coverage",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive \"./test/unit/**/*Spec.js\"",
