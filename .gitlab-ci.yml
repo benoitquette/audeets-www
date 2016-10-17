@@ -9,7 +9,7 @@ unit_tests:
     - npm install
     - npm run webpack
     - npm run lint
-    - npm run test
+    #- npm run test
 
 build:
   image: docker:latest
