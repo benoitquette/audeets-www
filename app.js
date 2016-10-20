@@ -11,21 +11,20 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const fallback = require('express-history-api-fallback');
+const scheduler = require('./bin/scheduler');
+const mongoose = require('mongoose');
 
 // end module dependencies
 
-require('./models/Projects');
-require('./models/Results');
 const config = require('./config/config.json');
-const api = require('./routes/index');
-const webpackConfig = require('./webpack/webpack.config');
-
-// connect to mongodb
+require('./models/Projects');
 mongoose.connect(config.mongo.connect);
+
+const api = require('./routes/api');
+const webpackConfig = require('./webpack/webpack.config');
 
 const root = path.join(__dirname, 'public');
 var app = express();
@@ -75,5 +74,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+scheduler.start();
 
 module.exports = app;

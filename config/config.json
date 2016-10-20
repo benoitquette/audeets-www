@@ -8,6 +8,7 @@
   "gpsi": {
     "api_key": "AIzaSyBlS12_ahTcltvHKkn_rjv278IKQXLSZFg"
   },
+  "crawlingSchedule": "0 2 * * *",
   "logging": {
     "default": {
       "console": {

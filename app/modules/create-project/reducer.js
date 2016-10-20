@@ -8,6 +8,12 @@ const initialState = {
   loading: false
 };
 
+/**
+ * Implementation of the reducer
+ * @param {Object} state the reducer's state
+ * @param {Object} action the reducer's action
+ * @return {Object} an new instance of the state
+ */
 export default function createProject(state = initialState, action) {
   switch (action.type) {
     case t.INCREMENT_STEPPER:

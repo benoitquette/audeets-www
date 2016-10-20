@@ -17,6 +17,12 @@ const initialState = {
   loading: false
 };
 
+/**
+ * Implementation of the reducer
+ * @param {Object} state the reducer's state
+ * @param {Object} action the reducer's action
+ * @return {Object} an new instance of the state
+ */
 export default function console(state = initialState, action) {
   switch (action.type) {
     case `${t.FETCH_PROJECTS}_PENDING`:
@@ -125,6 +131,7 @@ export default function console(state = initialState, action) {
       async.reject(state.projects, (project, callback) => {
         callback(null, action.payload.id === project._id);
       }, (err, results) => {
+        if (err) return console.log(err);
         newState.projects = results;
       });
       return newState;

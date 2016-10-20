@@ -7,6 +7,12 @@ const initialState = {
   projectStates: {}
 };
 
+/**
+ * Implementation of the reducer
+ * @param {Object} state the reducer's state
+ * @param {Object} action the reducer's action
+ * @return {Object} an new instance of the state
+ */
 export default function project(state = initialState, action) {
   switch (action.type) {
     case `${t.FETCH_DATA}_PENDING`:
