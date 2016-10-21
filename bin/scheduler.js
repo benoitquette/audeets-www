@@ -51,7 +51,7 @@ function audit(callback) {
  */
 function start() {
   mongoose.Promise = bluebird;
-  cron.schedule(config.configSchedule, () => {
+  cron.schedule(config.crawlingSchedule, () => {
     audit();
   });
 }

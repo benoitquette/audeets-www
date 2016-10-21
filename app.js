@@ -18,7 +18,7 @@ const scheduler = require('./bin/scheduler');
 
 // end module dependencies
 
-require('./../models/init');
+require('./models/init');
 const api = require('./routes/api');
 const webpackConfig = require('./webpack/webpack.config');
 
