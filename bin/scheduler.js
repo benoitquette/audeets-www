@@ -33,11 +33,12 @@ function _audit(nodeUrl) {
       Project.find((err, projects) => {
         if (err) console.log(err);
         return _.each(projects, project => {
-          ch.publish(EXCHANGE, '', new Buffer({
+          const message = JSON.stringify({
             url: project.url,
             project: project._id, // eslint-disable-line
             nodeUrl
-          }.toString()));
+          });
+          ch.publish(EXCHANGE, '', new Buffer(message));
         });
       });
 
