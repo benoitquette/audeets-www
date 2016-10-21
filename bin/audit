@@ -1,3 +1,6 @@
 #!/usr/bin/env node
 
-require('./scheduler').audit();
+const mongoose = require('./../models/init');
+require('./scheduler').audit(() => {
+  mongoose.connection.close();
+});

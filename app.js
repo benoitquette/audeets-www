@@ -15,14 +15,10 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const fallback = require('express-history-api-fallback');
 const scheduler = require('./bin/scheduler');
-const mongoose = require('mongoose');
 
 // end module dependencies
 
-const config = require('./config/config.json');
-require('./models/Projects');
-mongoose.connect(config.mongo.connect);
-
+require('./../models/init');
 const api = require('./routes/api');
 const webpackConfig = require('./webpack/webpack.config');
 
