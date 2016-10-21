@@ -16,11 +16,10 @@ const EXCHANGE = 'crawl';
 /**
  * Loads all the projects from the db and run the audit of each of them by
  * creating a crawling task.
- *
- * @param {string} nodeUrl the URL to the rabbitmq node
  */
-function _audit(nodeUrl) {
+function audit() {
   const Project = mongoose.model('Project');
+  const nodeUrl = config.crawlingSchedule;
 
   // connect to rabbitmq
   amqp.connect(nodeUrl, (err, conn) => {
@@ -56,11 +55,12 @@ function _audit(nodeUrl) {
 function start() {
   mongoose.Promise = bluebird;
   // schedule a cron for the audits
-  cron.schedule(config.crawlingSchedule, () => {
-    _audit(config.amqp.connect);
+  cron.schedule(() => {
+    audit(config.amqp.connect);
   });
 }
 
 module.exports = {
-  start
+  start,
+  audit
 };
