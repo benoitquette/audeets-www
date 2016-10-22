@@ -15,9 +15,9 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const fallback = require('express-history-api-fallback');
 const webpackConfig = require('./webpack/webpack.config');
-// const scheduler = require('./bin/scheduler');
-// const api = require('./routes/api');
-// require('./models/init');
+const scheduler = require('./bin/scheduler');
+const api = require('./routes/api');
+require('./models/init');
 
 // end module dependencies
 
@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(root));
-// app.use('/api', api);
+app.use('/api', api);
 
 const defaultDoc = path.join(root, 'index.html');
 if (process.env.NODE_ENV === 'development') {
@@ -70,6 +70,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// scheduler.start();
+scheduler.start();
 
 module.exports = app;
