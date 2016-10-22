@@ -17,6 +17,7 @@ const fallback = require('express-history-api-fallback');
 const webpackConfig = require('./webpack/webpack.config');
 const scheduler = require('./bin/scheduler');
 const api = require('./routes/api');
+require('./models/Projects');
 require('./models/init');
 
 // end module dependencies
