@@ -14,13 +14,12 @@ const bodyParser = require('body-parser');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const fallback = require('express-history-api-fallback');
+const webpackConfig = require('./webpack/webpack.config');
 // const scheduler = require('./bin/scheduler');
+// const api = require('./routes/api');
+// require('./models/init');
 
 // end module dependencies
-
-// require('./models/init');
-const api = require('./routes/api');
-const webpackConfig = require('./webpack/webpack.config');
 
 const root = path.join(__dirname, 'public');
 var app = express();
@@ -31,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(root));
-app.use('/api', api);
+// app.use('/api', api);
 
 const defaultDoc = path.join(root, 'index.html');
 if (process.env.NODE_ENV === 'development') {
