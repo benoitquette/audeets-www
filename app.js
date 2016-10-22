@@ -14,11 +14,11 @@ const bodyParser = require('body-parser');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const fallback = require('express-history-api-fallback');
-const scheduler = require('./bin/scheduler');
+// const scheduler = require('./bin/scheduler');
 
 // end module dependencies
 
-require('./models/init');
+// require('./models/init');
 const api = require('./routes/api');
 const webpackConfig = require('./webpack/webpack.config');
 
@@ -71,6 +71,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-scheduler.start();
+// scheduler.start();
 
 module.exports = app;
