@@ -8,6 +8,7 @@ const bluebird = require('bluebird');
 const _ = require('lodash');
 const cron = require('node-cron');
 const amqp = require('amqplib/callback_api');
+require('./../models/Projects');
 
 // End of dependencies.
 

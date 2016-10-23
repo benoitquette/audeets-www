@@ -1,5 +1,6 @@
-'#!/usr/bin/env node
+#!/usr/bin/env node
 
+require('./../models/Projects');
 const mongoose = require('./../models/init');
 const Project = mongoose.model('Project');
 

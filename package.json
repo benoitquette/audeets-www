@@ -13,7 +13,8 @@
     "check-coverage": "istanbul check-coverage --statement 85",
     "start:www:prod": "cross-env NODE_ENV=production node ./bin/www",
     "start:www:dev": "cross-env NODE_ENV=development node ./bin/www",
-    "audit": "node ./bin/audit"
+    "audit": "node ./bin/audit",
+    "populate": "node ./bin/populate"
   },
   "dependencies": {
     "ajv": "^4.1.3",

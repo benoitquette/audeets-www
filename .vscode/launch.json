@@ -21,11 +21,31 @@
       "sourceMaps": false,
       "outDir": null
     },
-     {
+    {
       "name": "Run audit",
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/bin/audit",
+      "stopOnEntry": false,
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "integratedTerminal",
+      "sourceMaps": false,
+      "outDir": null
+    },
+    {
+      "name": "Populate DB",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/bin/populate",
       "stopOnEntry": false,
       "args": [],
       "cwd": "${workspaceRoot}",
