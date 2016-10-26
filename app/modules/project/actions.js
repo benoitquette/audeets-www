@@ -1,16 +1,11 @@
 import * as t from './actionTypes';
 import Promise from "bluebird";
-import elasticsearch from "elasticsearch";
+import client from "@modules/SearchClient";
 import _ from "lodash";
 import latestScoreQuery from "json!./searches/latestScore.json";
 import rollingWeekQuery from "json!./searches/rollingWeek.json";
-import config from "json!@config/config.json";
-import async from "async";
 
-const client = new elasticsearch.Client({
-  host: config.elasticsearch.connect,
-  log: 'trace'
-});
+import async from "async";
 
 export const fetchData = id => ({
   type: t.FETCH_DATA,

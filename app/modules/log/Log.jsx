@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import LogToolbar from './LogToolbar';
 import _ from 'lodash';
 import moment from 'moment';
-import {fetchResults} from './actions';
+import {fetchAuditsList} from './actions';
 import {withRouter} from 'react-router';
 import constants from '@modules/constants';
 import LogListItem from './LogListItem';
@@ -13,19 +13,19 @@ import LogList from './LogList';
 @withRouter
 @connect(state => ({
   results: state.log.list
-}), {fetchResults})
+}), {fetchAuditsList})
 export default class Log extends Component {
   static propTypes = {
     results: React.PropTypes.array.isRequired,
     params: React.PropTypes.object.isRequired,
-    fetchResults: React.PropTypes.func.isRequired,
+    fetchAuditsList: React.PropTypes.func.isRequired,
     router: React.PropTypes.object.isRequired,
     drawerOpen: React.PropTypes.bool.isRequired
   };
 
   componentWillMount() {
     const projectId = this.props.params.projectId;
-    this.props.fetchResults(projectId);
+    this.props.fetchAuditsList(projectId);
   }
 
   onCellClick(rowNumber, columnKey, e) {

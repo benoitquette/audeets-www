@@ -1,1 +1,1 @@
-export const FETCH_RESULTS = "FETCH_RESULTS";
+export const FETCH_AUDITS_LIST = "FETCH_AUDITS_LIST";

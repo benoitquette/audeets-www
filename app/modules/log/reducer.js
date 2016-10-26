@@ -14,20 +14,20 @@ const initialState = {
  */
 export default function log(state = initialState, action) {
   switch (action.type) {
-    case `${t.FETCH_RESULTS}_PENDING`:
+    case `${t.FETCH_AUDITS_LIST}_PENDING`:
       return {
         ...state,
         loading: true,
         error: false
       };
-    case `${t.FETCH_RESULTS}_FULFILLED`:
+    case `${t.FETCH_AUDITS_LIST}_FULFILLED`:
       return {
         ...state,
         loading: false,
         errors: false,
         list: action.payload
       };
-    case `${t.FETCH_RESULTS}_REJECTED`:
+    case `${t.FETCH_AUDITS_LIST}_REJECTED`:
       return {
         ...state,
         loading: false,

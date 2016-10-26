@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import moment from 'moment';
 import _ from 'lodash';
 import {
   Table,
@@ -21,20 +20,20 @@ export default class AuditUrlResults extends Component {
         return result.category;
       })
       .map(results => {
-        const rules = _.max(results, result => {
-          return moment(result.timestamp).valueOf();
-        }).rules;
-        return rules.map(rule => {
+        // const rules = _.max(results, result => {
+        //   return moment(result.timestamp).valueOf();
+        // });
+        return results.map(result => {
           return (
-            <TableRow key={rule.rule}>
+            <TableRow key={result.rule}>
               <TableRowColumn style={styles.cellShrink}>
-                {rule.check && (
+                {result.check && (
                   <FontIcon className="material-icons">done</FontIcon>
                 )}
               </TableRowColumn>
               <TableRowColumn style={styles.cellExpand}>
-                <ChipsList items={[results[0].category]}>
-                  <span style={styles.title}>{rule.title}</span>
+                <ChipsList items={[result.category]}>
+                  <span style={styles.title}>{result.title}</span>
                 </ChipsList>
               </TableRowColumn>
             </TableRow>

@@ -1,0 +1,24 @@
+{
+  "index": "audits",
+  "body": {
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "term": {
+              "project": ""
+            }
+          },
+          {
+            "range": {
+              "timestamp": {
+                "gte": "now",
+                "lte": "now"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -4,35 +4,29 @@ import {connect} from "react-redux";
 import AuditUrl from './AuditUrl';
 import AuditToolbar from './AuditToolbar';
 import _ from 'lodash';
-import {fetchResults} from './actions';
+import {fetchAudit} from './actions';
 import moment from 'moment';
 
 @connect(state => ({
   results: state.audit.list
-}), {fetchResults})
+}), {fetchAudit})
 export default class Audit extends Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
     results: React.PropTypes.array.isRequired,
-    fetchResults: React.PropTypes.func.isRequired,
+    fetchAudit: React.PropTypes.func.isRequired,
     drawerOpen: React.PropTypes.bool.isRequired
   };
 
   componentWillMount() {
     const params = this.props.params;
     const projectId = params.projectId;
-    this.props.fetchResults(projectId);
+    const date = params.date;
+    this.props.fetchAudit(projectId, moment(date));
   }
 
   render() {
-    const params = this.props.params;
-    const date = params.date;
-    const dateFilter = moment(date);
     const resultsPerUrl = _.chain(this.props.results)
-      .filter(result => {
-        // let's filter the results by the required date
-        return moment(result.timestamp).isSame(dateFilter, 'date');
-      })
       .groupBy(result => {
         // now we group per URL
         return result.url;
