@@ -9,8 +9,7 @@ module.exports = {
       '@store': path.join(__dirname, '../app/store'),
       '@api': path.join(__dirname, '../app/api'),
       '@components': path.join(__dirname, '../app/components'),
-      '@modules': path.join(__dirname, '../app/modules'),
-      '@config': path.join(__dirname, '../config')
+      '@modules': path.join(__dirname, '../app/modules')
     }
   },
   resolveLoader: {
@@ -48,6 +47,7 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.IgnorePlugin(/^(config)$/),
     new ExtractTextPlugin("stylesheets/style.bundle.css", {
       allChunks: true
     })
