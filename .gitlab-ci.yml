@@ -1,23 +1,37 @@
-stages:
-  - test
-  - build
+image: docker:latest
+services:
+  - docker:dind
 
-tests:
-  image: node
-  stage: test
-  script:
-    - npm install
-    - npm run webpack
-    - npm run lint
-    #- npm run test
+stages:
+  - build
+  - test
+  - release
+
+variables:
+  REGISTRY: registry.gitlab.com
+  CONTAINER_TEST_IMAGE: $REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_BUILD_REF_NAME
+  CONTAINER_RELEASE_IMAGE: $REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:latest
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $REGISTRY
 
 build:
-  image: docker:latest
-  services:
-    - docker:dind
   stage: build
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build -t registry.gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME .
-    - docker push registry.gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-    - curl -X POST -F token=f8965878a557a9f5a0cff58c5bea86 -F ref=master https://gitlab.com/api/v3/projects/1856114/trigger/builds
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+
+linting:
+  stage: test
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker run $CONTAINER_TEST_IMAGE "npm run lint"
+
+push:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - master
