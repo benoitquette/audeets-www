@@ -8,7 +8,7 @@ COPY . /usr/src/app
 
 # Install app dependencies
 WORKDIR /usr/src/app
-RUN apt-get update -y && apt-get install bzip2 -y \
+RUN apt-get update -y && apt-get install apt-utils bzip2 -y \
     && npm install \
     && npm run webpack \
     && chmod -R +w /usr/src/app/log
