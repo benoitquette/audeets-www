@@ -25,7 +25,7 @@ linting:
   stage: test
   script:
     - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE "npm run lint"
+    - docker run $CONTAINER_TEST_IMAGE npm run lint
 
 push:
   stage: release
