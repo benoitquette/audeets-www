@@ -3,7 +3,6 @@ import {Card, CardActions, CardHeader} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import {grey50} from 'material-ui/styles/colors';
 import FlatButton from "material-ui/FlatButton";
-import FontIcon from 'material-ui/FontIcon';
 import DashboardProjectRemoveDialog from './DashboardProjectRemoveDialog';
 
 export default class DashboardProjectListItem extends Component {
@@ -54,17 +53,6 @@ export default class DashboardProjectListItem extends Component {
               onTouchTap = {this.props.toggleDialog}
               primary = {true}
             />
-            <a href={this.props.url} target="_blank">
-              <FlatButton
-                label="Visit"
-                labelPosition="before"
-                primary={true}
-                icon={
-                  <FontIcon
-                    className="material-icons">open_in_new</FontIcon>
-                }
-              />
-            </a>
           </CardActions>
         </Card>
       </div>
