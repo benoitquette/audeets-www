@@ -8,7 +8,7 @@ export default class ProjectChartsLatest extends Component {
   static propTypes = {
     title: React.PropTypes.string.isRequired,
     score: React.PropTypes.number.isRequired,
-    date: React.PropTypes.node.isRequired,
+    date: React.PropTypes.object.isRequired,
     flexStyle: React.PropTypes.object.isRequired,
     onClick: React.PropTypes.func.isRequired
   };

@@ -1,0 +1,40 @@
+{
+  "index": "audits",
+  "body": {
+    "size": 0,
+    "query": {
+      "filtered": {
+        "query": {
+          "match": {
+            "project": ""
+          }
+        }
+      }
+    },
+    "aggs": {
+      "categories": {
+        "terms": {
+          "field": "category"
+        },
+        "aggs": {
+          "day": {
+            "terms": {
+              "field": "timestamp",
+              "order": {
+                "_term": "desc"
+              },
+              "size": 1
+            },
+            "aggs": {
+              "scores": {
+                "terms": {
+                  "field": "check"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

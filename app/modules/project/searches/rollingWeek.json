@@ -1,0 +1,48 @@
+{
+  "index": "audits",
+  "body": {
+    "size": 0,
+    "query": {
+      "filtered": {
+        "query": {
+          "match": {
+            "project": ""
+          }
+        },
+        "filter": {
+          "range": {
+            "timestamp": {
+              "gte": "now-7d",
+              "lte": "now"
+            }
+          }
+        }
+      }
+    },
+    "aggs": {
+      "categories": {
+        "terms": {
+          "field": "category"
+        },
+        "aggs": {
+          "day": {
+            "terms": {
+              "field": "timestamp",
+              "format": "yyyy-MM-dd",
+              "order": {
+                "_term": "desc"
+              }
+            },
+            "aggs": {
+              "scores": {
+                "terms": {
+                  "field": "check"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

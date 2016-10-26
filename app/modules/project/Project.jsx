@@ -69,13 +69,17 @@ export default class Project extends Component {
     const rollingPeriodId = (projectState === undefined ?
       constants.rollingCharts.week.id :
       projectState.rollingPeriod);
-    const metrics = this.props.data.map(category => {
+    const metrics = this.props.data.map(cat => {
+      console.log(cat);
+      const categoryName = _.keys(cat)[0];
+      const category = cat[categoryName];
       const latest = category.latest;
+      console.log(latest);
       return (
         <ProjectCharts
-          key={category.category}
+          key={categoryName}
           projectId={projectId}
-          title={category.category}
+          title={categoryName}
           latestScore={latest}
           rollingPeriod={this.getRollingPeriodConfig(rollingPeriodId)}
           rollingPeriodData={
@@ -87,7 +91,7 @@ export default class Project extends Component {
     const toolbar = (
       <ProjectToolbar
         categories={this.props.data.map(category => {
-          return category.category;
+          return _.keys(category)[0];
         })}
         rollingPeriod={rollingPeriodId}
         setPeriod={this.setPeriod.bind(this)}
