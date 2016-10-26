@@ -3,5 +3,5 @@ import config from "json!@config/config.json";
 
 export default new elasticsearch.Client({
   host: config.elasticsearch.connect,
-  log: 'trace'
+  log: config.elasticsearch.log
 });
