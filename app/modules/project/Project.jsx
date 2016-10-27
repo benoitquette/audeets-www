@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Canvas from "@components/Canvas";
 import {connect} from "react-redux";
-import {fetchData, setProjectState} from './actions';
+import {fetchProjectMetrics, setProjectState} from './actions';
 import ProjectCharts from './ProjectCharts';
 import ProjectToolbar from './ProjectToolbar';
 import constants from '@modules/constants';
@@ -13,12 +13,12 @@ import moment from 'moment';
 @connect(state => ({
   data: state.project.list,
   projectStates: state.project.projectStates
-}), {fetchData, setProjectState})
+}), {fetchProjectMetrics, setProjectState})
 export default class Project extends Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
     data: React.PropTypes.array.isRequired,
-    fetchData: React.PropTypes.func.isRequired,
+    fetchProjectMetrics: React.PropTypes.func.isRequired,
     projectStates: React.PropTypes.object.isRequired,
     setProjectState: React.PropTypes.func.isRequired,
     drawerOpen: React.PropTypes.bool.isRequired,
@@ -28,7 +28,7 @@ export default class Project extends Component {
   componentWillMount() {
     const params = this.props.params;
     const projectId = params.projectId;
-    this.props.fetchData(projectId);
+    this.props.fetchProjectMetrics(projectId);
   }
 
   getRollingPeriodData(rollingPeriod, categoryData) {

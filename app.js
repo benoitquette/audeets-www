@@ -13,10 +13,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const fallback = require('express-history-api-fallback');
 const webpackConfig = require('./webpack/webpack.config');
 const scheduler = require('./bin/scheduler');
 const api = require('./routes/api');
+const config = require('./routes/config');
 require('./models/init');
 
 // end module dependencies
@@ -31,10 +33,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(root));
 app.use('/api', api);
+app.use('/config', config);
 
 const defaultDoc = path.join(root, 'index.html');
 if (process.env.NODE_ENV === 'development') {
-  const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
   const middleware = webpackMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
@@ -70,6 +72,8 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// start the scheduler that will trigger the audits according to the pattern
+// define in the config file
 scheduler.start();
 
 module.exports = app;

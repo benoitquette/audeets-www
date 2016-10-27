@@ -1,33 +1,37 @@
 import * as t from './actionTypes';
 import Promise from "bluebird";
-import client from "@modules/SearchClient";
+import {connect} from "@modules/search";
+import async from "async";
 import _ from "lodash";
 import latestScoreQuery from "json!./searches/latestScore.json";
 import rollingWeekQuery from "json!./searches/rollingWeek.json";
 
-import async from "async";
-
-export const fetchData = id => ({
+export const fetchProjectMetrics = id => ({
   type: t.FETCH_DATA,
   payload: new Promise((resolve, reject) => {
-    async.series([
-      callback => {
-        fetchLatestScore(client, id, callback);
-      },
-      callback => {
-        fetchRollingWeek(client, id, callback);
-      },
-      callback => {
-        fetchRollingMonth(client, id, callback);
-      },
-      callback => {
-        fetchRollingYear(client, id, callback);
-      }
-    ], (err, results) => {
+    console.log('in fetchProjectMetrics');
+    console.log(connect);
+    connect((err, client) => {
       if (err) return reject(err);
-      resolve(_.reduce(results, (result, value) => {
-        return _.merge(result, value);
-      }, results[0]));
+      async.series([
+        callback => {
+          fetchLatestScore(client, id, callback);
+        },
+        callback => {
+          fetchRollingWeek(client, id, callback);
+        },
+        callback => {
+          fetchRollingMonth(client, id, callback);
+        },
+        callback => {
+          fetchRollingYear(client, id, callback);
+        }
+      ], (err, results) => {
+        if (err) return reject(err);
+        resolve(_.reduce(results, (result, value) => {
+          return _.merge(result, value);
+        }, results[0]));
+      });
     });
   })
 });
