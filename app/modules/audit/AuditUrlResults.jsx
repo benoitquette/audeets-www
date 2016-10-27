@@ -7,6 +7,7 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 import FontIcon from 'material-ui/FontIcon';
+import AuditUrlResultsDetails from './AuditUrlResultsDetails';
 import ChipsList from '@components/ChipsList';
 
 export default class AuditUrlResults extends Component {
@@ -20,21 +21,26 @@ export default class AuditUrlResults extends Component {
         return result.category;
       })
       .map(results => {
-        // const rules = _.max(results, result => {
-        //   return moment(result.timestamp).valueOf();
-        // });
         return results.map(result => {
           return (
             <TableRow key={result.rule}>
-              <TableRowColumn style={styles.cellShrink}>
+              <TableRowColumn style={styles.avatarCell}>
+                <ChipsList items={[result.category.charAt(0).toUpperCase()]}/>
+              </TableRowColumn>
+              <TableRowColumn style={styles.checkCell}>
                 {result.check && (
-                  <FontIcon className="material-icons">done</FontIcon>
+                  <FontIcon
+                    className="material-icons"
+                    style={styles.icon}>done</FontIcon>
                 )}
               </TableRowColumn>
               <TableRowColumn style={styles.cellExpand}>
-                <ChipsList items={[result.category]}>
-                  <span style={styles.title}>{result.title}</span>
-                </ChipsList>
+                <span style={styles.title}>{result.title}</span>
+              </TableRowColumn>
+              <TableRowColumn style={styles.detailsCell}>
+                {result.details && (
+                  <AuditUrlResultsDetails details={result.details}/>
+                )}
               </TableRowColumn>
             </TableRow>
           );
@@ -53,13 +59,20 @@ export default class AuditUrlResults extends Component {
 }
 
 const styles = {
-  title: {
-    paddingLeft: 10,
-    verticalAlign: 'middle',
-    lineHeight: '300%'
+  checkCell: {
+    width: 1,
+    paddingRight: 19
   },
-  cellShrink: {
-    width: 1
+  avatarCell: {
+    width: 15,
+    paddingLeft: 10
+  },
+  detailsCell: {
+    width: 15,
+    paddingRight: 30
+  },
+  icon: {
+    verticalAlign: 'middle'
   },
   cellExpand: {
     width: '99%'

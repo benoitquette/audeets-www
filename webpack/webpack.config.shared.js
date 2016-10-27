@@ -21,7 +21,8 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '../public'),
-    filename: 'javascripts/app.bundle.js'
+    filename: 'javascripts/app.bundle.js',
+    publicPath: '/'
   },
   historyApiFallback: {
     index: 'http://localhost:3000/'
