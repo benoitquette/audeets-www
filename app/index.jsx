@@ -6,7 +6,6 @@ import createStore from "./store";
 import {theme} from "./styles";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
-import HomeMaster from "@modules/home/HomeMaster";
 import Home from "@modules/home/Home";
 import Project from "@modules/project/Project";
 import Audit from "@modules/audit/Audit";
@@ -25,9 +24,7 @@ render(
   <Provider store={createStore()}>
     <MuiThemeProvider muiTheme={theme}>
       <Router history={browserHistory}>
-        <Route path="/" component={HomeMaster}>
-          <IndexRoute component={Home}/>
-        </Route>
+        <Route path="/" component={Home}/>
         <Route path="/console" component={Console}>
           <IndexRoute component={Dashboard}/>
           <Route path="/console/account" component={Account}/>

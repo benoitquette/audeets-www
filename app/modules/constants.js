@@ -1,6 +1,6 @@
 module.exports = {
   shortDateFormat: 'YYYYMMDD',
-  longDateFormat: 'dddd, MMMM Do YYYY, h:mm:ss a',
+  longDateFormat: 'Do MMMM YYYY',
   rollingCharts: {
     week: {
       id: 1,
