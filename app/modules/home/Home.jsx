@@ -3,17 +3,27 @@ import {Link} from 'react-router';
 import FontIcon from 'material-ui/FontIcon';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import withWidth, {SMALL} from "material-ui/utils/withWidth";
 
+@withWidth()
 @muiThemeable()
 export default class Home extends Component {
   static propTypes = {
-    muiTheme: React.PropTypes.object.isRequired
+    muiTheme: React.PropTypes.object.isRequired,
+    width: React.PropTypes.number.isRequired
   };
 
   render() {
     const backgroundColor = this.props.muiTheme.palette.primary3Color;
+    let logoTextStyle = styles.logoText;
+    if (this.props.width === SMALL) {
+      logoTextStyle = styles.logoTextSmall;
+    }
     return (
-      <div style={{backgroundColor: backgroundColor}}>
+      <div style={{
+        backgroundColor: backgroundColor,
+        backgroundImage: 'url(images/cork-wallet.png)'
+      }}>
         <div style={styles.canvas}>
           <div style={styles.header}>
 
@@ -21,7 +31,7 @@ export default class Home extends Component {
           <div style={styles.body}>
             <div style={styles.logo}>
               <img src="apple-icon-180x180.png"/>
-              <div style={styles.logoText}>
+              <div style={logoTextStyle}>
                 <span style={styles.title}>audeets</span>
                 <span style={styles.tagline}>continuous site auditing</span>
               </div>
@@ -75,12 +85,19 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexWrap: 'wrap'
   },
   logoText: {
     display: 'flex',
     flexDirection: 'column',
     marginBottom: 0
+  },
+  logoTextSmall: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 20
   },
   title: {
     color: 'Charcoal',
