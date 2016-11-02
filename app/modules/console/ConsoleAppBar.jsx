@@ -4,22 +4,26 @@ import MenuItem from "material-ui/MenuItem";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
+import withWidth, {SMALL} from "material-ui/utils/withWidth";
 
+@withWidth()
 export default class Console extends Component {
   static propTypes = {
     toggleDrawer: React.PropTypes.func.isRequired,
     navigateToHome: React.PropTypes.func.isRequired,
     linkToHome: React.PropTypes.object.isRequired,
-    linkToAccount: React.PropTypes.object.isRequired
+    linkToAccount: React.PropTypes.object.isRequired,
+    width: React.PropTypes.number.isRequired
   };
 
   render() {
     return (
       <AppBar
         style={styles.appBar}
-        title="Web Audits"
+        title="audeets"
         titleStyle={styles.title}
         onTitleTouchTap={this.props.navigateToHome}
+        showMenuIconButton={this.props.width === SMALL}
         iconStyleRight={{verticalAlign: 'middle'}}
         iconElementRight={
           <IconMenu

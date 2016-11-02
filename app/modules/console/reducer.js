@@ -3,7 +3,7 @@ import async from 'async';
 
 const initialState = {
   projects: [],
-  drawerOpen: true,
+  drawerOpen: false,
   errors: {
     fetchProjects: false,
     addProject: false,

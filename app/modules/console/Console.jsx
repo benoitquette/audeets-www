@@ -45,7 +45,7 @@ export default class Console extends Component {
     confirmations: React.PropTypes.object.isRequired
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchProjects();
   }
 
@@ -62,6 +62,8 @@ export default class Console extends Component {
   }
 
   render() {
+    let drawerOpen = this.props.drawerOpen;
+    if (this.props.width !== SMALL) drawerOpen = true;
     return (
       <div>
         <ConsoleAppBar
@@ -74,7 +76,7 @@ export default class Console extends Component {
         />
         <ConsoleDrawer
           projects={this.props.projects}
-          drawerOpen={this.props.drawerOpen}
+          drawerOpen={drawerOpen}
           toggleDrawer={this.props.toggleDrawer}
           navigateToDashboard={this.navigateToDashboard.bind(this)}
           navigateToProject={this.navigateToProject.bind(this)}
@@ -83,7 +85,7 @@ export default class Console extends Component {
           {React.cloneElement(
             this.props.children, {
               projects: this.props.projects,
-              drawerOpen: this.props.drawerOpen,
+              drawerOpen: drawerOpen,
               addProject: this.props.addProject,
               ackProjectAdded: this.props.ackProjectAdded,
               deleteProject: this.props.deleteProject,
