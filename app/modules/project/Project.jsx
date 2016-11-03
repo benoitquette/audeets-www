@@ -1,44 +1,54 @@
 import React, {Component} from "react";
-import Canvas from "@components/Canvas";
 import {connect} from "react-redux";
-import {fetchProjectMetrics, setProjectState} from './actions';
-import ProjectCharts from './ProjectCharts';
-import ProjectToolbar from './ProjectToolbar';
+import {
+  fetchLatestScores,
+  fetchLastAudits,
+  fetchRollingWeek,
+  setProjectState
+} from './actions';
 import constants from '@modules/constants';
 import _ from 'lodash';
-import {withRouter, Link} from 'react-router';
+import {withRouter} from 'react-router';
 import moment from 'moment';
+import ProjectCanvas from './ProjectCanvas';
+import Canvas from "@components/Canvas";
 
 @withRouter
 @connect(state => ({
-  data: state.project.list,
+  latestScores: state.project.latestScores,
+  lastAudits: state.project.lastAudits,
+  rollingWeek: state.project.rollingWeek,
   projectStates: state.project.projectStates
-}), {fetchProjectMetrics, setProjectState})
+}), {fetchLatestScores, setProjectState, fetchLastAudits, fetchRollingWeek})
 export default class Project extends Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
-    data: React.PropTypes.array.isRequired,
-    fetchProjectMetrics: React.PropTypes.func.isRequired,
+    fetchLatestScores: React.PropTypes.func.isRequired,
+    fetchLastAudits: React.PropTypes.func.isRequired,
+    fetchRollingWeek: React.PropTypes.func.isRequired,
+    latestScores: React.PropTypes.object.isRequired,
+    lastAudits: React.PropTypes.object.isRequired,
+    rollingWeek: React.PropTypes.object.isRequired,
     projectStates: React.PropTypes.object.isRequired,
     setProjectState: React.PropTypes.func.isRequired,
     drawerOpen: React.PropTypes.bool.isRequired,
     router: React.PropTypes.object.isRequired
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const params = this.props.params;
     const projectId = params.projectId;
-    this.props.fetchProjectMetrics(projectId);
+    this.props.fetchLatestScores(projectId);
+    this.props.fetchLastAudits(projectId);
+    this.props.fetchRollingWeek(projectId);
   }
 
   getRollingPeriodData(rollingPeriod, categoryData) {
     switch (rollingPeriod) {
       case constants.rollingCharts.month.id:
-        return categoryData.rollingMonth;
       case constants.rollingCharts.year.id:
-        return categoryData.rollingYear;
       default:
-        return categoryData.rollingWeek;
+        return this.props.rollingWeek.data;
     }
   }
 
@@ -63,46 +73,21 @@ export default class Project extends Component {
   }
 
   render() {
-    const params = this.props.params;
-    const projectId = params.projectId;
-    const projectState = this.props.projectStates[projectId];
-    const rollingPeriodId = (projectState === undefined ?
-      constants.rollingCharts.week.id :
-      projectState.rollingPeriod);
-    const metrics = this.props.data.map(cat => {
-      console.log(cat);
-      const categoryName = _.keys(cat)[0];
-      const category = cat[categoryName];
-      const latest = category.latest;
-      console.log(latest);
-      return (
-        <ProjectCharts
-          key={categoryName}
-          projectId={projectId}
-          title={categoryName}
-          latestScore={latest}
-          rollingPeriod={this.getRollingPeriodConfig(rollingPeriodId)}
-          rollingPeriodData={
-            this.getRollingPeriodData(rollingPeriodId, category)}
-          navigateToAudit={this.navigateToAudit.bind(this, latest.date)}
-        />
-      );
-    }, this);
-    const toolbar = (
-      <ProjectToolbar
-        categories={this.props.data.map(category => {
-          return _.keys(category)[0];
-        })}
-        rollingPeriod={rollingPeriodId}
-        setPeriod={this.setPeriod.bind(this)}
-        projectId={projectId}
-        navigateToLog={<Link to={`/console/${projectId}/log`} />}
-        rollingChartsConf={constants.rollingCharts}
-      />
-    );
+    // const params = this.props.params;
+    // const projectId = params.projectId;
+    // const projectState = this.props.projectStates[projectId];
+    // const rollingPeriodId = (projectState === undefined ?
+    //   constants.rollingCharts.week.id :
+    //   projectState.rollingPeriod);
     return (
-      <Canvas toolbar={toolbar} drawerOpen={this.props.drawerOpen}>
-        {metrics}
+      <Canvas drawerOpen={this.props.drawerOpen}>
+        <ProjectCanvas
+          latestScores={this.props.latestScores}
+          lastAudits={this.props.lastAudits}
+          rollingWeek={this.props.rollingWeek}
+          drawerOpen={this.props.drawerOpen}
+          onClick={this.navigateToAudit.bind(this)}
+        />
       </Canvas>
     );
   }

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Title from "@components/Title";
 import Text from "@components/Text";
-import withWidth, {SMALL, LARGE} from 'material-ui/utils/withWidth';
+import withWidth, {SMALL} from 'material-ui/utils/withWidth';
 
 @withWidth()
 export default class Canvas extends Component {
@@ -15,26 +15,20 @@ export default class Canvas extends Component {
 
   render() {
     let paddingDrawer = styles.drawerClosed;
-    if (this.props.drawerOpen && this.props.width === LARGE) {
+    if (this.props.drawerOpen && this.props.width !== SMALL) {
       paddingDrawer = styles.drawerOpened;
-    }
-    let containerStyle = styles.container;
-    if (this.props.width === SMALL) {
-      containerStyle = styles.containerSmall;
     }
     return (
       <div>
-        <div style={containerStyle}>
-          <div style={paddingDrawer}>
-            {this.props.title !== undefined && (
-              <Title text={this.props.title}/>
-            )}
-            {this.props.text !== undefined && (
-              <Text text={this.props.text}/>
-            )}
-            <div style={styles.content}>
-              {this.props.children}
-            </div>
+        <div style={paddingDrawer}>
+          {this.props.title !== undefined && (
+            <Title text={this.props.title}/>
+          )}
+          {this.props.text !== undefined && (
+            <Text text={this.props.text}/>
+          )}
+          <div style={styles.content}>
+            {this.props.children}
           </div>
         </div>
       </div>
@@ -43,18 +37,13 @@ export default class Canvas extends Component {
 }
 
 const styles = {
-  container: {
-    padding: 0
-  },
-  containerSmall: {
-    padding: 0
+  content: {
+    paddingTop: 64
   },
   drawerOpened: {
-    marginTop: 64,
     marginLeft: 256
   },
   drawerClosed: {
-    marginTop: 64,
     marginLeft: 0
   }
 };

@@ -16,7 +16,6 @@ export function connect(callback) {
       return response.json();
     })
     .then(config => {
-      console.log(config);
       callback(null, new elasticsearch.Client({
         host: config.connect,
         log: config.log

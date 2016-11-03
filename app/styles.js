@@ -16,3 +16,12 @@ export const theme = getMuiTheme({
     textColor: grey900
   }
 });
+
+export const globalStyle = {
+  card: {
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20
+  }
+};

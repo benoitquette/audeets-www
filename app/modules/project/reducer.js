@@ -1,9 +1,24 @@
 import * as t from './actionTypes';
 
 const initialState = {
-  list: [],
-  error: false,
-  loading: false,
+  latestScores: {
+    data: [],
+    error: false,
+    loading: false,
+    loaded: false
+  },
+  lastAudits: {
+    data: [],
+    error: false,
+    loading: false,
+    loaded: false
+  },
+  rollingWeek: {
+    data: [],
+    error: false,
+    loading: false,
+    loaded: false
+  },
   projectStates: {}
 };
 
@@ -15,24 +30,95 @@ const initialState = {
  */
 export default function project(state = initialState, action) {
   switch (action.type) {
-    case `${t.FETCH_DATA}_PENDING`:
+    case `${t.FETCH_LATEST_SCORES}_PENDING`:
       return {
         ...state,
-        loading: true,
-        error: false
+        latestScores: {
+          ...state.latestScores,
+          error: false,
+          loading: true,
+          loaded: false
+        }
       };
-    case `${t.FETCH_DATA}_FULFILLED`:
+    case `${t.FETCH_LATEST_SCORES}_FULFILLED`:
       return {
         ...state,
-        loading: false,
-        error: false,
-        list: action.payload
+        latestScores: {
+          error: false,
+          loading: false,
+          data: action.payload,
+          loaded: true
+        }
       };
-    case `${t.FETCH_DATA}_REJECTED`:
+    case `${t.FETCH_LATEST_SCORES}_REJECTED`:
       return {
         ...state,
-        loading: false,
-        error: true
+        latestScores: {
+          ...state.latestScores,
+          error: true,
+          loading: false,
+          loaded: true
+        }
+      };
+    case `${t.FETCH_LAST_AUDITS}_PENDING`:
+      return {
+        ...state,
+        lastAudits: {
+          ...state.lastAudits,
+          error: false,
+          loading: true,
+          loaded: false
+        }
+      };
+    case `${t.FETCH_LAST_AUDITS}_FULFILLED`:
+      return {
+        ...state,
+        lastAudits: {
+          error: false,
+          loading: false,
+          data: action.payload,
+          loaded: true
+        }
+      };
+    case `${t.FETCH_LAST_AUDITS}_REJECTED`:
+      return {
+        ...state,
+        lastAudits: {
+          ...state.lastAudits,
+          error: true,
+          loading: false,
+          loaded: true
+        }
+      };
+    case `${t.FETCH_ROLLING_WEEK}_PENDING`:
+      return {
+        ...state,
+        rollingWeek: {
+          ...state.rollingWeek,
+          error: false,
+          loading: true,
+          loaded: false
+        }
+      };
+    case `${t.FETCH_ROLLING_WEEK}_FULFILLED`:
+      return {
+        ...state,
+        rollingWeek: {
+          error: false,
+          loading: false,
+          data: action.payload,
+          loaded: true
+        }
+      };
+    case `${t.FETCH_ROLLING_WEEK}_REJECTED`:
+      return {
+        ...state,
+        rollingWeek: {
+          ...state.rollingWeek,
+          error: true,
+          loading: false,
+          loaded: true
+        }
       };
     case t.SET_PROJECT_STATE: {
       let newState = {};

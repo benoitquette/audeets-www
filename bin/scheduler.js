@@ -17,8 +17,9 @@ const EXCHANGE = 'crawl';
 /**
  * Loads all the projects from the db and run the audit of each of them by
  * creating a crawling task.
+ * @param {function} done when done
  */
-function audit(callback) {
+function audit(done) {
   const Project = mongoose.model('Project');
   const nodeUrl = config.amqp.connect;
   amqp.connect(nodeUrl, (err, conn) => {
@@ -40,7 +41,7 @@ function audit(callback) {
       });
       setTimeout(() => { // close the rabbitmq connection
         conn.close();
-        if (callback) callback();
+        if (done) done();
       }, 500);
     });
   });

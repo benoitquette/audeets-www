@@ -22,7 +22,6 @@ export default class DashboardProjectList extends Component {
           url={project.url}
           key={project._id}
           id={project._id}
-          style={styles.list}
           navigateToProject={() => {
             return this.props.navigateToProject(project._id);
           }}
@@ -33,15 +32,13 @@ export default class DashboardProjectList extends Component {
       );
     });
     return (
-      <div>
-        {items}
-      </div>
+      <div style={styles.list}>{items}</div>
     );
   }
 }
 
 const styles = {
   list: {
-    marginTop: 20
+    margin: 20
   }
 };

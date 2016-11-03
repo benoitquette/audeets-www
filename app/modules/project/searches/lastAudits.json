@@ -8,18 +8,10 @@
           "match": {
             "project": ""
           }
-        },
-        "filter": {
-          "range": {
-            "timestamp": {
-              "gte": "now-7d",
-              "lte": "now"
-            }
-          }
         }
       }
     },
-    "aggs": {
+     "aggs": {
       "categories": {
         "terms": {
           "field": "category"
@@ -28,16 +20,8 @@
           "day": {
             "terms": {
               "field": "timestamp",
-              "format": "yyyy-MM-dd",
               "order": {
-                "_term": "asc"
-              }
-            },
-            "aggs": {
-              "scores": {
-                "terms": {
-                  "field": "check"
-                }
+                "_term": "desc"
               }
             }
           }

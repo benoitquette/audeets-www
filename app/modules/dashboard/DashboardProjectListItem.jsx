@@ -28,7 +28,7 @@ export default class DashboardProjectListItem extends Component {
       style={styles.avatar}
     />;
     return (
-      <div>
+      <div style={styles.card}>
         <DashboardProjectRemoveDialog
           dialogOpen={this.props.dialogOpen}
           toggleDialog={this.props.toggleDialog}
@@ -36,7 +36,7 @@ export default class DashboardProjectListItem extends Component {
             return this.props.removeProject(this.props.id);
           }}
         />
-        <Card style={styles.item}>
+        <Card>
           <CardHeader
             title={this.props.title}
             subtitle={this.props.description}
@@ -61,9 +61,7 @@ export default class DashboardProjectListItem extends Component {
 }
 
 const styles = {
-  item: {
-    marginBottom: 20,
-    marginLeft: 20,
-    marginRight: 20
+  card: {
+    marginBottom: 20
   }
 };

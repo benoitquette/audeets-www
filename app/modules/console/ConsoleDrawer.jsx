@@ -4,7 +4,7 @@ import Drawer from "material-ui/Drawer";
 import Divider from "material-ui/Divider";
 import Subheader from "material-ui/Subheader";
 import ConsoleDrawerProjectsMenu from "./ConsoleDrawerProjectsMenu";
-import withWidth, {LARGE} from "material-ui/utils/withWidth";
+import withWidth, {SMALL} from "material-ui/utils/withWidth";
 import FontIcon from "material-ui/FontIcon";
 
 @withWidth()
@@ -22,7 +22,7 @@ export default class ConsoleDrawer extends Component {
     return (
       <Drawer
         open={this.props.drawerOpen}
-        docked={this.props.drawerOpen && this.props.width === LARGE}
+        docked={this.props.drawerOpen && this.props.width !== SMALL}
         containerStyle={styles.drawer}
         onRequestChange={this.props.toggleDrawer}>
         <MenuItem

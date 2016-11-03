@@ -5,7 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
 import AuditUrlResultsDetailsItem from "./AuditUrlResultsDetailsItem";
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import withWidth, {SMALL} from "material-ui/utils/withWidth";
+import withWidth from "material-ui/utils/withWidth";
 
 @withWidth()
 @muiThemeable()

@@ -40,7 +40,7 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <Canvas title="Dashboard" drawerOpen={this.props.drawerOpen}>
+      <Canvas drawerOpen={this.props.drawerOpen}>
         <DashboardProjectList
           projects={this.props.projects}
           navigateToProject={this.navigateToProject.bind(this)}

@@ -2,14 +2,14 @@ import React, {Component} from "react";
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import {ResponsiveContainer, LineChart, Line, XAxis, Tooltip} from 'recharts';
 import moment from 'moment';
-import _ from 'lodash';
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class ProjectChartsRolling extends Component {
   static propTypes = {
+    loaded: React.PropTypes.bool.isRequired,
     title: React.PropTypes.string.isRequired,
     data: React.PropTypes.array.isRequired,
-    flexStyle: React.PropTypes.object.isRequired,
-    rollingPeriod: React.PropTypes.object.isRequired
+    dateFormat: React.PropTypes.string.isRequired
   };
 
   render() {
@@ -17,28 +17,27 @@ export default class ProjectChartsRolling extends Component {
       return {
         score: datum.score,
         date: moment(datum.date)
-          .format(this.props.rollingPeriod.dateFormat)
+          .format(this.props.dateFormat)
       };
     });
     return (
-      <Card style={this.props.flexStyle}>
-        <CardHeader
-          title={_.capitalize(this.props.title) }
-          subtitle={this.props.rollingPeriod.subtitle}
-          />
+      <Card style={styles.card}>
+        <CardHeader title={this.props.title}/>
         <CardText>
-          <ResponsiveContainer minHeight={styles.container.minHeight}>
-            <LineChart
-              data={data}
-              margin={styles.margin}>
-              <Line
-                type="monotone"
-                dataKey="score"
-                stroke="blue" />
-                <Tooltip/>
-              <XAxis dataKey="date" />
-            </LineChart>
-          </ResponsiveContainer>
+          {this.props.loaded ?
+            <ResponsiveContainer minHeight={styles.container.minHeight}>
+              <LineChart
+                data={data}
+                margin={styles.margin}>
+                <Line
+                  type="monotone"
+                  dataKey="score"
+                  stroke="blue" />
+                  <Tooltip/>
+                <XAxis dataKey="date" />
+              </LineChart>
+            </ResponsiveContainer> : <CircularProgress/>
+          }
         </CardText>
       </Card>
     );
@@ -46,6 +45,10 @@ export default class ProjectChartsRolling extends Component {
 }
 
 const styles = {
+  card: {
+    margin: 10,
+    width: '100%'
+  },
   container: {
     minHeight: 120
   },

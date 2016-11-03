@@ -1,59 +1,43 @@
 import React, {Component} from "react";
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import moment from 'moment';
+import ProjectChartsLatestCategory from './ProjectChartsLatestCategory';
 import _ from 'lodash';
-import {PieChart, Pie, Cell} from 'recharts';
+import moment from 'moment';
+import constants from '@modules/constants';
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class ProjectChartsLatest extends Component {
   static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    score: React.PropTypes.number.isRequired,
-    date: React.PropTypes.object.isRequired,
-    flexStyle: React.PropTypes.object.isRequired,
+    loaded: React.PropTypes.bool.isRequired,
+    categories: React.PropTypes.array.isRequired,
     onClick: React.PropTypes.func.isRequired
   };
 
   render() {
-    return (
-      <Card style={this.props.flexStyle}>
-        <CardHeader
-          title={_.capitalize(this.props.title) }
-          subtitle={
-            'Latest Score (' +
-            moment(this.props.date).format('MMM Do') +
-            ')'}
+    let date;
+    if (!_.isNil(this.props.categories) && this.props.categories.length > 0) {
+      console.log(this.props.categories);
+      date = this.props.categories[0].date;
+    }
+    const dateString = moment(date).format(constants.longDateFormat);
+    const charts = this.props.categories.map(cat => {
+      return (
+        <ProjectChartsLatestCategory
+          key={cat.category}
+          title={cat.category}
+          score={cat.score}
+          onClick={() => this.props.onClick(date)}
           />
-        <CardText style={styles.cardText} >
-          <PieChart
-            style={styles.pie}
-            width={styles.pie.width}
-            height={styles.pie.height}
-          >
-            <text
-              x="49%" y="54%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              style={styles.text}
-              onClick={this.props.onClick}
-            >
-              {this.props.score}
-            </text>
-            <Pie
-              data={[
-                {name: 'score', value: this.props.score},
-                {name: 'left', value: 100 - this.props.score}
-              ]}
-              cx="50%"
-              cy="50%"
-              innerRadius="65%"
-              outerRadius="100%"
-              startAngle={90}
-              endAngle={450}
-            >
-              <Cell fill={'green'}/>
-              <Cell fill={'red'}/>
-            </Pie>
-          </PieChart>
+      );
+    });
+
+    return (
+      <Card style={styles.card}>
+        <CardHeader title="Latest Scoring" subtitle={dateString}/>
+        <CardText style={styles.cardText}>
+          <div style={styles.charts}>
+            {this.props.loaded ? charts : <CircularProgress/>}
+          </div>
         </CardText>
       </Card>
     );
@@ -61,20 +45,17 @@ export default class ProjectChartsLatest extends Component {
 }
 
 const styles = {
+  card: {
+    margin: 10,
+    width: '100%'
+  },
   cardText: {
-    textAlign: 'center'
+    paddingTop: 0
   },
-  text: {
-    cursor: 'pointer'
-  },
-  pie: {
-    height: 80,
-    width: 80,
-    textAlign: 'center',
-    verticalAlign: 'middle',
-    display: 'inline-block',
-    fontSize: '200%',
-    lineHeight: '100px',
-    cursor: 'pointer'
+  charts: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start'
   }
 };

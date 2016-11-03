@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Link} from 'react-router';
-import FontIcon from 'material-ui/FontIcon';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import withWidth, {SMALL} from "material-ui/utils/withWidth";
@@ -26,7 +25,6 @@ export default class Home extends Component {
       }}>
         <div style={styles.canvas}>
           <div style={styles.header}>
-
           </div>
           <div style={styles.body}>
             <div style={styles.logo}>
@@ -41,15 +39,6 @@ export default class Home extends Component {
                 containerElement={<Link to="/console" />}
                 label="demo"
                 style={styles.button}
-                />
-              <RaisedButton
-                containerElement={<Link to="/console" />}
-                label="console"
-                icon={
-                  <FontIcon
-                    className="material-icons"
-                    >account_circle</FontIcon>
-                }
                 />
             </div>
           </div>
