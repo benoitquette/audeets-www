@@ -4,7 +4,6 @@ node_modules/
 .vscode/
 *.log
 npm-debug.*
-public/images/
 public/javascripts/app.bundle.css
 public/javascripts/app.bundle.css.map
 public/stylesheets/style.bundle.css
