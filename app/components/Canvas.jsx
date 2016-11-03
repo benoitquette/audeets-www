@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Title from "@components/Title";
 import Text from "@components/Text";
-import withWidth, {LARGE} from 'material-ui/utils/withWidth';
+import withWidth, {SMALL, LARGE} from 'material-ui/utils/withWidth';
 
 @withWidth()
 export default class Canvas extends Component {
@@ -10,8 +10,7 @@ export default class Canvas extends Component {
     title: React.PropTypes.string,
     text: React.PropTypes.string,
     children: React.PropTypes.node,
-    width: React.PropTypes.number.isRequired,
-    toolbar: React.PropTypes.object
+    width: React.PropTypes.number.isRequired
   };
 
   render() {
@@ -19,17 +18,12 @@ export default class Canvas extends Component {
     if (this.props.drawerOpen && this.props.width === LARGE) {
       paddingDrawer = styles.drawerOpened;
     }
-    let containerStyle = styles.containerWithoutToolbar;
-    if (this.props.toolbar !== undefined) {
-      containerStyle = styles.containerWithToolbar;
+    let containerStyle = styles.container;
+    if (this.props.width === SMALL) {
+      containerStyle = styles.containerSmall;
     }
     return (
       <div>
-        {this.props.toolbar !== undefined && (
-          <div style={paddingDrawer}>
-            {this.props.toolbar}
-          </div>
-        )}
         <div style={containerStyle}>
           <div style={paddingDrawer}>
             {this.props.title !== undefined && (
@@ -49,12 +43,11 @@ export default class Canvas extends Component {
 }
 
 const styles = {
-  containerWithoutToolbar: {
-    padding: 30
+  container: {
+    padding: 0
   },
-  containerWithToolbar: {
-    padding: 30,
-    marginTop: '-64px'
+  containerSmall: {
+    padding: 0
   },
   drawerOpened: {
     marginTop: 64,

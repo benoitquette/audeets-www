@@ -4,10 +4,16 @@ import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
 import AuditUrlResultsDetailsItem from "./AuditUrlResultsDetailsItem";
+import muiThemeable from 'material-ui/styles/muiThemeable';
+import withWidth, {SMALL} from "material-ui/utils/withWidth";
 
+@withWidth()
+@muiThemeable()
 export default class AuditUrlResultsDetails extends Component {
   static propTypes = {
-    details: React.PropTypes.array.isRequired
+    details: React.PropTypes.array.isRequired,
+    muiTheme: React.PropTypes.object.isRequired,
+    width: React.PropTypes.number.isRequired
   };
 
   state = {
@@ -36,7 +42,10 @@ export default class AuditUrlResultsDetails extends Component {
     return (
       <div>
         <IconButton style={styles.icon} onTouchTap={this.handleOpen}>
-          <FontIcon className="material-icons">report</FontIcon>
+          <FontIcon
+            className="material-icons"
+            color={this.props.muiTheme.palette.accent1Color}
+          >report</FontIcon>
         </IconButton>
         <Dialog
           actions={[]}

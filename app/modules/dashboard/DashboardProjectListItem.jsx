@@ -62,6 +62,8 @@ export default class DashboardProjectListItem extends Component {
 
 const styles = {
   item: {
-    marginBottom: 20
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20
   }
 };

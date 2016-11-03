@@ -68,12 +68,12 @@ const styles = {
     cursor: 'pointer'
   },
   pie: {
-    height: 120,
-    width: 120,
+    height: 80,
+    width: 80,
     textAlign: 'center',
     verticalAlign: 'middle',
     display: 'inline-block',
-    fontSize: '280%',
+    fontSize: '200%',
     lineHeight: '100px',
     cursor: 'pointer'
   }
