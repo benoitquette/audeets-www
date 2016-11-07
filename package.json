@@ -11,19 +11,16 @@
     "test": "npm run coverage && npm run check-coverage",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive \"./test/unit/**/*Spec.js\"",
     "check-coverage": "istanbul check-coverage --statement 85",
-    "start:www:prod": "cross-env NODE_ENV=production node ./bin/www",
-    "start:www:dev": "cross-env NODE_ENV=development node ./bin/www",
-    "audit": "node ./bin/audit",
-    "populate": "node ./bin/populate"
+    "start": "node ./bin/www",
+    "start:dev": "cross-env NODE_ENV=development node ./bin/www"
   },
   "dependencies": {
-    "ajv": "^4.1.3",
     "amqplib": "^0.4.2",
-    "arrive": "^2.3.1",
     "async": "^2.0.1",
     "bluebird": "^3.4.6",
     "body-parser": "~1.15.1",
     "colors": "^1.1.2",
+    "config": "^1.24.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "^2.5.2",
@@ -53,9 +50,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.6.1",
     "redux-promise-middleware": "^4.0.0",
-    "serve-favicon": "~2.3.0",
-    "webpack-config": "^6.1.2",
-    "webpack-dev-server": "^1.14.1"
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
@@ -89,6 +84,8 @@
     "sinon": "^1.17.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
+    "webpack-config": "^6.1.2",
+    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.12.2"
   },
   "repository": {

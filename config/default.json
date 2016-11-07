@@ -9,7 +9,9 @@
     "connect": "192.168.99.100:9200",
     "log": "trace"
   },
-  "crawlingSchedule": "0 2 * * *",
+  "crawler": {
+    "schedule": "0 2 * * *"
+  },
   "logging": {
     "default": {
       "console": {

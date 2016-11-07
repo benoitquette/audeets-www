@@ -3,7 +3,9 @@
  */
 
 const mongoose = require('mongoose');
-const config = require('./../config/config.json');
+const config = require('config');
+const amqpConfig = config.get('amqp');
+const crawlerConfig = config.get('crawler');
 const bluebird = require('bluebird');
 const _ = require('lodash');
 const cron = require('node-cron');
@@ -21,7 +23,7 @@ const EXCHANGE = 'crawl';
  */
 function audit(done) {
   const Project = mongoose.model('Project');
-  const nodeUrl = config.amqp.connect;
+  const nodeUrl = amqpConfig.connect;
   amqp.connect(nodeUrl, (err, conn) => {
     if (err) return console.log(err);
     conn.createChannel((err, ch) => {
@@ -53,7 +55,7 @@ function audit(done) {
  */
 function start() {
   mongoose.Promise = bluebird;
-  cron.schedule(config.crawlingSchedule, () => {
+  cron.schedule(crawlerConfig.schedule, () => {
     console.log('starting audits...');
     audit();
   });

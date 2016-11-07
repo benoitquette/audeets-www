@@ -1,5 +1,6 @@
-const config = require('./../config/config.json');
+const config = require('config');
+const mongoConfig = config.get('mongo');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect(config.mongo.connect);
+mongoose.connect(mongoConfig.connect);
 module.exports = mongoose;

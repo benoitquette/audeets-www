@@ -24,9 +24,6 @@ module.exports = {
     filename: 'javascripts/app.bundle.js',
     publicPath: '/'
   },
-  historyApiFallback: {
-    index: 'http://localhost:3000/'
-  },
   module: {
     loaders: [
       // Extract css files

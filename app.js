@@ -11,9 +11,6 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
 const fallback = require('express-history-api-fallback');
 const webpackConfig = require('./webpack/webpack.config');
 const scheduler = require('./bin/scheduler');
@@ -37,6 +34,9 @@ app.use('/config', config);
 
 const defaultDoc = path.join(root, 'index.html');
 if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack');
+  const webpackMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
   const middleware = webpackMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
