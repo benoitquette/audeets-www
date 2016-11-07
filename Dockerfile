@@ -25,6 +25,6 @@ RUN chmod -R +w ${appDir}/log
 
 VOLUME ${appDir}/config ${appDir}/log
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["npm", "run", "start:www:prod"]
+CMD ["npm", "run", "start"]
