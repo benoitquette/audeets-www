@@ -12,7 +12,8 @@
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive \"./test/unit/**/*Spec.js\"",
     "check-coverage": "istanbul check-coverage --statement 85",
     "start": "node ./bin/www",
-    "start:dev": "cross-env NODE_ENV=development node ./bin/www"
+    "start:dev": "cross-env NODE_ENV=development node ./bin/www",
+    "start:staging": "cross-env NODE_ENV=staging node ./bin/www"
   },
   "dependencies": {
     "amqplib": "^0.4.2",
@@ -39,6 +40,9 @@
     "morgan": "~1.7.0",
     "node-cron": "^1.1.2",
     "os": "^0.1.1",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
     "random-material-color": "^1.0.2",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",

@@ -17,23 +17,43 @@ const scheduler = require('./bin/scheduler');
 const api = require('./routes/api');
 const config = require('./routes/config');
 require('./models/init');
+const passport = require('passport');
+const BasicStrategy = require('passport-http').BasicStrategy;
 
 // end module dependencies
 
+// passport config
+passport.use(new BasicStrategy(
+  function(username, password, done) {
+    console.log('passport....');
+    if (username !== 'guest') {
+      return done(null, false, {message: 'Incorrect username.'});
+    }
+    if (password !== 'beta2016') {
+      return done(null, false, {message: 'Incorrect password.'});
+    }
+    return done(null, {user: username});
+  }
+));
+
+// common paths
 const root = path.join(__dirname, 'public');
+const defaultDocName = 'index.html';
+const defaultDoc = path.join(root, defaultDocName);
+
+// Express setup
 var app = express();
+app.use(passport.initialize());
 app.use(compression());
 app.use(favicon(path.join(root, 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(root));
 app.use('/api', api);
 app.use('/config', config);
-
-const defaultDoc = path.join(root, 'index.html');
 if (process.env.NODE_ENV === 'development') {
+  app.use(express.static(root));
+  app.use(logger('dev'));
   const webpack = require('webpack');
   const webpackMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -53,16 +73,21 @@ if (process.env.NODE_ENV === 'development') {
   });
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  app.use(fallback('index.html', {root}));
+  app.use(fallback(defaultDocName, {root}));
   app.get('*', function response(req, res) {
     res.write(middleware.fileSystem.readFileSync(defaultDoc));
     res.end();
   });
 } else {
-  app.use(fallback('index.html', {root}));
-  app.get('*', function response(req, res) {
-    res.sendFile(defaultDoc);
-  });
+  if (process.env.NODE_ENV === 'production') {
+    app.use(passport.authenticate('basic', {session: false}));
+  }
+  app.use(express.static(root));
+  app.use(fallback(defaultDocName, {root}));
+  app.get('*',
+    function response(req, res) {
+      res.sendFile(defaultDoc);
+    });
 }
 
 // catch 404 and forward to error handler
