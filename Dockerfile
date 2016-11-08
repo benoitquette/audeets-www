@@ -27,8 +27,4 @@ VOLUME ${appDir}/config ${appDir}/log
 
 EXPOSE 5000
 
-# Run the image as a non-root user
-# RUN adduser --disabled-password myuser
-# USER myuser
-
 CMD ["npm", "run", "start"]
