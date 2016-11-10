@@ -10,7 +10,8 @@ export default class ProjectCanvas extends Component {
     lastAudits: React.PropTypes.object.isRequired,
     rollingWeek: React.PropTypes.object.isRequired,
     drawerOpen: React.PropTypes.bool.isRequired,
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func.isRequired,
+    navigateToLog: React.PropTypes.func.isRequired
   };
 
   render() {
@@ -26,6 +27,7 @@ export default class ProjectCanvas extends Component {
             loaded={this.props.lastAudits.loaded}
             audits={this.props.lastAudits.data}
             onClick={this.props.onClick}
+            navigateToLog={this.props.navigateToLog}
           />
           <ProjectActions/>
         </div>

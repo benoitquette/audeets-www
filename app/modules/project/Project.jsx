@@ -72,6 +72,13 @@ export default class Project extends Component {
     router.push(`/console/${projectId}/${shortDate}`);
   }
 
+  navigateToLog() {
+    const params = this.props.params;
+    const projectId = params.projectId;
+    const router = this.props.router;
+    router.push(`/console/${projectId}/log`);
+  }
+
   render() {
     // const params = this.props.params;
     // const projectId = params.projectId;
@@ -87,6 +94,7 @@ export default class Project extends Component {
           rollingWeek={this.props.rollingWeek}
           drawerOpen={this.props.drawerOpen}
           onClick={this.navigateToAudit.bind(this)}
+          navigateToLog={this.navigateToLog.bind(this)}
         />
       </Canvas>
     );

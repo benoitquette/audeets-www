@@ -8,7 +8,8 @@ export default class ProjectLastAudits extends Component {
   static propTypes = {
     loaded: React.PropTypes.bool.isRequired,
     audits: React.PropTypes.array.isRequired,
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func.isRequired,
+    navigateToLog: React.PropTypes.func.isRequired
   };
 
   render() {
@@ -24,7 +25,10 @@ export default class ProjectLastAudits extends Component {
           }
         </CardText>
         <CardActions>
-          <FlatButton label="View All" />
+          <FlatButton
+            label="View All"
+            onTouchTap={this.props.navigateToLog}
+          />
         </CardActions>
       </Card>
     );

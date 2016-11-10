@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ProjectLastAuditsListItem from './ProjectLastAuditsListItem';
+import moment from "moment";
 
 export default class ProjectLastAuditsList extends Component {
   static propTypes = {
@@ -8,7 +9,8 @@ export default class ProjectLastAuditsList extends Component {
   };
 
   render() {
-    const items = this.props.audits.map(date => {
+    const items = this.props.audits.map(dateString => {
+      const date = moment(dateString);
       return (
         <ProjectLastAuditsListItem
           key={date}
