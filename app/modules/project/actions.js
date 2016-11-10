@@ -1,62 +1,32 @@
 import * as t from './actionTypes';
 import Promise from "bluebird";
-import {connect} from "@modules/search";
 import _ from "lodash";
-import moment from 'moment';
-import constants from '@modules/constants';
-import latestScoreQuery from "json!./searches/latestScore.json";
-import rollingWeekQuery from "json!./searches/rollingWeek.json";
-import latestAuditsQuery from "json!./searches/lastAudits.json";
 
 export const fetchLatestScores = id => ({
   type: t.FETCH_LATEST_SCORES,
   payload: new Promise((resolve, reject) => {
-    connect((err, client) => {
-      if (err) return reject(err);
-      const query = _.set(latestScoreQuery,
-          'body.query.filtered.query.match.project', id);
-      client.search(query)
-        .then(res => {
-          resolve(_.map(res.aggregations.categories.buckets, bucket => {
-            const lastAudit = bucket.day.buckets[0];
-            const checkedRules = _(lastAudit.scores.buckets)
-              .find({key: 1}).doc_count;
-            return {
-              category: bucket.key,
-              date: new Date(lastAudit.key_as_string),
-              score: checkedRules * 100 / lastAudit.doc_count
-            };
-          }));
-        }, err => reject(err));
-    });
+    fetch(`/api/projects/${id}/latestscore`, {method: 'GET'})
+      .then(response => {
+        return response.json();
+      })
+      .then(results => {
+        resolve(results);
+      })
+      .catch(err => reject(err));
   })
 });
 
 export const fetchRollingWeek = id => ({
   type: t.FETCH_ROLLING_WEEK,
   payload: new Promise((resolve, reject) => {
-    connect((err, client) => {
-      if (err) return reject(err);
-      const query = _.set(rollingWeekQuery,
-        'body.query.filtered.query.match.project', id);
-      client.search(query)
-        .then(res => {
-          resolve(_.map(res.aggregations.categories.buckets, bucket => {
-            let results = {};
-            results[bucket.key] = {
-              rollingWeek: _.map(bucket.day.buckets, (day => {
-                const checkedRules = _(day.scores.buckets)
-                  .find({key: 1}).doc_count;
-                return {
-                  date: new Date(day.key_as_string),
-                  score: checkedRules * 100 / day.doc_count
-                };
-              }))
-            };
-            return results;
-          }));
-        }, err => reject(err));
-    });
+    fetch(`/api/projects/${id}/rollingweek`, {method: 'GET'})
+      .then(response => {
+        return response.json();
+      })
+      .then(results => {
+        resolve(results);
+      })
+      .catch(err => reject(err));
   })
 });
 
@@ -143,25 +113,14 @@ export const setProjectState = (projectId, projectState) => ({
 export const fetchLastAudits = id => ({
   type: t.FETCH_LAST_AUDITS,
   payload: new Promise((resolve, reject) => {
-    const query = _.set(latestAuditsQuery,
-      'body.query.filtered.query.match.project', id);
-    connect((err, client) => {
-      if (err) return reject(err);
-      client.search(query)
-        .then(res => {
-          const categories = res.aggregations.categories.buckets;
-          resolve(_.reduce(categories, (result, cat) => {
-            return _.chain(result)
-              .concat(result, _.map(cat.day.buckets, day => {
-                return new Date(day.key_as_string);
-              }))
-              .uniqBy(date => {
-                return moment(date).format(constants.shortDateFormat);
-              })
-              .value();
-          }, []));
-        });
-    });
+    fetch(`/api/projects/${id}/lastaudits`, {method: 'GET'})
+      .then(response => {
+        return response.json();
+      })
+      .then(results => {
+        resolve(results);
+      })
+      .catch(err => reject(err));
   })
 });
 

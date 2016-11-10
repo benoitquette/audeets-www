@@ -6,8 +6,7 @@ import "isomorphic-fetch";
  * and returns it to the callback.
  * @param {function} callback takes 2 parameters: an error and the client
  */
-export function connect(callback) {
-  console.log('fetching config...');
+function connect(callback) {
   fetch(`/config/elasticsearch`, {
     method: 'GET',
     mode: 'cors'
@@ -23,3 +22,22 @@ export function connect(callback) {
     })
     .catch(err => callback(err));
 }
+
+function fetchConfig(callback) {
+  fetch(`/config/elasticsearch`, {
+    method: 'GET',
+    mode: 'cors'
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(config => {
+      callback(null, config);
+    })
+    .catch(err => callback(err));
+}
+
+module.exports = {
+  connect,
+  fetchConfig
+};

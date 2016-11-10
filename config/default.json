@@ -3,10 +3,13 @@
     "connect": "amqp://192.168.99.100"
   },
   "mongo": {
-    "connect": "mongodb://192.168.99.100/web-audits"
+    "connect": "mongodb://192.168.1.26/web-audits"
   },
   "elasticsearch": {
-    "connect": "192.168.99.100:9200",
+    "connect": {
+      "url": "http://search.audeets.com:9292",
+      "auth": "audeets:corsair2016"
+    },
     "log": "trace"
   },
   "crawler": {
