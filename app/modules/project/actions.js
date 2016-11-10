@@ -1,6 +1,5 @@
 import * as t from './actionTypes';
 import Promise from "bluebird";
-import _ from "lodash";
 
 export const fetchLatestScores = id => ({
   type: t.FETCH_LATEST_SCORES,
