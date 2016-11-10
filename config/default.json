@@ -7,10 +7,8 @@
   },
   "elasticsearch": {
     "connect": {
-      "url": "http://search.audeets.com:9292",
-      "auth": "audeets:corsair2016"
-    },
-    "log": "trace"
+      "url": "http://192.169.1.26:9210"
+    }
   },
   "crawler": {
     "schedule": "0 2 * * *"
