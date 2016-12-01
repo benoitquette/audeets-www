@@ -1,35 +1,11 @@
 {
-  "amqp": {
-    "connect": "amqp://192.168.99.100"
+  "beta": {
+    "status": true,
+    "username": "guest",
+    "password": "beta2016"
   },
-  "mongo": {
-    "connect": "mongodb://192.168.1.26/web-audits"
-  },
-  "elasticsearch": {
-    "connect": {
-      "url": "http://192.169.1.26:9210"
-    }
-  },
-  "crawler": {
-    "schedule": "0 2 * * *"
-  },
-  "logging": {
-    "default": {
-      "console": {
-        "level": "debug",
-        "colorize": true,
-        "timestamp": true,
-        "label": "tbd"
-      },
-      "file": {
-        "level": "debug",
-        "filename": "log/audits.log",
-        "timestamp": true,
-        "label": "tbd",
-        "json": false,
-        "maxsize": 500000,
-        "maxFiles": 10
-      }
-    }
+  "urls": {
+    "api": "http://localhost:5000/api",
+    "search": "http://192.168.1.26:9210"
   }
 }

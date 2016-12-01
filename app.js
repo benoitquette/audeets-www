@@ -13,11 +13,14 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
 const webpackConfig = require('./webpack/webpack.config');
-const scheduler = require('./bin/scheduler');
-const projects = require('./routes/projects');
-require('./models/init');
 const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
+const config = require('config');
+const betaConfig = config.get('beta');
+const urlsConfig = config.get('urls');
+const interceptor = require('express-interceptor');
+const cheerio = require('cheerio');
+const _ = require('lodash');
 
 // end module dependencies
 
@@ -25,11 +28,11 @@ const BasicStrategy = require('passport-http').BasicStrategy;
 passport.use(new BasicStrategy(
   function(username, password, done) {
     console.log('passport....');
-    if (username !== 'guest') {
-      return done(null, false, {message: 'Incorrect username.'});
+    if (username !== betaConfig.username) {
+      return done(null, false, {message: 'Incorrect credentials.'});
     }
-    if (password !== 'beta2016') {
-      return done(null, false, {message: 'Incorrect password.'});
+    if (password !== betaConfig.password) {
+      return done(null, false, {message: 'Incorrect credentials.'});
     }
     return done(null, {user: username});
   }
@@ -40,6 +43,22 @@ const root = path.join(__dirname, 'public');
 const defaultDocName = 'index.html';
 const defaultDoc = path.join(root, defaultDocName);
 
+// Middleware which inserts base URLs in index.html
+const variablesInterceptor = interceptor((req, res) => {
+  return {
+    isInterceptable: function() {
+      return /text\/html/.test(res.get('Content-Type'));
+    },
+    intercept: function(body, send) {
+      let json = '';
+      _.forEach(urlsConfig, (value, key) => {
+        json += `${key}: '${value}',`;
+      });
+      send(body.replace('{URLS}', json));
+    }
+  };
+});
+
 // Express setup
 var app = express();
 app.use(passport.initialize());
@@ -48,7 +67,8 @@ app.use(favicon(path.join(root, 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use('/api/projects', projects);
+app.use(variablesInterceptor);
+
 if (process.env.NODE_ENV === 'development') {
   app.use(express.static(root));
   app.use(logger('dev'));
@@ -72,19 +92,21 @@ if (process.env.NODE_ENV === 'development') {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
   app.use(fallback(defaultDocName, {root}));
-  app.get('*', function response(req, res) {
+  app.get('*', function response(req, res, next) {
     res.write(middleware.fileSystem.readFileSync(defaultDoc));
     res.end();
+    next();
   });
 } else {
-  if (process.env.NODE_ENV === 'production') {
+  if (betaConfig.status && process.env.NODE_ENV === 'production') {
     app.use(passport.authenticate('basic', {session: false}));
   }
   app.use(express.static(root));
   app.use(fallback(defaultDocName, {root}));
   app.get('*',
-    function response(req, res) {
+    function response(req, res, next) {
       res.sendFile(defaultDoc);
+      next();
     });
 }
 
@@ -94,9 +116,5 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// start the scheduler that will trigger the audits according to the pattern
-// define in the config file
-scheduler.start();
 
 module.exports = app;
