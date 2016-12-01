@@ -19,7 +19,6 @@ const config = require('config');
 const betaConfig = config.get('beta');
 const urlsConfig = config.get('urls');
 const interceptor = require('express-interceptor');
-const cheerio = require('cheerio');
 const _ = require('lodash');
 
 // end module dependencies
