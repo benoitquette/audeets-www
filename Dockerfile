@@ -21,9 +21,8 @@ RUN mkdir -p ${appDir} && cp -a /tmp/node_modules ${appDir}/
 WORKDIR ${appDir}
 COPY . ${appDir}
 RUN npm run webpack
-RUN chmod -R +w ${appDir}/log
 
-VOLUME ${appDir}/config ${appDir}/log
+VOLUME ${appDir}/config
 
 EXPOSE 5000
 
