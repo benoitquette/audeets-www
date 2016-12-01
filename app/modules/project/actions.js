@@ -1,10 +1,11 @@
+/* eslint-disable no-undef */
 import * as t from './actionTypes';
 import Promise from "bluebird";
 
 export const fetchLatestScores = id => ({
   type: t.FETCH_LATEST_SCORES,
   payload: new Promise((resolve, reject) => {
-    fetch(`/api/projects/${id}/latestscore`, {method: 'GET'})
+    fetch(`${hosts.api}/api/projects/${id}/latestscore`, {method: 'GET'})
       .then(response => {
         return response.json();
       })
@@ -18,7 +19,7 @@ export const fetchLatestScores = id => ({
 export const fetchRollingWeek = id => ({
   type: t.FETCH_ROLLING_WEEK,
   payload: new Promise((resolve, reject) => {
-    fetch(`/api/projects/${id}/rollingweek`, {method: 'GET'})
+    fetch(`${hosts.api}/api/projects/${id}/rollingweek`, {method: 'GET'})
       .then(response => {
         return response.json();
       })
@@ -112,7 +113,7 @@ export const setProjectState = (projectId, projectState) => ({
 export const fetchLastAudits = id => ({
   type: t.FETCH_LAST_AUDITS,
   payload: new Promise((resolve, reject) => {
-    fetch(`/api/projects/${id}/lastaudits`, {method: 'GET'})
+    fetch(`${hosts.api}/api/projects/${id}/lastaudits`, {method: 'GET'})
       .then(response => {
         return response.json();
       })

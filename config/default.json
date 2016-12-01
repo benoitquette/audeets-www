@@ -5,7 +5,6 @@
     "password": "beta2016"
   },
   "hosts": {
-    "api": "http://localhost:5000",
-    "search": "http://192.168.1.26:9210"
+    "api": "http://192.168.1.26:3000"
   }
 }
