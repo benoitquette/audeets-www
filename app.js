@@ -17,7 +17,7 @@ const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const config = require('config');
 const betaConfig = config.get('beta');
-const urlsConfig = config.get('urls');
+const urlsConfig = config.get('hosts');
 const interceptor = require('express-interceptor');
 const _ = require('lodash');
 
@@ -53,7 +53,7 @@ const variablesInterceptor = interceptor((req, res) => {
       _.forEach(urlsConfig, (value, key) => {
         json += `${key}: '${value}',`;
       });
-      send(body.replace('{URLS}', json));
+      send(body.replace('{HOSTS}', json));
     }
   };
 });
