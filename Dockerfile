@@ -20,10 +20,10 @@ RUN mkdir -p ${appDir} && cp -a /tmp/node_modules ${appDir}/
 # "layer" thats been cached will be used if possible
 WORKDIR ${appDir}
 COPY . ${appDir}
-RUN npm run webpack
+RUN yarn run webpack
 
 VOLUME ${appDir}/config
 
 EXPOSE 5000
 
-CMD ["npm", "run", "start"]
+CMD ["yarn", "run", "start"]
