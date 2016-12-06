@@ -1,10 +1,10 @@
 {
   "beta": {
-    "status": true,
+    "status": false,
     "username": "guest",
     "password": "beta2016"
   },
   "hosts": {
-    "apiProjects": "http://192.168.1.26:3000"
+    "apiProjects": "http://192.168.1.26:5000"
   }
 }
