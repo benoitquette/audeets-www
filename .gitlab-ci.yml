@@ -34,6 +34,6 @@ push:
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
-    - curl -X POST -F token=f8965878a557a9f5a0cff58c5bea86 -F ref=master https://gitlab.com/api/v3/projects/1856114/trigger/builds
+    - curl -X POST -F token=e804e8bdba7fe4ea894c84f5cfc982 -F ref=master https://gitlab.com/api/v3/projects/1856114/trigger/builds
   only:
     - master
