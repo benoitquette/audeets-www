@@ -5,6 +5,6 @@
     "password": "beta2016"
   },
   "hosts": {
-    "api": "http://192.168.1.26:3000"
+    "apiProjects": "http://192.168.1.26:3000"
   }
 }

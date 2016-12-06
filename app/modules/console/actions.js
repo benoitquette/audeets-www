@@ -6,7 +6,7 @@ import "isomorphic-fetch";
 export const fetchProjects = () => ({
   type: t.FETCH_PROJECTS,
   payload: new Promise(resolve => {
-    fetch(`${hosts.api}/api/projects`)
+    fetch(`${hosts.apiProjects}/api/projects`)
       .then(response => {
         resolve(response.json());
       });
@@ -20,7 +20,7 @@ export const toggleDrawer = () => ({
 export const deleteProject = id => ({
   type: t.DELETE_PROJECT,
   payload: new Promise(resolve => {
-    fetch(`${hosts.api}/api/projects/${id}`, {
+    fetch(`${hosts.apiProjects}/api/projects/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       headers: new Headers({
@@ -40,7 +40,7 @@ export const ackProjectDeleted = () => ({
 export const addProject = url => ({
   type: t.ADD_PROJECT,
   payload: new Promise(resolve => {
-    fetch(`${hosts.api}/api/projects`, {
+    fetch(`${hosts.apiProjects}/api/projects`, {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({

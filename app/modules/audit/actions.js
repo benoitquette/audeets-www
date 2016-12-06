@@ -5,7 +5,7 @@ import Promise from "bluebird";
 export const fetchAudit = (id, date) => ({
   type: t.FETCH_AUDIT,
   payload: new Promise((resolve, reject) => {
-    fetch(`${hosts.api}/api/projects/${id}/audit`, {method: 'GET'})
+    fetch(`${hosts.apiProjects}/api/projects/${id}/audit`, {method: 'GET'})
       .then(response => {
         return response.json();
       })
