@@ -1,7 +1,6 @@
 import {
   indigo500,
   indigo700,
-  indigo100,
   deeporange500,
   grey900,
   white
