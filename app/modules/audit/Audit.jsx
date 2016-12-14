@@ -5,7 +5,6 @@ import AuditUrl from './AuditUrl';
 import AuditToolbar from './AuditToolbar';
 import _ from 'lodash';
 import {fetchAudit} from './actions';
-import moment from 'moment';
 
 @connect(state => ({
   results: state.audit.list
@@ -22,7 +21,7 @@ export default class Audit extends Component {
     const params = this.props.params;
     const projectId = params.projectId;
     const date = params.date;
-    this.props.fetchAudit(projectId, moment(date));
+    this.props.fetchAudit(projectId, date);
   }
 
   render() {
