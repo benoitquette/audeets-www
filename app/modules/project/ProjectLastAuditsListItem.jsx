@@ -11,10 +11,16 @@ export default class ProjectLastAuditsListItem extends Component {
   render() {
     const dateString = moment(this.props.date).format(constants.longDateFormat);
     return (
-      <div>
+      <div style={styles.link}>
         <a onClick={this.props.onClick}>{dateString}</a>
         <br/>
       </div>
     );
   }
 }
+
+const styles = {
+  link: {
+    cursor: 'pointer'
+  }
+};
