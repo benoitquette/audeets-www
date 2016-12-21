@@ -3,6 +3,7 @@ import ProjectChartsLatest from './ProjectChartsLatest';
 import ProjectLastAudits from './ProjectLastAudits';
 import ProjectActions from './ProjectActions';
 import ProjectChartsRolling from './ProjectChartsRolling';
+import constants from '@modules/constants';
 
 export default class ProjectCanvas extends Component {
   static propTypes = {
@@ -15,6 +16,17 @@ export default class ProjectCanvas extends Component {
   };
 
   render() {
+    const rollingWeekCharts = this.props.rollingWeek.data.map(category => {
+      return (
+        <ProjectChartsRolling
+          loaded={this.props.rollingWeek.loaded}
+          title="Rolling Week"
+          subtitle={category.category}
+          data={category.data}
+          dateFormat={constants.rollingCharts.week.dateFormat}
+        />
+      );
+    });
     return (
       <div style={styles.body}>
         <ProjectChartsLatest
@@ -31,12 +43,7 @@ export default class ProjectCanvas extends Component {
           />
           <ProjectActions/>
         </div>
-        <ProjectChartsRolling
-          loaded={this.props.rollingWeek.loaded}
-          title="Rolling Week"
-          data={this.props.rollingWeek.data}
-          dateFormat=""
-        />
+        {rollingWeekCharts}
       </div>
     );
   }

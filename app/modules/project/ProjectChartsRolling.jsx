@@ -8,11 +8,13 @@ export default class ProjectChartsRolling extends Component {
   static propTypes = {
     loaded: React.PropTypes.bool.isRequired,
     title: React.PropTypes.string.isRequired,
+    subtitle: React.PropTypes.string.isRequired,
     data: React.PropTypes.array.isRequired,
     dateFormat: React.PropTypes.string.isRequired
   };
 
   render() {
+    // iterate through the data to format the dates
     const data = this.props.data.map(datum => {
       return {
         score: datum.score,
@@ -22,7 +24,7 @@ export default class ProjectChartsRolling extends Component {
     });
     return (
       <Card style={styles.card}>
-        <CardHeader title={this.props.title}/>
+        <CardHeader title={this.props.title} subtitle={this.props.subtitle}/>
         <CardText>
           {this.props.loaded ?
             <ResponsiveContainer minHeight={styles.container.minHeight}>

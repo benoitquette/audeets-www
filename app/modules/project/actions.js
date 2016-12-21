@@ -19,7 +19,8 @@ export const fetchLatestScores = id => ({
 export const fetchRollingWeek = id => ({
   type: t.FETCH_ROLLING_WEEK,
   payload: new Promise((resolve, reject) => {
-    fetch(`${hosts.apiProjects}/api/projects/${id}/rollingweek`, {method: 'GET'})
+    fetch(`${hosts.apiProjects}/api/projects/${id}/rollingweek`,
+      {method: 'GET'})
       .then(response => {
         return response.json();
       })
