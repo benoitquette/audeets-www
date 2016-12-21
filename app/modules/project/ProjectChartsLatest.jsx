@@ -16,7 +16,6 @@ export default class ProjectChartsLatest extends Component {
   render() {
     let date;
     if (!_.isNil(this.props.categories) && this.props.categories.length > 0) {
-      console.log(this.props.categories);
       date = this.props.categories[0].date;
     }
     const dateString = moment(date).format(constants.longDateFormat);

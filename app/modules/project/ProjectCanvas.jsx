@@ -19,6 +19,7 @@ export default class ProjectCanvas extends Component {
     const rollingWeekCharts = this.props.rollingWeek.data.map(category => {
       return (
         <ProjectChartsRolling
+          key={category.category}
           loaded={this.props.rollingWeek.loaded}
           title="Rolling Week"
           subtitle={category.category}

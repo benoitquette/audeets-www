@@ -6,7 +6,7 @@ import moment from 'moment';
 import {fetchAuditsList} from './actions';
 import {withRouter} from 'react-router';
 import constants from '@modules/constants';
-import LogListItem from './LogListItem';
+// import LogListItem from './LogListItem';
 import LogList from './LogList';
 
 @withRouter
@@ -61,25 +61,22 @@ export default class Log extends Component {
         const urlCount = Object.keys(_.groupBy(results, result => {
           return result.url;
         })).length;
-        return (
-          <LogListItem
-            key={shortDate}
-            shortDate={shortDate}
-            longDate={longDate}
-            urlCount={urlCount}
-            multipleAuditsWarning={categories.length !== categoriesList.length}
-            onClick={this.onClick.bind(this, shortDate)}
-            categories={categories}
-          />
-        );
+        return ({
+          shortDate,
+          longDate,
+          urlCount,
+          multipleAuditsWarning: categories.length !== categoriesList.length,
+          categories
+        });
       })
       .reverse()
       .value();
     return (
       <Canvas toolbar={toolbar} drawerOpen={this.props.drawerOpen}>
-        <LogList onClick={this.onCellClick.bind(this)}>
-          {items}
-        </LogList>
+        <LogList
+          onClick={this.onCellClick.bind(this)}
+          items={items}
+        />
       </Canvas>
     );
   }

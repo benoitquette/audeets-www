@@ -11,18 +11,21 @@ export default class ChipsList extends Component {
   };
 
   render() {
-    const chips = this.props.items.map(item => {
-      return (
-        <Chip
-          key={item}
-          style={styles.chip}
-          data-key={this.props.dataKey}
-          onTouchTap={this.props.onClick}
-        >
-          {item}
-        </Chip>
-      );
-    });
+    let chips = [];
+    if (!_.isNil(this.props.items)) {
+      chips = this.props.items.map(item => {
+        return (
+          <Chip
+            key={item}
+            style={styles.chip}
+            data-key={this.props.dataKey}
+            onTouchTap={this.props.onClick}
+          >
+            {item}
+          </Chip>
+        );
+      });
+    }
     return (
       <div style={styles.wrapper} data-key={this.props.dataKey}>
         {chips}
