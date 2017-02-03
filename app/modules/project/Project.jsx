@@ -38,6 +38,17 @@ export default class Project extends Component {
   componentDidMount() {
     const params = this.props.params;
     const projectId = params.projectId;
+    this.fetchData(projectId);
+  }
+
+  componentDidUpdate(previousProps) {
+    let oldProjectId = previousProps.params.projectId;
+    let newProjectId = this.props.params.projectId;
+    if (oldProjectId !== newProjectId)
+      this.fetchData(newProjectId);
+  }
+
+  fetchData(projectId) {
     this.props.fetchLatestScores(projectId);
     this.props.fetchLastAudits(projectId);
     this.props.fetchRollingWeek(projectId);
