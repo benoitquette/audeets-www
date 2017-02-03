@@ -66,7 +66,12 @@ export default class LogList extends Component {
       );
     });
     return (
-        <Table selectable={true} onCellClick={this.onTableClick.bind(this)}>
+        <Table
+          selectable={true}
+          onCellClick={this.onTableClick.bind(this)}
+          fixedHeader={false}
+          style={styles.table}
+        >
            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={styles.shrinkStyle}/>
@@ -90,6 +95,9 @@ export default class LogList extends Component {
 }
 
 const styles = {
+  table: {
+    tableLayout: 'auto'
+  },
   cellShrink: {
     width: 1
   },
