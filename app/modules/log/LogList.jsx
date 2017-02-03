@@ -16,9 +16,14 @@ export default class LogList extends Component {
     onClick: React.PropTypes.func.isRequired
   };
 
-  onCellClick() {
-    console.log('in log list');
-    // this.props.onClick(r, c, e);
+  onChipsClick(e) {
+    const date = e.target.parentElement.dataset.key;
+    this.props.onClick(date);
+  }
+
+  onTableClick(rowNumber, columnKey, e) {
+    const date = e.target.dataset.key;
+    this.props.onClick(date);
   }
 
   render() {
@@ -54,14 +59,14 @@ export default class LogList extends Component {
             <ChipsList
               items={item.categories}
               dataKey={item.shortDate}
-              onClick={this.props.onClick}
+              onClick={this.onChipsClick.bind(this)}
             />
           </TableRowColumn>
         </TableRow>
       );
     });
     return (
-        <Table selectable={true} onCellClick={this.props.onClick}>
+        <Table selectable={true} onCellClick={this.onTableClick.bind(this)}>
            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={styles.shrinkStyle}/>

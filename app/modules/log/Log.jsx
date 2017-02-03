@@ -27,11 +27,6 @@ export default class Log extends Component {
     this.props.fetchAuditsList(projectId);
   }
 
-  onCellClick(rowNumber, columnKey, e) {
-    const date = e.target.dataset.key;
-    this.onClick(date);
-  }
-
   onClick(date) {
     const projectId = this.props.params.projectId;
     this.props.router.push(`/console/${projectId}/${date}`);
@@ -74,7 +69,7 @@ export default class Log extends Component {
     return (
       <Canvas toolbar={toolbar} drawerOpen={this.props.drawerOpen}>
         <LogList
-          onClick={this.onCellClick.bind(this)}
+          onClick={this.onClick.bind(this)}
           items={items}
         />
       </Canvas>
