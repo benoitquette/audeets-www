@@ -50,15 +50,15 @@ staging:
   variables:
     GIT_STRATEGY: none
   script:
-    - upgrade -- stack $CI_PROJECT_NAMESPACE-staging
-    
+    - upgrade --stack $CI_PROJECT_NAMESPACE-staging
+
 production:
   stage: deploy
   environment: production
   variables:
     GIT_STRATEGY: none
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $IMAGES_REGISTRY
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker pull $RELEASE_IMAGE
     - docker tag $RELEASE_IMAGE $PRODUCTION_IMAGE
     - docker login -e="$GITLAB_USER_EMAIL" -u="$GITLAB_USER_EMAIL" -p="$HEROKU_API_KEY" $PRODUCTION_REGISTRY
