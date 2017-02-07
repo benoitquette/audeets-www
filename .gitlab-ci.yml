@@ -51,7 +51,7 @@ staging:
     GIT_STRATEGY: none
   script:
     - upgrade --stack $CI_PROJECT_NAMESPACE-staging
-    - curl --header 'Access-Token:o.FJG6cnUeuNLWvQYh3oQJwqeGI6ahd7Xs' --header 'Content-Type:application/json' --data-binary '{"body":"$CI_PROJECT_NAME deployed to staging","title":"audeets.com","type":"note"}' --request POST https://api.pushbullet.com/v2/pushes
+    - curl --header 'Access-Token:o.FJG6cnUeuNLWvQYh3oQJwqeGI6ahd7Xs' --header 'Content-Type:application/json' --data-binary '{"body":"www deployed to staging","title":"audeets.com","type":"note"}' --request POST https://api.pushbullet.com/v2/pushes
   only:
     - master
 
@@ -66,6 +66,6 @@ production:
     - docker tag $RELEASE_IMAGE $PRODUCTION_IMAGE
     - docker login -e="$GITLAB_USER_EMAIL" -u="$GITLAB_USER_EMAIL" -p="$HEROKU_API_KEY" $PRODUCTION_REGISTRY
     - docker push $PRODUCTION_IMAGE
-    - curl --header 'Access-Token:o.FJG6cnUeuNLWvQYh3oQJwqeGI6ahd7Xs' --header 'Content-Type:application/json' --data-binary '{"body":"$CI_PROJECT_NAME deployed to production","title":"audeets.com","type":"note"}' --request POST https://api.pushbullet.com/v2/pushes
+    - curl --header 'Access-Token:o.FJG6cnUeuNLWvQYh3oQJwqeGI6ahd7Xs' --header 'Content-Type:application/json' --data-binary '{"body":"www deployed to production","title":"audeets.com","type":"note"}' --request POST https://api.pushbullet.com/v2/pushes
   only:
     - master
