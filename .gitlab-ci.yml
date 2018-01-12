@@ -64,7 +64,7 @@ production:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker pull $RELEASE_IMAGE
     - docker tag $RELEASE_IMAGE $PRODUCTION_IMAGE
-    - docker login -e="$GITLAB_USER_EMAIL" -u="$GITLAB_USER_EMAIL" -p="$HEROKU_API_KEY" $PRODUCTION_REGISTRY
+    - docker login -u="$GITLAB_USER_EMAIL" -p="$HEROKU_API_KEY" $PRODUCTION_REGISTRY
     - docker push $PRODUCTION_IMAGE
     - curl --header 'Access-Token:o.FJG6cnUeuNLWvQYh3oQJwqeGI6ahd7Xs' --header 'Content-Type:application/json' --data-binary '{"body":"www deployed to production","title":"audeets.com","type":"note"}' --request POST https://api.pushbullet.com/v2/pushes
   only:
