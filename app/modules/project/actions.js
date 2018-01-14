@@ -9,7 +9,7 @@ export const fetchLatestScores = id => ({
       `${hosts.apiProjects}/api/projects/${id}/latestscore`,
       {
         method: 'GET',
-        mode: 'no-cors'
+        // mode: 'no-cors'
       })
       .then(response => {
         return response.json();
