@@ -9,7 +9,6 @@ export const fetchLatestScores = id => ({
       `${hosts.apiProjects}/api/projects/${id}/latestscore`,
       {
         method: 'GET'
-        // mode: 'no-cors'
       })
       .then(response => {
         return response.json();
@@ -25,7 +24,9 @@ export const fetchRollingWeek = id => ({
   type: t.FETCH_ROLLING_WEEK,
   payload: new Promise((resolve, reject) => {
     fetch(`${hosts.apiProjects}/api/projects/${id}/rollingweek`,
-      {method: 'GET', mode: 'no-cors'})
+      {
+        method: 'GET'
+      })
       .then(response => {
         return response.json();
       })
@@ -119,7 +120,10 @@ export const setProjectState = (projectId, projectState) => ({
 export const fetchLastAudits = id => ({
   type: t.FETCH_LAST_AUDITS,
   payload: new Promise((resolve, reject) => {
-    fetch(`${hosts.apiProjects}/api/projects/${id}/lastaudits`, {method: 'GET', mode: 'no-cors'})
+    fetch(`${hosts.apiProjects}/api/projects/${id}/lastaudits`,
+      {
+        method: 'GET'
+      })
       .then(response => {
         return response.json();
       })
