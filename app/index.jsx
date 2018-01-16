@@ -15,15 +15,23 @@ import Account from "@modules/account/Account";
 import CreateProject from "@modules/create-project/CreateProject";
 import Log from '@modules/log/Log';
 import NotFound from '@modules/not-found/NotFound';
+import {anchorate} from 'anchorate';
 
 // Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
+
+function onUpdate() {
+  anchorate();
+}
 
 // Render the main app react component into the app div.
 render(
   <Provider store={createStore()}>
     <MuiThemeProvider muiTheme={theme}>
-      <Router history={browserHistory}>
+      <Router
+        history={browserHistory}
+        onUpdate={onUpdate}
+      >
         <Route path="/" component={Home}/>
         <Route path="/console" component={Console}>
           <IndexRoute component={Dashboard}/>

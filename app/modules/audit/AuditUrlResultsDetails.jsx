@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import AuditUrlResultsDetailsItem from "./AuditUrlResultsDetailsItem";
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import withWidth from "material-ui/utils/withWidth";
+import grey500 from "material-ui/styles/colors";
 
 @withWidth()
 @muiThemeable()
@@ -44,8 +45,9 @@ export default class AuditUrlResultsDetails extends Component {
         <IconButton style={styles.icon} onTouchTap={this.handleOpen}>
           <FontIcon
             className="material-icons"
-            color={this.props.muiTheme.palette.accent1Color}
-          >report</FontIcon>
+          >
+            info
+          </FontIcon>
         </IconButton>
         <Dialog
           actions={[]}
@@ -65,6 +67,7 @@ export default class AuditUrlResultsDetails extends Component {
 
 const styles = {
   icon: {
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
+    color: grey500
   }
 };

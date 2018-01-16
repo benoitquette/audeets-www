@@ -25,7 +25,7 @@ export default class ProjectChartsLatest extends Component {
           key={cat.category}
           title={cat.category}
           score={cat.score}
-          onClick={() => this.props.onClick(date)}
+          onClick={() => this.props.onClick(date, cat.category)}
           />
       );
     });

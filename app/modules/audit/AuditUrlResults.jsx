@@ -8,48 +8,59 @@ import {
 } from 'material-ui/Table';
 import FontIcon from 'material-ui/FontIcon';
 import AuditUrlResultsDetails from './AuditUrlResultsDetails';
-import ChipsList from '@components/ChipsList';
+import {green700, red700} from "material-ui/styles/colors";
 
 export default class AuditUrlResults extends Component {
   static propTypes = {
-    results: React.PropTypes.array.isRequired
+    results: React.PropTypes.array.isRequired,
+    showFailsOnly: React.PropTypes.bool.isRequired
   };
 
   render() {
     const rows = _.chain(this.props.results)
-      .groupBy(result => {
-        return result.category;
+      .filter(result => {
+        if (this.props.showFailsOnly) {
+          return !result.check;
+        }
+        return true;
+        // return !this.props.showFailsOnly || !result.check;
       })
-      .map(results => {
-        return results.map(result => {
-          return (
-            <TableRow key={result.rule}>
-              <TableRowColumn style={styles.avatarCell}>
-                <ChipsList items={[result.category.charAt(0).toUpperCase()]}/>
-              </TableRowColumn>
-              <TableRowColumn style={styles.checkCell}>
-                {result.check && (
-                  <FontIcon
-                    className="material-icons"
-                    style={styles.icon}>done</FontIcon>
-                )}
-              </TableRowColumn>
-              <TableRowColumn style={styles.cellExpand}>
-                <span style={styles.title}>{result.title}</span>
-              </TableRowColumn>
-              <TableRowColumn style={styles.detailsCell}>
-                {result.details && (
-                  <AuditUrlResultsDetails details={result.details}/>
-                )}
-              </TableRowColumn>
-            </TableRow>
-          );
-        });
+      .map(result => {
+        return (
+          <TableRow
+            key={result.rule}
+          >
+            <TableRowColumn>
+              {result.check ? (
+                <FontIcon
+                  className="material-icons"
+                  style={styles.iconSuccess}
+                >
+                  check_box
+                </FontIcon>) : (
+                <FontIcon
+                  className="material-icons"
+                  style={styles.iconFail}
+                >
+                  check_box_outline_blank
+                </FontIcon>)
+              }
+            </TableRowColumn>
+            <TableRowColumn>
+              {result.title}
+            </TableRowColumn>
+            <TableRowColumn>
+              {result.details && (
+                <AuditUrlResultsDetails details={result.details}/>
+              )}
+            </TableRowColumn>
+          </TableRow>
+        );
       })
       .flatten()
       .value();
     return (
-      <Table selectable={false} multiSelectable={true}>
+      <Table selectable={false} multiSelectable={false} fixedHeader={false} style={styles.table}>
         <TableBody displayRowCheckbox={false} showRowHover={true}>
           {rows}
         </TableBody>
@@ -60,7 +71,7 @@ export default class AuditUrlResults extends Component {
 
 const styles = {
   checkCell: {
-    width: 1,
+    // width: 1,
     paddingRight: 19
   },
   avatarCell: {
@@ -71,10 +82,19 @@ const styles = {
     width: 15,
     paddingRight: 30
   },
-  icon: {
-    verticalAlign: 'middle'
+  iconSuccess: {
+    verticalAlign: 'middle',
+    color: green700
+  },
+  iconFail: {
+    verticalAlign: 'middle',
+    color: red700
   },
   cellExpand: {
     width: '99%'
+  },
+  table:
+  {
+    width: "auto", tableLayout: "auto"
   }
 };

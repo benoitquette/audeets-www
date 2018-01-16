@@ -16,3 +16,18 @@ export const fetchAudit = (id, date) => ({
       .catch(err => reject(err));
   })
 });
+
+export const setFilterUrl = url => ({
+  type: t.SET_FILTER_URL,
+  url
+});
+
+export const setUrls = urls => ({
+  type: t.SET_URLS,
+  urls
+});
+
+export const setShowFailsOnly = showFailsOnly => ({
+  type: t.SET_SHOW_FAILS_ONLY,
+  showFailsOnly
+});

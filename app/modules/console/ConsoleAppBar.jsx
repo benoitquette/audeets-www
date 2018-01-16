@@ -22,7 +22,7 @@ export default class Console extends Component {
         style={styles.appBar}
         title="audeets"
         titleStyle={styles.title}
-        onTitleTouchTap={this.props.navigateToHome}
+        onTitleClick={this.props.navigateToHome}
         showMenuIconButton={this.props.width === SMALL}
         iconStyleRight={{verticalAlign: 'middle'}}
         iconElementRight={
@@ -43,7 +43,7 @@ export default class Console extends Component {
               />
           </IconMenu>
         }
-        onLeftIconButtonTouchTap={this.props.toggleDrawer}
+        onLeftIconButtonClick={this.props.toggleDrawer}
         />
     );
   }

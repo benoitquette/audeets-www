@@ -67,7 +67,7 @@ export default class Log extends Component {
       .reverse()
       .value();
     return (
-      <Canvas toolbar={toolbar} drawerOpen={this.props.drawerOpen}>
+      <Canvas drawerOpen={this.props.drawerOpen}>
         <LogList
           onClick={this.onClick.bind(this)}
           items={items}

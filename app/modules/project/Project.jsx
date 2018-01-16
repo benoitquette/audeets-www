@@ -75,12 +75,12 @@ export default class Project extends Component {
     this.props.setProjectState(projectId, {rollingPeriod});
   }
 
-  navigateToAudit(date) {
+  navigateToAudit(date, category) {
     const params = this.props.params;
     const projectId = params.projectId;
     const router = this.props.router;
     const shortDate = moment(date).format(constants.shortDateFormat);
-    router.push(`/console/${projectId}/${shortDate}`);
+    router.push(`/console/${projectId}/${shortDate}#${category}`);
   }
 
   navigateToLog() {

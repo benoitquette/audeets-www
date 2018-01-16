@@ -16,6 +16,7 @@
     "start:staging": "cross-env NODE_ENV=staging node ./bin/www"
   },
   "dependencies": {
+    "anchorate": "^1.1.0",
     "async": "^2.0.1",
     "bluebird": "^3.4.6",
     "body-parser": "~1.15.1",
@@ -31,7 +32,7 @@
     "jade": "~1.11.0",
     "json-loader": "^0.5.4",
     "lodash": "^4.16.4",
-    "material-ui": "^0.16.5",
+    "material-ui": "^0.20.0",
     "moment": "^2.15.1",
     "morgan": "~1.7.0",
     "os": "^0.1.1",

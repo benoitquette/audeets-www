@@ -13,7 +13,8 @@ export default class Canvas extends Component {
     title: React.PropTypes.string,
     text: React.PropTypes.string,
     children: React.PropTypes.node,
-    width: React.PropTypes.number.isRequired
+    width: React.PropTypes.number.isRequired,
+    toolbar: React.PropTypes.object
   };
 
   render() {
@@ -26,6 +27,7 @@ export default class Canvas extends Component {
     return (
       <div>
         <div style={paddingDrawer}>
+          {this.props.toolbar !== undefined && (this.props.toolbar)}
           {this.props.title !== undefined && (
             <Title text={this.props.title}/>
           )}
@@ -43,12 +45,13 @@ export default class Canvas extends Component {
 
 const styles = {
   content: {
-    paddingTop: 64
   },
   drawerOpened: {
-    marginLeft: 256
+    marginLeft: 256,
+    paddingTop: 64
   },
   drawerClosed: {
-    marginLeft: 0
+    marginLeft: 0,
+    paddingTop: 64
   }
 };
