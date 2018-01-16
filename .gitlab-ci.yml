@@ -68,7 +68,7 @@ production:
     - docker tag $RELEASE_IMAGE $PRODUCTION_IMAGE
     - docker login -u="$GITLAB_USER_EMAIL" -p="$HEROKU_API_KEY" $PRODUCTION_REGISTRY
     - docker push $PRODUCTION_IMAGE
-    - "curl -X POST -F token=23a06728ce7e7f8a8aefe25aa7b13a -F ref=REF_NAME https://gitlab.com/api/v4/projects/1687415/trigger/pipeline"
+    - "curl -X POST -F token=23a06728ce7e7f8a8aefe25aa7b13a -F ref=master https://gitlab.com/api/v4/projects/1687415/trigger/pipeline"
     # - curl --header 'Access-Token:o.FJG6cnUeuNLWvQYh3oQJwqeGI6ahd7Xs' --header 'Content-Type:application/json' --data-binary '{"body":"www deployed to production","title":"audeets.com","type":"note"}' --request POST https://api.pushbullet.com/v2/pushes
   only:
     - master
