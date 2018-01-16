@@ -19,7 +19,8 @@ import ConsoleDrawer from "./ConsoleDrawer";
   drawerOpen: state.console.drawerOpen,
   projects: state.console.projects,
   errors: state.console.errors,
-  confirmations: state.console.confirmations
+  confirmations: state.console.confirmations,
+  loading: state.console.loading
 }), {
   toggleDrawer,
   fetchProjects,
@@ -42,7 +43,8 @@ export default class Console extends Component {
     deleteProject: React.PropTypes.func.isRequired,
     ackProjectDeleted: React.PropTypes.func.isRequired,
     errors: React.PropTypes.object.isRequired,
-    confirmations: React.PropTypes.object.isRequired
+    confirmations: React.PropTypes.object.isRequired,
+    loading: React.PropTypes.bool.isRequired
   };
 
   componentWillMount() {
@@ -91,7 +93,8 @@ export default class Console extends Component {
               deleteProject: this.props.deleteProject,
               ackProjectDeleted: this.props.ackProjectDeleted,
               errors: this.props.errors,
-              confirmations: this.props.confirmations
+              confirmations: this.props.confirmations,
+              loading: this.props.loading
             })
           }
         </div>

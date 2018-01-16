@@ -25,7 +25,8 @@ export default class Dashboard extends Component {
     addProject: React.PropTypes.func.isRequired,
     ackProjectAdded: React.PropTypes.func.isRequired,
     deleteProject: React.PropTypes.func.isRequired,
-    ackProjectDeleted: React.PropTypes.func.isRequired
+    ackProjectDeleted: React.PropTypes.func.isRequired,
+    loading: React.PropTypes.bool.isRequired
   };
 
   navigateToProject(projectId) {
@@ -47,6 +48,7 @@ export default class Dashboard extends Component {
           dialogOpen={this.props.dialogOpen}
           toggleDialog={this.props.toggleDialog}
           removeProject={this.removeProject.bind(this)}
+          loading={this.props.loading}
         />
         <DashboardButton navigateToCreateProject={<Link to="/console/add" />}/>
         <DashboardFeedback

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import DashboardProjectListItem from './DashboardProjectListItem';
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class DashboardProjectList extends Component {
   static propTypes = {
@@ -7,7 +8,8 @@ export default class DashboardProjectList extends Component {
     navigateToProject: React.PropTypes.func.isRequired,
     toggleDialog: React.PropTypes.func.isRequired,
     removeProject: React.PropTypes.func.isRequired,
-    dialogOpen: React.PropTypes.bool.isRequired
+    dialogOpen: React.PropTypes.bool.isRequired,
+    loading: React.PropTypes.bool.isRequired
   };
 
   render() {
@@ -32,7 +34,12 @@ export default class DashboardProjectList extends Component {
       );
     });
     return (
-      <div style={styles.list}>{items}</div>
+      <div style={styles.list}>
+        {this.props.loading ?
+          <CircularProgress style={styles.progress}/> :
+          items
+        }
+      </div>
     );
   }
 }
@@ -40,5 +47,10 @@ export default class DashboardProjectList extends Component {
 const styles = {
   list: {
     margin: 20
+  },
+  progress: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 };
