@@ -1,4 +1,4 @@
-FROM node:6-slim
+FROM node:20
 ENV appDir /usr/src/app
 ENV yarnDir /root/.yarn/bin
 
