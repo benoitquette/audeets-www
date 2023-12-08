@@ -5,6 +5,6 @@
     "password": ""
   },
   "hosts": {
-    "apiProjects": "http://localhost:5001"
+    "apiProjects": "http://192.168.1.26:5001"
   }
 }
