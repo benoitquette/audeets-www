@@ -1,9 +1,8 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import Button from '@mui/material/Button';
-import {makeStyles} from '@mui/styles';
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   canvas: {
     minHeight: '100vh',
     display: 'flex',
@@ -33,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginBottom: 0,
-    [theme.breakpoints.down('xs')]: {
-      alignItems: 'center',
-      marginTop: 20
-    },
+    // [theme.breakpoints.down('xs')]: {
+    //   alignItems: 'center',
+    //   marginTop: 20
+    // },
   },
   title: {
     color: 'Charcoal',
@@ -68,40 +67,39 @@ const useStyles = makeStyles((theme) => ({
     padding: 10
   },
   main: {
-    backgroundColor: theme.palette.primary3Color,
+    // backgroundColor: theme.palette.primary3Color,
     backgroundImage: 'url(images/cork-wallet.png)'
   }
-}));
+};
 
 function Home(props) {
-  const classes = useStyles()
   return (
-      <div className={classes.main}>
-        <div className={classes.canvas} >
-          <div className={classes.header}>
+      <div style={styles.main}>
+        <div style={styles.canvas} >
+          <div style={styles.header}>
           </div>
-          <div className={classes.body}>
-            <div className={classes.logo}>
+          <div style={styles.body}>
+            <div style={styles.logo}>
               <img src="apple-icon-180x180.png"/>
-              <div className={classes.logoText}>
-                <span className={classes.title}>
+              <div style={styles.logoText}>
+                <span style={styles.title}>
                   audeets
                 </span>
-                <span className={classes.tagline}>
+                <span style={styles.tagline}>
                   continuous site auditing
                 </span>
               </div>
             </div>
-            <div className={classes.buttons}>
+            <div style={styles.buttons}>
               <Link to="/console/dashboard">
                 <Button
                   variant="contained"
-                  className={classes.button}
+                  style={styles.button}
                   >demo</Button>
                 </Link>
             </div>
           </div>
-          <div className={classes.footer}>
+          <div style={styles.footer}>
             © 2016 audeets.com. All Rights Reserved.
           </div>
         </div>
