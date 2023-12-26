@@ -1,26 +1,26 @@
-import * as t from './actionTypes';
+import * as t from './actionTypes'
 
 const initialState = {
   latestScores: {
     data: [],
     error: false,
     loading: false,
-    loaded: false
+    loaded: false,
   },
   lastAudits: {
     data: [],
     error: false,
     loading: false,
-    loaded: false
+    loaded: false,
   },
   rollingWeek: {
     data: [],
     error: false,
     loading: false,
-    loaded: false
+    loaded: false,
   },
-  projectStates: {}
-};
+  projectStates: {},
+}
 
 /**
  * Implementation of the reducer
@@ -37,9 +37,9 @@ export default function project(state = initialState, action) {
           ...state.latestScores,
           error: false,
           loading: true,
-          loaded: false
-        }
-      };
+          loaded: false,
+        },
+      }
     case `${t.FETCH_LATEST_SCORES}_FULFILLED`:
       return {
         ...state,
@@ -47,9 +47,9 @@ export default function project(state = initialState, action) {
           error: false,
           loading: false,
           data: action.payload,
-          loaded: true
-        }
-      };
+          loaded: true,
+        },
+      }
     case `${t.FETCH_LATEST_SCORES}_REJECTED`:
       return {
         ...state,
@@ -57,9 +57,9 @@ export default function project(state = initialState, action) {
           ...state.latestScores,
           error: true,
           loading: false,
-          loaded: true
-        }
-      };
+          loaded: true,
+        },
+      }
     case `${t.FETCH_LAST_AUDITS}_PENDING`:
       return {
         ...state,
@@ -67,9 +67,9 @@ export default function project(state = initialState, action) {
           ...state.lastAudits,
           error: false,
           loading: true,
-          loaded: false
-        }
-      };
+          loaded: false,
+        },
+      }
     case `${t.FETCH_LAST_AUDITS}_FULFILLED`:
       return {
         ...state,
@@ -77,9 +77,9 @@ export default function project(state = initialState, action) {
           error: false,
           loading: false,
           data: action.payload,
-          loaded: true
-        }
-      };
+          loaded: true,
+        },
+      }
     case `${t.FETCH_LAST_AUDITS}_REJECTED`:
       return {
         ...state,
@@ -87,9 +87,9 @@ export default function project(state = initialState, action) {
           ...state.lastAudits,
           error: true,
           loading: false,
-          loaded: true
-        }
-      };
+          loaded: true,
+        },
+      }
     case `${t.FETCH_ROLLING_WEEK}_PENDING`:
       return {
         ...state,
@@ -97,9 +97,9 @@ export default function project(state = initialState, action) {
           ...state.rollingWeek,
           error: false,
           loading: true,
-          loaded: false
-        }
-      };
+          loaded: false,
+        },
+      }
     case `${t.FETCH_ROLLING_WEEK}_FULFILLED`:
       return {
         ...state,
@@ -107,9 +107,9 @@ export default function project(state = initialState, action) {
           error: false,
           loading: false,
           data: action.payload,
-          loaded: true
-        }
-      };
+          loaded: true,
+        },
+      }
     case `${t.FETCH_ROLLING_WEEK}_REJECTED`:
       return {
         ...state,
@@ -117,18 +117,18 @@ export default function project(state = initialState, action) {
           ...state.rollingWeek,
           error: true,
           loading: false,
-          loaded: true
-        }
-      };
+          loaded: true,
+        },
+      }
     case t.SET_PROJECT_STATE: {
-      let newState = {};
-      newState[action.projectId] = action.projectState;
+      let newState = {}
+      newState[action.projectId] = action.projectState
       return {
         ...state,
-        projectStates: Object.assign({}, state.projectStates, newState)
-      };
+        projectStates: Object.assign({}, state.projectStates, newState),
+      }
     }
     default:
-      return state;
+      return state
   }
 }

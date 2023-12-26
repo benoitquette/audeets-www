@@ -1,10 +1,10 @@
-import * as t from './actionTypes';
+import * as t from './actionTypes'
 
 const initialState = {
   stepIndex: 0,
   url: '',
-  name: ''
-};
+  name: '',
+}
 
 /**
  * Implementation of the reducer
@@ -17,26 +17,26 @@ export default function createProject(state = initialState, action) {
     case t.INCREMENT_STEPPER:
       return {
         ...state,
-        stepIndex: state.stepIndex + 1
-      };
+        stepIndex: state.stepIndex + 1,
+      }
     case t.DECREMENT_STEPPER:
       return {
         ...state,
-        stepIndex: state.stepIndex - 1
-      };
+        stepIndex: state.stepIndex - 1,
+      }
     case t.SET_URL:
       return {
         ...state,
-        url: action.url
-      };
+        url: action.url,
+      }
     case t.SET_NAME:
       return {
         ...state,
-        name: action.name
-      };
+        name: action.name,
+      }
     case t.RESET:
-      return initialState;
+      return initialState
     default:
-      return state;
+      return state
   }
 }

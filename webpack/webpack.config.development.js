@@ -1,18 +1,18 @@
-const webpack = require('webpack');
-const Config = require('webpack-config').default;
+const webpack = require('webpack')
+const Config = require('webpack-config').default
 
 module.exports = new Config().extend('webpack/webpack.config.shared.js').merge({
   devtool: 'eval-source-map',
   entry: [
-    'webpack-hot-middleware/client?reload=true'
+    'webpack-hot-middleware/client?reload=true',
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    })
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
   ],
-  mode: 'development'
-});
+  mode: 'development',
+})

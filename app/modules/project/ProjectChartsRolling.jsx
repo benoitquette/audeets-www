@@ -1,24 +1,24 @@
-import React from "react";
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import {ResponsiveContainer, LineChart, Line, XAxis, Tooltip} from 'recharts';
-import moment from 'moment';
-import PropTypes from 'prop-types';
+import React from 'react'
+import Card from '@mui/material/Card'
+import CardHeader from '@mui/material/CardHeader'
+import CardContent from '@mui/material/CardContent'
+import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip } from 'recharts'
+import moment from 'moment'
+import PropTypes from 'prop-types'
 import Spinner from '@components/Spinner'
 
 function ProjectChartsRolling(props) {
   const capitalize = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
   // iterate through the data to format the dates
-  const data = props.data.map(datum => {
+  const data = props.data.map((datum) => {
     return {
       score: datum.score,
       date: moment(datum.date)
-        .format(props.dateFormat)
-    };
-  });
+        .format(props.dateFormat),
+    }
+  })
   return (
     <Card>
       <CardHeader
@@ -34,7 +34,7 @@ function ProjectChartsRolling(props) {
                 top: 0,
                 right: 30,
                 left: 30,
-                bottom: 0
+                bottom: 0,
               }}
             >
               <Line
@@ -42,7 +42,7 @@ function ProjectChartsRolling(props) {
                 dataKey="score"
                 stroke="blue"
               />
-              <Tooltip/>
+              <Tooltip />
               <XAxis dataKey="date" />
             </LineChart>
           </ResponsiveContainer>
@@ -58,6 +58,6 @@ ProjectChartsRolling.propTypes = {
   subtitle: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   dateFormat: PropTypes.string.isRequired,
-};
+}
 
-export default ProjectChartsRolling;
+export default ProjectChartsRolling

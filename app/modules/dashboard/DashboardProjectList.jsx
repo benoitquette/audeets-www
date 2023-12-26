@@ -1,13 +1,13 @@
-import React from "react";
-import DashboardProjectListItem from './DashboardProjectListItem';
-import PropTypes from 'prop-types';
-import Spinner from "@components/Spinner";
+import React from 'react'
+import DashboardProjectListItem from './DashboardProjectListItem'
+import PropTypes from 'prop-types'
+import Spinner from '@components/Spinner'
 
 function DashboardProjectList(props) {
   return (
     <Spinner loading={props.loading}>
       {
-        props.projects.map(project => {
+        props.projects.map((project) => {
           return (
             <DashboardProjectListItem
               title={project.title}
@@ -19,13 +19,13 @@ function DashboardProjectList(props) {
               key={project._id}
               id={project._id}
               navigateToProject={() => {
-                return props.navigateToProject(project._id);
+                return props.navigateToProject(project._id)
               }}
               dialogOpen={props.dialogOpen}
               toggleDialog={props.toggleDialog}
               removeProject={props.removeProject}
             />
-          );
+          )
         })
       }
     </Spinner>
@@ -38,7 +38,7 @@ DashboardProjectList.propTypes = {
   toggleDialog: PropTypes.func.isRequired,
   removeProject: PropTypes.func.isRequired,
   dialogOpen: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired
-};
+  loading: PropTypes.bool.isRequired,
+}
 
-export default DashboardProjectList;
+export default DashboardProjectList

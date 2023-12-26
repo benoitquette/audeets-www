@@ -1,13 +1,14 @@
-import React from "react";
-import Canvas from '@components/Canvas';
+import React from 'react'
+import Canvas from '@components/Canvas'
 
- function NotFound() {
+function NotFound() {
   return (
     <Canvas
       title="Not Found"
       text="sds sd sqd sqd sqdsq dsq dsqdsqdsqdsqdsqd"
-      drawerOpen={false}/>
+      drawerOpen={false}
+    />
   )
 }
 
-export default NotFound;
+export default NotFound

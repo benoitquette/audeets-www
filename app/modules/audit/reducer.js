@@ -1,5 +1,5 @@
-import * as t from './actionTypes';
-import _ from 'lodash';
+import * as t from './actionTypes'
+import _ from 'lodash'
 
 const initialState = {
   list: [],
@@ -7,8 +7,8 @@ const initialState = {
   filterUrl: null,
   showFailsOnly: false,
   error: false,
-  loading: false
-};
+  loading: false,
+}
 
 /**
  * Implementation of the reducer
@@ -22,19 +22,19 @@ export default function audit(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: false
-      };
+        error: false,
+      }
     case `${t.FETCH_AUDIT}_FULFILLED`: {
       let urls = _.chain(action.payload)
-        .map(result => {
-          return result.url;
+        .map((result) => {
+          return result.url
         })
         .orderBy('url')
         .uniq()
-        .value();
-      let filterUrl = state.filterUrl;
+        .value()
+      let filterUrl = state.filterUrl
       if (urls.length > 0) {
-        filterUrl = urls[0];
+        filterUrl = urls[0]
       }
       return {
         ...state,
@@ -42,37 +42,37 @@ export default function audit(state = initialState, action) {
         errors: false,
         list: action.payload,
         urls: urls,
-        filterUrl
-      };
+        filterUrl,
+      }
     }
     case `${t.FETCH_AUDIT}_REJECTED`:
       return {
         ...state,
         loading: false,
-        error: true
-      };
+        error: true,
+      }
     case t.SET_FILTER_URL:
       return {
         ...state,
         filterUrl: action.url,
         loading: false,
-        error: false
-      };
+        error: false,
+      }
     case t.SET_URLS:
       return {
         ...state,
         urls: action.urls,
         loading: false,
-        error: false
-      };
+        error: false,
+      }
     case t.SET_SHOW_FAILS_ONLY:
       return {
         ...state,
         showFailsOnly: action.showFailsOnly,
         loading: false,
-        error: false
-      };
+        error: false,
+      }
     default:
-      return state;
+      return state
   }
 }

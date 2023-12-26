@@ -1,14 +1,14 @@
-import React from "react";
-import ProjectChartsLatest from './ProjectChartsLatest';
-import ProjectLastAudits from './ProjectLastAudits';
-import ProjectActions from './ProjectActions';
-import ProjectChartsRolling from './ProjectChartsRolling';
-import constants from '@modules/constants';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
+import React from 'react'
+import ProjectChartsLatest from './ProjectChartsLatest'
+import ProjectLastAudits from './ProjectLastAudits'
+import ProjectActions from './ProjectActions'
+import ProjectChartsRolling from './ProjectChartsRolling'
+import constants from '@modules/constants'
+import PropTypes from 'prop-types'
+import Box from '@mui/material/Box'
 
 function ProjectCanvas(props) {
-  const rollingWeekCharts = props.rollingWeek.data.map(category => {
+  const rollingWeekCharts = props.rollingWeek.data.map((category) => {
     return (
       <ProjectChartsRolling
         key={category.category}
@@ -18,8 +18,8 @@ function ProjectCanvas(props) {
         data={category.data}
         dateFormat={constants.rollingCharts.week.dateFormat}
       />
-    );
-  });
+    )
+  })
   return (
     <Box
       component="div"
@@ -28,7 +28,7 @@ function ProjectCanvas(props) {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'stretch',
-        rowGap: 3
+        rowGap: 3,
       }}
     >
       <ProjectChartsLatest
@@ -44,7 +44,7 @@ function ProjectCanvas(props) {
           flexWrap: 'no-wrap',
           justifyContent: 'space-between',
           alignItems: 'stretch',
-          columnGap: 3
+          columnGap: 3,
         }}
       >
         <ProjectLastAudits
@@ -53,7 +53,7 @@ function ProjectCanvas(props) {
           navigateToAudit={props.navigateToAudit}
           navigateToLog={props.navigateToLog}
         />
-        <ProjectActions/>
+        <ProjectActions />
       </Box>
       {rollingWeekCharts}
     </Box>
@@ -65,8 +65,7 @@ ProjectCanvas.propTypes = {
   lastAudits: PropTypes.object.isRequired,
   rollingWeek: PropTypes.object.isRequired,
   navigateToAudit: PropTypes.func.isRequired,
-  navigateToLog: PropTypes.func.isRequired
-};
+  navigateToLog: PropTypes.func.isRequired,
+}
 
-export default ProjectCanvas;
-
+export default ProjectCanvas

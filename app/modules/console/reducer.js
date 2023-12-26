@@ -1,5 +1,5 @@
-import * as t from './actionTypes';
-import async from 'async';
+import * as t from './actionTypes'
+import async from 'async'
 
 const initialState = {
   projects: [],
@@ -7,15 +7,15 @@ const initialState = {
   errors: {
     fetchProjects: false,
     createProject: false,
-    deleteProject: false
+    deleteProject: false,
   },
   confirmations: {
     fetchProjects: false,
     createProject: false,
-    deleteProject: false
+    deleteProject: false,
   },
-  loading: false
-};
+  loading: false,
+}
 
 /**
  * Implementation of the reducer
@@ -31,106 +31,106 @@ export default function console(state = initialState, action) {
         loading: true,
         errors: {
           ...state.errors,
-          fetchProjects: false
-        }
-      };
+          fetchProjects: false,
+        },
+      }
     case `${t.FETCH_PROJECTS}_FULFILLED`:
       return {
         ...state,
         loading: false,
         errors: {
           ...state.errors,
-          fetchProjects: false
+          fetchProjects: false,
         },
-        projects: action.payload
-      };
+        projects: action.payload,
+      }
     case `${t.FETCH_PROJECTS}_REJECTED`:
       return {
         ...state,
         loading: false,
         errors: {
           ...state.errors,
-          fetchProjects: true
-        }
-      };
+          fetchProjects: true,
+        },
+      }
     case t.TOGGLE_DRAWER:
       return {
         ...state,
-        drawerOpen: !state.drawerOpen
-      };
+        drawerOpen: !state.drawerOpen,
+      }
     case `${t.CREATE_PROJECT}_PENDING`:
       return {
         ...state,
         loading: true,
         errors: {
           ...state.errors,
-          createProject: false
+          createProject: false,
         },
         confirmations: {
           ...state.confirmations,
-          createProject: false
-        }
-      };
+          createProject: false,
+        },
+      }
     case `${t.CREATE_PROJECT}_FULFILLED`:
       return {
         ...state,
         loading: false,
         errors: {
           ...state.errors,
-          createProject: false
+          createProject: false,
         },
         confirmations: {
           ...state.confirmations,
-          createProject: true
+          createProject: true,
         },
-        projects: state.projects.concat(action.payload)
-      };
+        projects: state.projects.concat(action.payload),
+      }
     case `${t.CREATE_PROJECT}_REJECTED`:
       return {
         ...state,
         loading: false,
         errors: {
           ...state.errors,
-          createProject: true
+          createProject: true,
         },
         confirmations: {
           ...state.confirmations,
-          createProject: false
-        }
-      };
+          createProject: false,
+        },
+      }
     case `${t.DELETE_PROJECT}_PENDING`:
       return {
         ...state,
         loading: true,
         errors: {
           ...state.errors,
-          deleteProject: false
+          deleteProject: false,
         },
         confirmations: {
           ...state.confirmations,
-          deleteProject: false
-        }
-      };
+          deleteProject: false,
+        },
+      }
     case `${t.DELETE_PROJECT}_FULFILLED`: {
       let newState = {
         ...state,
         loading: false,
         errors: {
           ...state.errors,
-          deleteProject: false
+          deleteProject: false,
         },
         confirmations: {
           ...state.confirmations,
-          deleteProject: true
-        }
-      };
+          deleteProject: true,
+        },
+      }
       async.reject(state.projects, (project, callback) => {
-        callback(null, action.payload.id === project._id);
+        callback(null, action.payload.id === project._id)
       }, (err, results) => {
-        if (err) return console.log(err);
-        newState.projects = results;
-      });
-      return newState;
+        if (err) return console.log(err)
+        newState.projects = results
+      })
+      return newState
     }
     case `${t.DELETE_PROJECT}_REJECTED`:
       return {
@@ -138,14 +138,14 @@ export default function console(state = initialState, action) {
         loading: false,
         errors: {
           ...state.errors,
-          deleteProject: true
+          deleteProject: true,
         },
         confirmations: {
           ...state.confirmations,
-          deleteProject: false
-        }
-      };
+          deleteProject: false,
+        },
+      }
     default:
-      return state;
+      return state
   }
 }

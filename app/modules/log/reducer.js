@@ -1,10 +1,10 @@
-import * as t from './actionTypes';
+import * as t from './actionTypes'
 
 const initialState = {
   list: [],
   error: false,
-  loading: false
-};
+  loading: false,
+}
 
 /**
  * Implementation of the reducer
@@ -18,22 +18,22 @@ export default function log(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: false
-      };
+        error: false,
+      }
     case `${t.FETCH_AUDITS_LIST}_FULFILLED`:
       return {
         ...state,
         loading: false,
         errors: false,
-        list: action.payload
-      };
+        list: action.payload,
+      }
     case `${t.FETCH_AUDITS_LIST}_REJECTED`:
       return {
         ...state,
         loading: false,
-        error: true
-      };
+        error: true,
+      }
     default:
-      return state;
+      return state
   }
 }

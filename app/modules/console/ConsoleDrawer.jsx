@@ -1,8 +1,8 @@
-import React from "react";
-import Drawer from "@mui/material/Drawer";
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import ConsoleDrawerContent from "./ConsoleDrawerContent";
+import React from 'react'
+import Drawer from '@mui/material/Drawer'
+import PropTypes from 'prop-types'
+import Box from '@mui/material/Box'
+import ConsoleDrawerContent from './ConsoleDrawerContent'
 
 function ConsoleDrawer(props) {
   const drawer = (
@@ -13,7 +13,7 @@ function ConsoleDrawer(props) {
       navigateToSettings={props.navigateToSettings}
       loading={props.loading}
     />
-  );
+  )
 
   return (
     <Box
@@ -22,15 +22,15 @@ function ConsoleDrawer(props) {
     >
       <Drawer
         variant="temporary"
-        anchor={'left'}
+        anchor="left"
         open={props.drawerOpen}
         onClose={props.toggleDrawer}
         sx={{
-          display: { xs: 'block', sm: 'none' },
+          'display': { xs: 'block', sm: 'none' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
         }}
         ModalProps={{
-          keepMounted: true // Better open performance on mobile.
+          keepMounted: true, // Better open performance on mobile.
         }}
       >
         {drawer}
@@ -38,7 +38,7 @@ function ConsoleDrawer(props) {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: 'none', sm: 'block' },
+          'display': { xs: 'none', sm: 'block' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
         }}
         open
@@ -46,7 +46,7 @@ function ConsoleDrawer(props) {
         {drawer}
       </Drawer>
     </Box>
-  );
+  )
 }
 
 ConsoleDrawer.propTypes = {
@@ -57,7 +57,7 @@ ConsoleDrawer.propTypes = {
   navigateToProject: PropTypes.func.isRequired,
   navigateToSettings: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  drawerWidth: PropTypes.number.isRequired
-};
+  drawerWidth: PropTypes.number.isRequired,
+}
 
-export default ConsoleDrawer;
+export default ConsoleDrawer

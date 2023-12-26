@@ -1,8 +1,8 @@
-import * as t from './actionTypes';
+import * as t from './actionTypes'
 
 const initialState = {
-  dialogOpen: false
-};
+  dialogOpen: false,
+}
 
 /**
  * Implementation of the reducer
@@ -15,10 +15,10 @@ export default function dashboard(state = initialState, action) {
     case t.TOGGLE_DIALOG:
       return {
         ...state,
-        dialogOpen: !state.dialogOpen
-      };
+        dialogOpen: !state.dialogOpen,
+      }
 
     default:
-      return state;
+      return state
   }
 }

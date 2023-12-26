@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from 'prop-types';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemButton from '@mui/material/ListItemButton';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemButton from '@mui/material/ListItemButton'
 
 function ConsoleDrawerProjectsMenuItem(props) {
   return (
@@ -9,14 +9,14 @@ function ConsoleDrawerProjectsMenuItem(props) {
       sx={{ pl: 4 }}
       onClick={props.callback}
     >
-      <ListItemText primary={props.title}/>
+      <ListItemText primary={props.title} />
     </ListItemButton>
-  );
+  )
 }
 
 ConsoleDrawerProjectsMenuItem.propTypes = {
   title: PropTypes.string,
-  callback: PropTypes.func.isRequired
-};
+  callback: PropTypes.func.isRequired,
+}
 
-export default ConsoleDrawerProjectsMenuItem;
+export default ConsoleDrawerProjectsMenuItem

@@ -1,24 +1,24 @@
-import React from "react";
-import DashboardProjectList from "./DashboardProjectList";
-import Canvas from "@components/Canvas";
-import {useSelector,useDispatch} from "react-redux";
-import {toggleDialog} from './actions';
-import {deleteProject} from "@modules/console/actions";
-import {reset} from "@modules/create-project/actions";
-import DashboardFeedback from './DashboardFeedback';
-import DashboardButton from './DashboardButton';
-import PropTypes from 'prop-types';
-import {withRouter} from "react-router-dom";
+import React from 'react'
+import DashboardProjectList from './DashboardProjectList'
+import Canvas from '@components/Canvas'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleDialog } from './actions'
+import { deleteProject } from '@modules/console/actions'
+import { reset } from '@modules/create-project/actions'
+import DashboardFeedback from './DashboardFeedback'
+import DashboardButton from './DashboardButton'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 function Dashboard(props) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const {
     drawerOpen,
     projects,
     loading,
     errors,
-    confirmations} = useSelector(state => state.console)
-  const {dialogOpen} = useSelector(state => state.dashboard)
+    confirmations } = useSelector(state => state.console)
+  const { dialogOpen } = useSelector(state => state.dashboard)
 
   return (
     <Canvas
@@ -28,21 +28,21 @@ function Dashboard(props) {
       <DashboardProjectList
         projects={projects}
         navigateToProject={(projectId) => {
-          props.history.push('/console/' + projectId);
+          props.history.push('/console/' + projectId)
         }}
         dialogOpen={dialogOpen}
         toggleDialog={() => {
-          dispatch(toggleDialog());
+          dispatch(toggleDialog())
         }}
         removeProject={(projectId) => {
-          dispatch(deleteProject(projectId));
-          dispatch(toggleDialog());
+          dispatch(deleteProject(projectId))
+          dispatch(toggleDialog())
         }}
         loading={loading}
       />
       <DashboardButton
         navigateToCreateProject={() => {
-          props.history.push('/console/add');
+          props.history.push('/console/add')
         }}
       />
       <DashboardFeedback
@@ -55,7 +55,7 @@ function Dashboard(props) {
         error={errors.createProject}
         confirmation={confirmations.createProject}
         acknowledge={() => {
-          dispatch(reset());
+          dispatch(reset())
         }}
         errorMessage="An error occured whilst creating the configuration"
         confirmationMessage="Site created."
@@ -66,6 +66,6 @@ function Dashboard(props) {
 
 Dashboard.propTypes = {
   history: PropTypes.object.isRequired,
-};
+}
 
-export default withRouter(Dashboard);
+export default withRouter(Dashboard)

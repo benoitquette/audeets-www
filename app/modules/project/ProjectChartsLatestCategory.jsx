@@ -1,8 +1,8 @@
-import React from "react";
-import {PieChart, Pie, Cell} from 'recharts';
-import ListSubheader from '@mui/material/ListSubheader';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
+import React from 'react'
+import { PieChart, Pie, Cell } from 'recharts'
+import ListSubheader from '@mui/material/ListSubheader'
+import PropTypes from 'prop-types'
+import Box from '@mui/material/Box'
 
 function ProjectChartsLatestCategory(props) {
   return (
@@ -17,24 +17,25 @@ function ProjectChartsLatestCategory(props) {
         style={{
           fontSize: '200%',
           lineHeight: '80px',
-          cursor: 'pointer'
+          cursor: 'pointer',
         }}
         width={80}
         height={80}
       >
         <text
-          x="49%" y="54%"
+          x="49%"
+          y="54%"
           textAnchor="middle"
           dominantBaseline="middle"
-          sx={{cursor: 'pointer'}}
+          sx={{ cursor: 'pointer' }}
           onClick={props.onClick}
         >
           {props.score}
         </text>
         <Pie
           data={[
-            {name: 'score', value: props.score},
-            {name: 'left', value: 100 - props.score}
+            { name: 'score', value: props.score },
+            { name: 'left', value: 100 - props.score },
           ]}
           cx="50%"
           cy="50%"
@@ -43,8 +44,8 @@ function ProjectChartsLatestCategory(props) {
           startAngle={90}
           endAngle={450}
         >
-          <Cell fill={'green'}/>
-          <Cell fill={'red'}/>
+          <Cell fill="green" />
+          <Cell fill="red" />
         </Pie>
       </PieChart>
       <ListSubheader
@@ -52,7 +53,7 @@ function ProjectChartsLatestCategory(props) {
           margin: 0,
           padding: 0,
           lineHeight: '28px',
-          textAlign: 'center'
+          textAlign: 'center',
         }}
       >
         {props.title}
@@ -64,8 +65,7 @@ function ProjectChartsLatestCategory(props) {
 ProjectChartsLatestCategory.propTypes = {
   title: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
-};
+  onClick: PropTypes.func.isRequired,
+}
 
-export default ProjectChartsLatestCategory;
-
+export default ProjectChartsLatestCategory

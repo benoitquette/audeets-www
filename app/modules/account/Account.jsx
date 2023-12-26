@@ -1,18 +1,10 @@
-import React from "react";
-import Canvas from '@components/Canvas';
-import PropTypes from 'prop-types';
+import React from 'react'
+import Canvas from '@components/Canvas'
 
-function Account(props) {
-  return (
-    <Canvas
-      title="Account"
-      text="sds sd sqd sqd sqdsq dsq dsqdsqdsqdsqdsqd"
-    />
-  )
+function Account() {
+  return <Canvas title="Account" text="sds sd sqd sqd sqdsq dsq dsqdsqdsqdsqdsqd" />
 }
 
-Account.propTypes = {
-};
+Account.propTypes = {}
 
-export default Account;
-
+export default Account

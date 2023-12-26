@@ -1,16 +1,17 @@
-import React from "react";
-import Button from '@mui/material/Button';
-import PropTypes from 'prop-types';
+import React from 'react'
+import Button from '@mui/material/Button'
+import PropTypes from 'prop-types'
 
 function CreateProjectStepActions(props) {
-  const {stepIndex, stepsCount, currentStep} = props;
+  const { stepIndex, stepsCount, currentStep } = props
   const nextStep = () => {
     if (stepIndex === stepsCount - 1) {
-      props.handleLastStep();
-    } else {
-      props.handleNextStep();
+      props.handleLastStep()
     }
-  };
+    else {
+      props.handleNextStep()
+    }
+  }
   return (
     <div>
       {currentStep > 0 && (
@@ -24,7 +25,7 @@ function CreateProjectStepActions(props) {
       <Button
         variant="contained"
         onClick={() => nextStep()}
-        sx={{marginRight: 1}}
+        sx={{ marginRight: 1 }}
       >
         {stepIndex === stepsCount - 1 ? 'Finish' : 'Next'}
       </Button>
@@ -38,7 +39,7 @@ CreateProjectStepActions.propTypes = {
   currentStep: PropTypes.number.isRequired,
   handleNextStep: PropTypes.func.isRequired,
   handleLastStep: PropTypes.func.isRequired,
-  handlePreviousStep: PropTypes.func.isRequired
-};
+  handlePreviousStep: PropTypes.func.isRequired,
+}
 
-export default CreateProjectStepActions;
+export default CreateProjectStepActions

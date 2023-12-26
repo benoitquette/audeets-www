@@ -1,24 +1,24 @@
 /* eslint-disable no-undef */
-import * as t from './actionTypes';
+import * as t from './actionTypes'
 
 export const incrementStepper = () => ({
-  type: t.INCREMENT_STEPPER
-});
+  type: t.INCREMENT_STEPPER,
+})
 
 export const decrementStepper = () => ({
-  type: t.DECREMENT_STEPPER
-});
+  type: t.DECREMENT_STEPPER,
+})
 
 export const setUrl = url => ({
   type: t.SET_URL,
-  url
-});
+  url,
+})
 
 export const setName = name => ({
   type: t.SET_NAME,
-  name
-});
+  name,
+})
 
 export const reset = () => ({
-  type: t.RESET
-});
+  type: t.RESET,
+})

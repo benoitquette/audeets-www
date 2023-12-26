@@ -1,22 +1,27 @@
-import React from "react";
-import CircularProgress from '@mui/material/CircularProgress';
-import PropTypes from 'prop-types';
+import React from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
+import PropTypes from 'prop-types'
 
 function Spinner(props) {
-  return props.loading ?
+  return props.loading
+    ? (
       <CircularProgress
         size={20}
         sx={{
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto'
+          display: 'block',
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
-      /> : props.children
+      />
+      )
+    : (
+        props.children
+      )
 }
 
 Spinner.propTypes = {
   loading: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-};
+}
 
-export default Spinner;
+export default Spinner

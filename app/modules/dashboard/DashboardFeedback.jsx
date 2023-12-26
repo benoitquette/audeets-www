@@ -1,6 +1,6 @@
-import React from "react";
-import Snackbar from "@mui/material/Snackbar";
-import PropTypes from 'prop-types';
+import React from 'react'
+import Snackbar from '@mui/material/Snackbar'
+import PropTypes from 'prop-types'
 
 function DashboardFeedback(props) {
   return (
@@ -24,7 +24,7 @@ DashboardFeedback.propTypes = {
   confirmation: PropTypes.bool.isRequired,
   acknowledge: PropTypes.func,
   errorMessage: PropTypes.string.isRequired,
-  confirmationMessage: PropTypes.string.isRequired
-};
+  confirmationMessage: PropTypes.string.isRequired,
+}
 
-export default DashboardFeedback;
+export default DashboardFeedback

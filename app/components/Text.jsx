@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function Text(props) {
   return (
@@ -7,16 +7,16 @@ function Text(props) {
       style={{
         paddingLeft: 20,
         paddingRight: 20,
-        fontSize: 13
+        fontSize: 13,
       }}
     >
       {props.text}
     </p>
-  );
+  )
 }
 
 Text.propTypes = {
-  text: PropTypes.string.isRequired
-};
+  text: PropTypes.string.isRequired,
+}
 
-export default Text;
+export default Text

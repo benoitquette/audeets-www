@@ -1,11 +1,11 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import IconButton from "@mui/material/IconButton";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import PropTypes from 'prop-types';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
+import React from 'react'
+import AppBar from '@mui/material/AppBar'
+import IconButton from '@mui/material/IconButton'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import PropTypes from 'prop-types'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import MenuIcon from '@mui/icons-material/Menu'
 
 function ConsoleAppBar(props) {
   return (
@@ -43,7 +43,7 @@ function ConsoleAppBar(props) {
 ConsoleAppBar.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
   navigateToAccount: PropTypes.func.isRequired,
-  drawerWidth: PropTypes.number.isRequired
-};
+  drawerWidth: PropTypes.number.isRequired,
+}
 
-export default ConsoleAppBar;
+export default ConsoleAppBar
