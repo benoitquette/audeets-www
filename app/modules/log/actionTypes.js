@@ -1,1 +1,0 @@
-export const FETCH_AUDITS_LIST = 'FETCH_AUDITS_LIST'
