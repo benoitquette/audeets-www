@@ -1,32 +1,44 @@
 {
-  "parser": "babel-eslint",
-  "parserOptions": {
-        "ecmaVersion": 6,
-         "sourceType": "module"
-    },
   "extends": [
-    "google",
-    "plugin:react/recommended"
-    ],
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
-  "plugins": [
-    "babel",
-    "react"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "plugins": [
+    "prettier",
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "eqeqeq": "error",
+    "no-console": "warn",
+    "prettier/prettier": "error",
+    "react/display-name": "off",
+    "react/no-children-prop": "off",
+    // if you use React 17+; otherwise, turn this on
+    "react/react-in-jsx-scope": "on",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true
+    "es6": true,
+    "jest": true
   },
-  "globals": {
-    "React$Element": true,
-    "__DEV__": true
-  },
-  "rules": {
-    "valid-jsdoc": ["warn"],
-    "no-use-before-define": "off"
-  }
+  "ignorePatterns": [
+    "node_modules",
+    "build",
+    "dist",
+    "public"
+  ]
 }

@@ -1,22 +1,13 @@
-import React, {Component} from "react";
+import React from "react";
 import _ from 'lodash';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
-import Dialog from 'material-ui/Dialog';
+import Icon from '@mui/material/Icon';
+import IconButton from '@mui/material/IconButton';
+import Dialog from '@mui/material/Dialog';
 import AuditUrlResultsDetailsItem from "./AuditUrlResultsDetailsItem";
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import withWidth from "material-ui/utils/withWidth";
-import grey500 from "material-ui/styles/colors";
+import {grey} from "@mui/material/colors";
+import PropTypes from 'prop-types';
 
-@withWidth()
-@muiThemeable()
-export default class AuditUrlResultsDetails extends Component {
-  static propTypes = {
-    details: React.PropTypes.array.isRequired,
-    muiTheme: React.PropTypes.object.isRequired,
-    width: React.PropTypes.number.isRequired
-  };
-
+function AuditUrlResultsDetails(props) {
   state = {
     open: false
   };
@@ -29,45 +20,47 @@ export default class AuditUrlResultsDetails extends Component {
     this.setState({open: false});
   };
 
-  render() {
-    const items = _.map(this.props.details, detail => {
-      return (
-        <AuditUrlResultsDetailsItem
-          key={detail.text}
-          text={detail.text}
-          link={detail.link}
-          urls={detail.urls}
-        />
-      );
-    });
+  const items = _.map(this.props.details, detail => {
     return (
-      <div>
-        <IconButton style={styles.icon} onTouchTap={this.handleOpen}>
-          <FontIcon
-            className="material-icons"
-          >
-            info
-          </FontIcon>
-        </IconButton>
-        <Dialog
-          actions={[]}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-          autoScrollBodyContent={true}
-        >
-          <div>
-            {items}
-          </div>
-        </Dialog>
-
-      </div>
+      <AuditUrlResultsDetailsItem
+        key={detail.text}
+        text={detail.text}
+        link={detail.link}
+        urls={detail.urls}
+      />
     );
-  }
+  });
+  return (
+    <div>
+      <IconButton
+        style={{
+          verticalAlign: 'middle',
+          color: grey
+        }}
+        onTouchTap={this.handleOpen}
+      >
+        <Icon className="material-icons">
+          info
+        </Icon>
+      </IconButton>
+      <Dialog
+        actions={[]}
+        open={this.state.open}
+        onRequestClose={this.handleClose}
+        autoScrollBodyContent={true}
+      >
+        <div>
+          {items}
+        </div>
+      </Dialog>
+
+    </div>
+  )
 }
 
-const styles = {
-  icon: {
-    verticalAlign: 'middle',
-    color: grey500
-  }
+AuditUrlResultsDetails.propTypes = {
+  details: PropTypes.array.isRequired,
+  width: PropTypes.number.isRequired
 };
+
+export default AuditUrlResultsDetails;

@@ -1,26 +1,21 @@
-import React, {Component} from "react";
+import React from "react";
 import moment from 'moment';
 import constants from '@modules/constants';
+import PropTypes from 'prop-types';
 
-export default class ProjectLastAuditsListItem extends Component {
-  static propTypes = {
-    date: React.PropTypes.object.isRequired,
-    onClick: React.PropTypes.func.isRequired
-  };
-
-  render() {
-    const dateString = moment(this.props.date).format(constants.longDateFormat);
-    return (
-      <div style={styles.link}>
-        <a onClick={this.props.onClick}>{dateString}</a>
-        <br/>
-      </div>
-    );
-  }
+function ProjectLastAuditsListItem(props) {
+  const dateString = moment(props.date).format(constants.longDateFormat);
+  return (
+    <div style={{cursor: 'pointer'}}>
+      <a onClick={props.navigateToAudit}>{dateString}</a>
+      <br/>
+    </div>
+  )
 }
 
-const styles = {
-  link: {
-    cursor: 'pointer'
-  }
+ProjectLastAuditsListItem.propTypes = {
+  date: PropTypes.object.isRequired,
+  navigateToAudit: PropTypes.func.isRequired
 };
+
+export default ProjectLastAuditsListItem;

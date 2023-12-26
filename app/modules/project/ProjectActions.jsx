@@ -1,32 +1,30 @@
-import React, {Component} from "react";
-import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import React from "react";
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Button from "@mui/material/Button";
 
-export default class ProjectLastAudits extends Component {
-  static propTypes = {
-  };
-
-  render() {
-    return (
-      <Card style={styles.card}>
-        <CardHeader title="Actions"/>
-        <CardText style={styles.cardText}>
-        </CardText>
-        <CardActions>
-          <FlatButton label="View All" />
-        </CardActions>
-      </Card>
-    );
-  }
+function ProjectLastActions(props) {
+  return (
+    <Card
+      sx={{
+        // margin: 1,
+        // flexGrow: 1,
+        // flexShrink: 1,
+        flex: 50
+      }}
+    >
+      <CardHeader title="Actions"/>
+      <CardContent sx={{paddingTop: 0}}>
+      </CardContent>
+      <CardActions>
+        <Button>
+        View All
+        </Button>
+      </CardActions>
+    </Card>
+  )
 }
 
-const styles = {
-  card: {
-    margin: 10,
-    flexGrow: 1,
-    flexShrink: 1
-  },
-  cardText: {
-    paddingTop: 0
-  }
-};
+export default ProjectLastActions;

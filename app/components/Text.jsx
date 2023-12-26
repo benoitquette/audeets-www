@@ -1,21 +1,22 @@
-import React, {Component} from "react";
+import React from "react";
+import PropTypes from 'prop-types';
 
-export default class Text extends Component {
-  static propTypes = {
-    children: React.PropTypes.node.isRequired
-  };
-
-  render() {
-    return (
-      <p style={styles.text}>{this.props.children}</p>
-    );
-  }
+function Text(props) {
+  return (
+    <p
+      style={{
+        paddingLeft: 20,
+        paddingRight: 20,
+        fontSize: 13
+      }}
+    >
+      {props.text}
+    </p>
+  );
 }
 
-const styles = {
-  text: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    fontSize: 13
-  }
+Text.propTypes = {
+  text: PropTypes.string.isRequired
 };
+
+export default Text;

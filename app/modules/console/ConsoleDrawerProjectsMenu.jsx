@@ -1,34 +1,30 @@
-import React, {Component} from "react";
+import React from "react";
 import ConsoleDrawerProjectsMenuItem from './ConsoleDrawerProjectsMenuItem';
+import PropTypes from 'prop-types';
+import List from '@mui/material/List';
 
-export default class ConsoleDrawerProjectsMenu extends Component {
-  static propTypes = {
-    projects: React.PropTypes.array.isRequired,
-    callback: React.PropTypes.func.isRequired
-  };
-
-  render() {
-    const items = this.props.projects.map(function(project) {
-      return (
-        <ConsoleDrawerProjectsMenuItem
-          title={project.title}
-          key={project._id}
-          style={styles.list}
-          callback={() => {
-            return this.props.callback(project._id);
-          }}
-        />
-      );
-    }, this);
+function ConsoleDrawerProjectsMenu(props) {
+  const items = props.projects.map(function(project) {
     return (
-      <div>{items}</div>
+      <ConsoleDrawerProjectsMenuItem
+        title={project.title}
+        key={project._id}
+        callback={() => {
+          return props.callback(project._id);
+        }}
+      />
     );
-  }
+  }, this);
+  return (
+    <List component="div" disablePadding>
+      {items}
+    </List>
+  );
 }
 
-const styles = {
-  list: {
-    marginTop: 20
-  }
+ConsoleDrawerProjectsMenu.propTypes = {
+  projects: PropTypes.array.isRequired,
+  callback: PropTypes.func.isRequired
 };
 
+export default ConsoleDrawerProjectsMenu;

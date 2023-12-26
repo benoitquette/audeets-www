@@ -6,12 +6,12 @@ const initialState = {
   drawerOpen: false,
   errors: {
     fetchProjects: false,
-    addProject: false,
+    createProject: false,
     deleteProject: false
   },
   confirmations: {
     fetchProjects: false,
-    addProject: false,
+    createProject: false,
     deleteProject: false
   },
   loading: false
@@ -58,52 +58,44 @@ export default function console(state = initialState, action) {
         ...state,
         drawerOpen: !state.drawerOpen
       };
-    case `${t.ADD_PROJECT}_PENDING`:
+    case `${t.CREATE_PROJECT}_PENDING`:
       return {
         ...state,
         loading: true,
         errors: {
           ...state.errors,
-          addProject: false
+          createProject: false
         },
         confirmations: {
           ...state.confirmations,
-          addProject: false
+          createProject: false
         }
       };
-    case `${t.ADD_PROJECT}_FULFILLED`:
+    case `${t.CREATE_PROJECT}_FULFILLED`:
       return {
         ...state,
         loading: false,
         errors: {
           ...state.errors,
-          addProject: false
+          createProject: false
         },
         confirmations: {
           ...state.confirmations,
-          addProject: true
+          createProject: true
         },
         projects: state.projects.concat(action.payload)
       };
-    case `${t.ADD_PROJECT}_REJECTED`:
+    case `${t.CREATE_PROJECT}_REJECTED`:
       return {
         ...state,
         loading: false,
         errors: {
           ...state.errors,
-          addProject: true
+          createProject: true
         },
         confirmations: {
           ...state.confirmations,
-          addProject: false
-        }
-      };
-    case `${t.ADD_PROJECT}_ACK`:
-      return {
-        ...state,
-        confirmations: {
-          ...state.confirmations,
-          addProject: false
+          createProject: false
         }
       };
     case `${t.DELETE_PROJECT}_PENDING`:
@@ -112,6 +104,10 @@ export default function console(state = initialState, action) {
         loading: true,
         errors: {
           ...state.errors,
+          deleteProject: false
+        },
+        confirmations: {
+          ...state.confirmations,
           deleteProject: false
         }
       };
@@ -144,14 +140,6 @@ export default function console(state = initialState, action) {
           ...state.errors,
           deleteProject: true
         },
-        confirmations: {
-          ...state.confirmations,
-          deleteProject: false
-        }
-      };
-    case `${t.DELETE_PROJECT}_ACK`:
-      return {
-        ...state,
         confirmations: {
           ...state.confirmations,
           deleteProject: false

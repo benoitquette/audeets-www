@@ -1,25 +1,24 @@
-import React, {Component} from "react";
-import Divider from 'material-ui/Divider';
+import React from "react";
+import Divider from '@mui/material/Divider';
+import PropTypes from 'prop-types';
 
-export default class Title extends Component {
-  static propTypes = {
-    text: React.PropTypes.string.isRequired
-  };
-
-  render() {
-    return (
-      <div style={styles.title}>
-        <h1>{this.props.text}</h1>
-        <Divider/>
-      </div>
-    );
-  }
+function Title(props) {
+  return (
+    <div
+      style={{
+        paddingLeft: 15,
+        paddingRight: 15,
+        marginBottom: 35
+      }}
+    >
+      <h1>{props.text}</h1>
+      <Divider/>
+    </div>
+  )
 }
 
-const styles = {
-  title: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    marginBottom: 35
-  }
+Title.propTypes = {
+  text: PropTypes.string.isRequired
 };
+
+export default Title;

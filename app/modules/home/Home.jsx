@@ -1,57 +1,9 @@
-import React, {Component} from "react";
-import {Link} from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import withWidth, {SMALL} from "material-ui/utils/withWidth";
+import React from "react";
+import {Link} from 'react-router-dom';
+import Button from '@mui/material/Button';
+import {makeStyles} from '@mui/styles';
 
-@withWidth()
-@muiThemeable()
-export default class Home extends Component {
-  static propTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
-    width: React.PropTypes.number.isRequired
-  };
-
-  render() {
-    const backgroundColor = this.props.muiTheme.palette.primary3Color;
-    let logoTextStyle = styles.logoText;
-    if (this.props.width === SMALL) {
-      logoTextStyle = styles.logoTextSmall;
-    }
-    return (
-      <div style={{
-        backgroundColor: backgroundColor,
-        backgroundImage: 'url(images/cork-wallet.png)'
-      }}>
-        <div style={styles.canvas}>
-          <div style={styles.header}>
-          </div>
-          <div style={styles.body}>
-            <div style={styles.logo}>
-              <img src="apple-icon-180x180.png"/>
-              <div style={logoTextStyle}>
-                <span style={styles.title}>audeets</span>
-                <span style={styles.tagline}>continuous site auditing</span>
-              </div>
-            </div>
-            <div style={styles.buttons}>
-              <RaisedButton
-                containerElement={<Link to="/console" />}
-                label="demo"
-                style={styles.button}
-                />
-            </div>
-          </div>
-          <div style={styles.footer}>
-            © 2016 audeets.com. All Rights Reserved.
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-const styles = {
+const useStyles = makeStyles((theme) => ({
   canvas: {
     minHeight: '100vh',
     display: 'flex',
@@ -80,13 +32,11 @@ const styles = {
   logoText: {
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: 0
-  },
-  logoTextSmall: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: 20
+    marginBottom: 0,
+    [theme.breakpoints.down('xs')]: {
+      alignItems: 'center',
+      marginTop: 20
+    },
   },
   title: {
     color: 'Charcoal',
@@ -116,5 +66,47 @@ const styles = {
     backgroundColor: 'white',
     fontSize: 11,
     padding: 10
+  },
+  main: {
+    backgroundColor: theme.palette.primary3Color,
+    backgroundImage: 'url(images/cork-wallet.png)'
   }
-};
+}));
+
+function Home(props) {
+  const classes = useStyles()
+  return (
+      <div className={classes.main}>
+        <div className={classes.canvas} >
+          <div className={classes.header}>
+          </div>
+          <div className={classes.body}>
+            <div className={classes.logo}>
+              <img src="apple-icon-180x180.png"/>
+              <div className={classes.logoText}>
+                <span className={classes.title}>
+                  audeets
+                </span>
+                <span className={classes.tagline}>
+                  continuous site auditing
+                </span>
+              </div>
+            </div>
+            <div className={classes.buttons}>
+              <Link to="/console/dashboard">
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  >demo</Button>
+                </Link>
+            </div>
+          </div>
+          <div className={classes.footer}>
+            © 2016 audeets.com. All Rights Reserved.
+          </div>
+        </div>
+      </div>
+  )
+}
+
+export default Home;

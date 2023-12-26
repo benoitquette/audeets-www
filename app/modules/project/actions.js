@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import * as t from './actionTypes';
-import Promise from "bluebird";
 
 export const fetchLatestScores = id => ({
   type: t.FETCH_LATEST_SCORES,

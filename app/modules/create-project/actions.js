@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import * as t from './actionTypes';
 
 export const incrementStepper = () => ({
@@ -11,4 +12,13 @@ export const decrementStepper = () => ({
 export const setUrl = url => ({
   type: t.SET_URL,
   url
+});
+
+export const setName = name => ({
+  type: t.SET_NAME,
+  name
+});
+
+export const reset = () => ({
+  type: t.RESET
 });

@@ -1,64 +1,63 @@
-import React, {Component} from "react";
-import MenuItem from "material-ui/MenuItem";
-import Drawer from "material-ui/Drawer";
-import Divider from "material-ui/Divider";
-import Subheader from "material-ui/Subheader";
-import ConsoleDrawerProjectsMenu from "./ConsoleDrawerProjectsMenu";
-import withWidth, {SMALL} from "material-ui/utils/withWidth";
-import FontIcon from "material-ui/FontIcon";
-import CircularProgress from 'material-ui/CircularProgress';
+import React from "react";
+import Drawer from "@mui/material/Drawer";
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import ConsoleDrawerContent from "./ConsoleDrawerContent";
 
-@withWidth()
-export default class ConsoleDrawer extends Component {
-  static propTypes = {
-    projects: React.PropTypes.array.isRequired,
-    drawerOpen: React.PropTypes.bool.isRequired,
-    toggleDrawer: React.PropTypes.func.isRequired,
-    width: React.PropTypes.number.isRequired,
-    navigateToDashboard: React.PropTypes.func.isRequired,
-    navigateToProject: React.PropTypes.func.isRequired,
-    loading: React.PropTypes.bool.isRequired
-  };
+function ConsoleDrawer(props) {
+  const drawer = (
+    <ConsoleDrawerContent
+      projects={props.projects}
+      navigateToDashboard={props.navigateToDashboard}
+      navigateToProject={props.navigateToProject}
+      navigateToSettings={props.navigateToSettings}
+      loading={props.loading}
+    />
+  );
 
-  render() {
-    return (
+  return (
+    <Box
+      component="nav"
+      sx={{ width: { sm: props.drawerWidth }, flexShrink: { sm: 0 } }}
+    >
       <Drawer
-        open={this.props.drawerOpen}
-        docked={this.props.drawerOpen && this.props.width !== SMALL}
-        containerStyle={styles.drawer}
-        onRequestChange={this.props.toggleDrawer}>
-        <MenuItem
-          primaryText="Dashboard"
-          onTouchTap={this.props.navigateToDashboard}
-          leftIcon={
-            <FontIcon className="material-icons">dashboard</FontIcon>
-            }
-        />
-        <Divider/>
-        <Subheader>Sites</Subheader>
-        {this.props.loading ?
-          <CircularProgress
-            size={20}
-            style={styles.progress}
-          /> :
-          <ConsoleDrawerProjectsMenu
-            projects={this.props.projects}
-            callback={this.props.navigateToProject}
-          />
-        }
+        variant="temporary"
+        anchor={'left'}
+        open={props.drawerOpen}
+        onClose={props.toggleDrawer}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
+        }}
+        ModalProps={{
+          keepMounted: true // Better open performance on mobile.
+        }}
+      >
+        {drawer}
       </Drawer>
-    );
-  }
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: 'none', sm: 'block' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
+    </Box>
+  );
 }
 
-const styles = {
-  drawer: {
-    marginTop: 64,
-    marginBottom: 64
-  },
-  progress: {
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto'
-  }
+ConsoleDrawer.propTypes = {
+  projects: PropTypes.array.isRequired,
+  drawerOpen: PropTypes.bool.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
+  navigateToDashboard: PropTypes.func.isRequired,
+  navigateToProject: PropTypes.func.isRequired,
+  navigateToSettings: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  drawerWidth: PropTypes.number.isRequired
 };
+
+export default ConsoleDrawer;

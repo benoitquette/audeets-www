@@ -1,35 +1,39 @@
 import React, {Component} from "react";
-import Dialog from "material-ui/Dialog";
-import FlatButton from "material-ui/FlatButton";
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Dialog from '@mui/material/Dialog';
+import Button from "@mui/material/Button";
+import PropTypes from 'prop-types';
+import Typography from '@mui/material/Typography';
 
 export default class DashboardProjectRemoveDialog extends Component {
   static propTypes = {
-    dialogOpen: React.PropTypes.bool.isRequired,
-    toggleDialog: React.PropTypes.func.isRequired,
-    removeProject: React.PropTypes.func.isRequired
+    dialogOpen: PropTypes.bool.isRequired,
+    toggleDialog: PropTypes.func.isRequired,
+    removeProject: PropTypes.func.isRequired
   };
 
   render() {
-    const standardActions = ([
-      <FlatButton
-        label="Remove"
-        primary={true}
-        onTouchTap={this.props.removeProject}
-      />,
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.props.toggleDialog}
-      />
-    ]);
     return (
-      <Dialog
-        open={this.props.dialogOpen}
-        title="Remove audit"
-        actions={standardActions}
-        onRequestClose={this.props.toggleDialog}
-      >
-        Are you sure you want to remove this site configuration?
+      <Dialog open={this.props.dialogOpen}>
+        <DialogTitle>Remove audit</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Are you sure you want to remove this site configuration?
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.props.removeProject}>
+            Remove
+          </Button>
+          <Button
+            onClick={this.props.toggleDialog}
+            variant="contained"
+          >
+            Cancel
+          </Button>
+        </DialogActions>
       </Dialog>
     );
   }

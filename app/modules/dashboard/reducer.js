@@ -17,6 +17,7 @@ export default function dashboard(state = initialState, action) {
         ...state,
         dialogOpen: !state.dialogOpen
       };
+
     default:
       return state;
   }

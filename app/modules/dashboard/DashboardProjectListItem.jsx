@@ -1,67 +1,55 @@
-import React, {Component} from "react";
-import {Card, CardActions, CardHeader} from 'material-ui/Card';
-import Avatar from 'material-ui/Avatar';
-import {grey50} from 'material-ui/styles/colors';
-import FlatButton from "material-ui/FlatButton";
+import React from "react";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardHeader from '@mui/material/CardHeader';
+import Avatar from '@mui/material/Avatar';
+import Button from "@mui/material/Button";
 import DashboardProjectRemoveDialog from './DashboardProjectRemoveDialog';
+import PropTypes from 'prop-types';
 
-export default class DashboardProjectListItem extends Component {
-  static propTypes = {
-    id: React.PropTypes.string.isRequired,
-    url: React.PropTypes.string.isRequired,
-    dialogOpen: React.PropTypes.bool.isRequired,
-    toggleDialog: React.PropTypes.func.isRequired,
-    removeProject: React.PropTypes.func.isRequired,
-    title: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
-    verified: React.PropTypes.bool.isRequired,
-    verificationToken: React.PropTypes.string.isRequired,
-    crawling: React.PropTypes.string.isRequired,
-    navigateToProject: React.PropTypes.func.isRequired
-  };
-
-  render() {
-    const avatar = <Avatar
-      src={this.props.url + '/favicon.ico'}
-      size={32}
-      backgroundColor={grey50}
-      style={styles.avatar}
-    />;
-    return (
-      <div style={styles.card}>
-        <DashboardProjectRemoveDialog
-          dialogOpen={this.props.dialogOpen}
-          toggleDialog={this.props.toggleDialog}
-          removeProject={() => {
-            return this.props.removeProject(this.props.id);
-          }}
+function DashboardProjectListItem(props) {
+  return (
+    <div style={{marginBottom: 20}}>
+      <DashboardProjectRemoveDialog
+        dialogOpen={props.dialogOpen}
+        toggleDialog={props.toggleDialog}
+        removeProject={() => {
+          return props.removeProject(props.id);
+        }}
+      />
+      <Card>
+        <CardHeader
+          title={props.title}
+          subtitle={props.description}
+          avatar={<Avatar
+            src={props.url + '/favicon.ico'}
+          />}
         />
-        <Card>
-          <CardHeader
-            title={this.props.title}
-            subtitle={this.props.description}
-            avatar={avatar}
-          />
-          <CardActions>
-            <FlatButton
-              label="VIEW"
-              onTouchTap = {this.props.navigateToProject}
-              primary = {true}
-            />
-            <FlatButton
-              label="REMOVE"
-              onTouchTap = {this.props.toggleDialog}
-              primary = {true}
-            />
-          </CardActions>
-        </Card>
-      </div>
-    );
-  }
+        <CardActions>
+          <Button onClick = {props.navigateToProject}>
+            VIEW
+          </Button>
+          <Button onClick = {props.toggleDialog}>
+            REMOVE
+          </Button>
+        </CardActions>
+      </Card>
+    </div>
+  );
 }
 
-const styles = {
-  card: {
-    marginBottom: 20
-  }
+DashboardProjectListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  dialogOpen: PropTypes.bool.isRequired,
+  toggleDialog: PropTypes.func.isRequired,
+  removeProject: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  verified: PropTypes.bool,
+  verificationToken: PropTypes.string,
+  crawling: PropTypes.string,
+  navigateToProject: PropTypes.func.isRequired
 };
+
+export default DashboardProjectListItem;

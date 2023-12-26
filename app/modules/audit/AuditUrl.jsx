@@ -1,31 +1,28 @@
-import React, {Component} from "react";
-import {Card} from 'material-ui/Card';
+import React from "react";
+import {Card} from '@mui/material/Card';
 import AuditUrlResults from './AuditUrlResults';
-import Subheader from 'material-ui/Subheader';
+import ListSubheader from '@mui/material/ListSubheader';
+import PropTypes from 'prop-types';
 
-export default class AuditUrl extends Component {
-  static propTypes = {
-    url: React.PropTypes.string.isRequired,
-    results: React.PropTypes.array.isRequired
-  };
-
-  render() {
-    return (
-      <div>
-        <Subheader>{this.props.url}</Subheader>
-        <Card
-          style={styles.card}
-          expanded={true}
-          onExpandChange={this.handleExpandChange}>
-          <AuditUrlResults results={this.props.results}/>
-        </Card>
-      </div>
-    );
-  }
+function AuditUrl(props) {
+  return (
+    <div>
+      <ListSubheader>{props.url}</ListSubheader>
+      <Card
+        sx={{
+          marginBottom: 30
+        }}
+        expanded={true}
+        onExpandChange={handleExpandChange}>
+        <AuditUrlResults results={props.results}/>
+      </Card>
+    </div>
+  )
 }
 
-const styles = {
-  card: {
-    marginBottom: 30
-  }
+AuditUrl.propTypes = {
+  url: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired
 };
+
+export default AuditUrl;

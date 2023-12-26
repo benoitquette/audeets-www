@@ -1,64 +1,49 @@
-import React, {Component} from "react";
-import AppBar from "material-ui/AppBar";
-import MenuItem from "material-ui/MenuItem";
-import IconMenu from "material-ui/IconMenu";
-import IconButton from "material-ui/IconButton";
-import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
-import withWidth, {SMALL} from "material-ui/utils/withWidth";
+import React from "react";
+import AppBar from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PropTypes from 'prop-types';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
 
-@withWidth()
-export default class Console extends Component {
-  static propTypes = {
-    toggleDrawer: React.PropTypes.func.isRequired,
-    navigateToHome: React.PropTypes.func.isRequired,
-    linkToHome: React.PropTypes.object.isRequired,
-    linkToAccount: React.PropTypes.object.isRequired,
-    width: React.PropTypes.number.isRequired
-  };
-
-  render() {
-    return (
-      <AppBar
-        style={styles.appBar}
-        title="audeets"
-        titleStyle={styles.title}
-        onTitleClick={this.props.navigateToHome}
-        showMenuIconButton={this.props.width === SMALL}
-        iconStyleRight={{verticalAlign: 'middle'}}
-        iconElementRight={
-          <IconMenu
-            iconButtonElement={
-              <IconButton><MoreVertIcon /></IconButton>
-            }
-            targetOrigin={styles.moreVertMenu}
-            anchorOrigin={styles.moreVertMenu}
-            >
-            <MenuItem
-              primaryText="Account"
-              containerElement={this.props.linkToAccount}
-              />
-            <MenuItem
-              primaryText="Sign out"
-              containerElement={this.props.linkToHome}
-              />
-          </IconMenu>
-        }
-        onLeftIconButtonClick={this.props.toggleDrawer}
-        />
-    );
-  }
+function ConsoleAppBar(props) {
+  return (
+    <AppBar
+      position="fixed"
+      sx={{
+        width: { sm: `calc(100% - ${props.drawerWidth}px)` },
+        ml: { sm: `${props.drawerWidth}px` },
+      }}
+    >
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          edge="start"
+          onClick={props.toggleDrawer}
+          sx={{ mr: 2, display: { sm: 'none' } }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1, display: { sm: 'block' } }}
+        >
+          Audeets
+        </Typography>
+        <IconButton color="inherit" onClick={props.navigateToAccount}>
+          <AccountCircleIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  )
 }
 
-const styles = {
-  title: {
-    cursor: 'pointer'
-  },
-  moreVertMenu: {
-    horizontal: 'right',
-    vertical: 'top'
-  },
-  appBar: {
-    position: 'fixed',
-    top: 0
-  }
+ConsoleAppBar.propTypes = {
+  toggleDrawer: PropTypes.func.isRequired,
+  navigateToAccount: PropTypes.func.isRequired,
+  drawerWidth: PropTypes.number.isRequired
 };
+
+export default ConsoleAppBar;

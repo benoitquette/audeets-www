@@ -1,26 +1,27 @@
-import React, {Component} from "react";
+import React from "react";
 import ProjectLastAuditsListItem from './ProjectLastAuditsListItem';
 import moment from "moment";
+import PropTypes from 'prop-types';
 
-export default class ProjectLastAuditsList extends Component {
-  static propTypes = {
-    audits: React.PropTypes.array.isRequired,
-    onClick: React.PropTypes.func.isRequired
-  };
-
-  render() {
-    const items = this.props.audits.map(dateString => {
-      const date = moment(dateString);
-      return (
-        <ProjectLastAuditsListItem
-          key={date}
-          date={date}
-          onClick={() => this.props.onClick(date)}
-        />
-      );
-    });
+function ProjectLastAuditsList(props) {
+  const items = props.audits.map(dateString => {
+    const date = moment(dateString);
     return (
-      <div>{items}</div>
+      <ProjectLastAuditsListItem
+        key={date}
+        date={date}
+        navigateToAudit={() => props.navigateToAudit(date)}
+      />
     );
-  }
+  });
+  return (
+    <div>{items}</div>
+  )
 }
+
+ProjectLastAuditsList.propTypes = {
+  audits: PropTypes.array.isRequired,
+  navigateToAudit: PropTypes.func.isRequired
+};
+
+export default ProjectLastAuditsList;

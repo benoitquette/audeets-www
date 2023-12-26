@@ -1,16 +1,13 @@
-import React, {Component} from "react";
+import React from "react";
 import Canvas from '@components/Canvas';
 
-export default class NotFound extends Component {
-  static propTypes = {
-  };
-
-  render() {
-    return (
-      <Canvas
-        title="Not Found"
-        text="sds sd sqd sqd sqdsq dsq dsqdsqdsqdsqdsqd"
-        drawerOpen={false}/>
-    );
-  }
+ function NotFound() {
+  return (
+    <Canvas
+      title="Not Found"
+      text="sds sd sqd sqd sqdsq dsq dsqdsqdsqdsqdsqd"
+      drawerOpen={false}/>
+  )
 }
+
+export default NotFound;

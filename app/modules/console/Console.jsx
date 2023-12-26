@@ -1,104 +1,71 @@
-import React, {Component} from "react";
-import {withRouter, Link} from "react-router";
-import withWidth, {SMALL} from "material-ui/utils/withWidth";
-import {connect} from "react-redux";
-import {
-  toggleDrawer,
-  fetchProjects,
-  addProject,
-  ackProjectAdded,
-  deleteProject,
-  ackProjectDeleted
-} from "./actions";
+import React, {useEffect} from "react";
+import {withRouter} from "react-router-dom";
+import {useSelector,useDispatch} from "react-redux";
+import {toggleDrawer, fetchProjects} from "./actions";
 import ConsoleAppBar from "./ConsoleAppBar";
 import ConsoleDrawer from "./ConsoleDrawer";
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
 
-@withWidth()
-@withRouter
-@connect(state => ({
-  drawerOpen: state.console.drawerOpen,
-  projects: state.console.projects,
-  errors: state.console.errors,
-  confirmations: state.console.confirmations,
-  loading: state.console.loading
-}), {
-  toggleDrawer,
-  fetchProjects,
-  addProject,
-  ackProjectAdded,
-  deleteProject,
-  ackProjectDeleted
-})
-export default class Console extends Component {
-  static propTypes = {
-    projects: React.PropTypes.array.isRequired,
-    fetchProjects: React.PropTypes.func.isRequired,
-    drawerOpen: React.PropTypes.bool.isRequired,
-    toggleDrawer: React.PropTypes.func.isRequired,
-    children: React.PropTypes.node.isRequired,
-    router: React.PropTypes.object.isRequired,
-    width: React.PropTypes.number.isRequired,
-    addProject: React.PropTypes.func.isRequired,
-    ackProjectAdded: React.PropTypes.func.isRequired,
-    deleteProject: React.PropTypes.func.isRequired,
-    ackProjectDeleted: React.PropTypes.func.isRequired,
-    errors: React.PropTypes.object.isRequired,
-    confirmations: React.PropTypes.object.isRequired,
-    loading: React.PropTypes.bool.isRequired
-  };
+const drawerWidth = 240;
 
-  componentWillMount() {
-    this.props.fetchProjects();
-  }
+function Console(props) {
+  const dispatch = useDispatch();
+  const {
+    drawerOpen,
+    projects,
+    loading} = useSelector(state => state.console)
 
-  navigateToProject(projectId) {
-    const router = this.props.router;
-    router.push('/console/' + projectId);
-    if (this.props.width === SMALL) this.props.toggleDrawer();
-  }
+  useEffect(() => {
+    dispatch(fetchProjects());
+  }, []);
 
-  navigateToDashboard() {
-    const router = this.props.router;
-    router.push('/console');
-    if (this.props.width === SMALL) this.props.toggleDrawer();
-  }
-
-  render() {
-    let drawerOpen = this.props.drawerOpen;
-    if (this.props.width !== SMALL) drawerOpen = true;
-    return (
-      <div>
-        <ConsoleAppBar
-          toggleDrawer={this.props.toggleDrawer}
-          navigateToHome={() => {
-            this.props.router.push('/');
-          }}
-          linkToHome={<Link to="/" />}
-          linkToAccount={<Link to="/console/account" />}
-        />
-        <ConsoleDrawer
-          projects={this.props.projects}
-          drawerOpen={drawerOpen}
-          toggleDrawer={this.props.toggleDrawer}
-          navigateToDashboard={this.navigateToDashboard.bind(this)}
-          navigateToProject={this.navigateToProject.bind(this)}
-        />
-        <div>
-          {React.cloneElement(
-            this.props.children, {
-              projects: this.props.projects,
-              drawerOpen: drawerOpen,
-              addProject: this.props.addProject,
-              ackProjectAdded: this.props.ackProjectAdded,
-              deleteProject: this.props.deleteProject,
-              ackProjectDeleted: this.props.ackProjectDeleted,
-              errors: this.props.errors,
-              confirmations: this.props.confirmations,
-              loading: this.props.loading
-            })
-          }
-        </div>
-      </div>
-    );
-  }
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <ConsoleAppBar
+        toggleDrawer={() => {
+          dispatch(toggleDrawer());
+        }}
+        navigateToAccount={() => {
+          props.history.push('/console/account');
+        }}
+        drawerWidth={drawerWidth}
+      />
+      <ConsoleDrawer
+        projects={projects}
+        drawerOpen={drawerOpen}
+        toggleDrawer={() => {
+          dispatch(toggleDrawer());
+        }}
+        navigateToDashboard={() => {
+          props.history.push('/console/dashboard');
+        }}
+        navigateToProject={(projectId) => {
+          props.history.push('/console/' + projectId);
+        }}
+        navigateToSettings={() => {
+          props.history.push('/settings');
+        }}
+        drawerWidth={drawerWidth}
+        loading={loading}
+      />
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+      >
+        <Toolbar />
+        {props.children}
+      </Box>
+    </Box>
+  )
 }
+
+Console.propTypes = {
+  history: PropTypes.object.isRequired,
+  children: PropTypes.node
+};
+
+export default withRouter(Console);

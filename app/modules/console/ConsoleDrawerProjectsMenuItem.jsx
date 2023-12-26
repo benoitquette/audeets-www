@@ -1,25 +1,22 @@
-import React, {Component} from "react";
-import MenuItem from 'material-ui/MenuItem';
+import React from "react";
+import PropTypes from 'prop-types';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
 
-export default class ConsoleDrawerProjectsMenuItem extends Component {
-  static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    callback: React.PropTypes.func.isRequired
-  };
-
-  render() {
-    return (
-      <MenuItem
-        primaryText={this.props.title}
-        style={styles.item}
-        onTouchTap={this.props.callback}
-      />
-    );
-  }
+function ConsoleDrawerProjectsMenuItem(props) {
+  return (
+    <ListItemButton
+      sx={{ pl: 4 }}
+      onClick={props.callback}
+    >
+      <ListItemText primary={props.title}/>
+    </ListItemButton>
+  );
 }
 
-const styles = {
-  item: {
-    paddingLeft: 0
-  }
+ConsoleDrawerProjectsMenuItem.propTypes = {
+  title: PropTypes.string,
+  callback: PropTypes.func.isRequired
 };
+
+export default ConsoleDrawerProjectsMenuItem;

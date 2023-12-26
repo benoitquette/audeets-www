@@ -1,18 +1,18 @@
-import React, {Component} from "react";
+import React from "react";
 import Canvas from '@components/Canvas';
+import PropTypes from 'prop-types';
 
-export default class Account extends Component {
-  static propTypes = {
-    drawerOpen: React.PropTypes.bool.isRequired
-  };
-
-  render() {
-    return (
-      <Canvas
-        title="Account"
-        text="sds sd sqd sqd sqdsq dsq dsqdsqdsqdsqdsqd"
-        drawerOpen={this.props.drawerOpen}
-      />
-    );
-  }
+function Account(props) {
+  return (
+    <Canvas
+      title="Account"
+      text="sds sd sqd sqd sqdsq dsq dsqdsqdsqdsqdsqd"
+    />
+  )
 }
+
+Account.propTypes = {
+};
+
+export default Account;
+

@@ -1,47 +1,49 @@
-import React, {Component} from "react";
-import Chip from 'material-ui/Chip';
+import React from "react";
+import Chip from '@mui/material/Chip';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
-export default class ChipsList extends Component {
-  static propTypes = {
-    items: React.PropTypes.array.isRequired,
-    children: React.PropTypes.node,
-    dataKey: React.PropTypes.string,
-    onClick: React.PropTypes.func
-  };
-
-  render() {
-    let chips = [];
-    if (!_.isNil(this.props.items)) {
-      chips = this.props.items.map(item => {
-        return (
-          <Chip
-            key={item}
-            style={styles.chip}
-            data-key={this.props.dataKey}
-            onTouchTap={this.props.onClick}
-          >
-            {item}
-          </Chip>
-        );
-      });
-    }
-    return (
-      <div style={styles.wrapper} data-key={this.props.dataKey}>
-        {chips}
-        {!_.isNil(this.props.children) &&
-          React.cloneElement(this.props.children, {})}
-      </div>
-    );
+function ChipsList(props) {
+  let chips = [];
+  if (!_.isNil(props.items)) {
+    let clickProps = {};
+    if (props.onClickUrl)
+      clickProps = {
+        component: {Link},
+        to: props.onClickUrl,
+        clickable: true
+      };
+    chips = props.items.map(item => {
+      return (
+        <Chip
+          label={item}
+          key={item}
+          {...clickProps}
+        />
+      );
+    });
   }
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap'
+      }}
+      data-key={props.dataKey}
+    >
+      {chips}
+      {!_.isNil(props.children) &&
+        React.cloneElement(props.children, {})}
+    </div>
+  )
 }
 
-const styles = {
-  wrapper: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  chip: {
-    margin: 4
-  }
+ChipsList.propTypes = {
+  items: PropTypes.array.isRequired,
+  children: PropTypes.node,
+  dataKey: PropTypes.string,
+  onClickUrl: PropTypes.string
 };
+
+export default ChipsList;

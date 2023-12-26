@@ -1,10 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
       '@store': path.join(__dirname, '../app/store'),
       '@api': path.join(__dirname, '../app/api'),
@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   resolveLoader: {
-    root: path.join(__dirname, "../node_modules")
+    modules: [__dirname, 'node_modules'],
   },
   entry: [
     path.join(__dirname, '../app/index.jsx'),
@@ -25,17 +25,19 @@ module.exports = {
     publicPath: '/'
   },
   module: {
-    loaders: [
+    rules: [
       // Extract css files
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        //loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       // Extract React source files
       {
         test: /\.(jsx|js)$/,
         include: /app/,
-        loaders: ['babel-loader?cacheDirectory']
+        loader: 'babel-loader',
+        options: { presets: ['@babel/env', '@babel/preset-react'] },
       },
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
@@ -44,11 +46,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.IgnorePlugin(/^(config)$/),
-    new ExtractTextPlugin("stylesheets/style.bundle.css", {
-      allChunks: true
-    })
+    new webpack.IgnorePlugin({
+      resourceRegExp: /.*/,
+      contextRegExp: /^(config)/,
+    }),
+    new MiniCssExtractPlugin()
   ]
-}
-;
+};

@@ -1,47 +1,48 @@
-import React, {Component} from "react";
-import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
+import React from "react";
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import ProjectLastAuditsList from './ProjectLastAuditsList';
-import FlatButton from 'material-ui/FlatButton';
-import CircularProgress from 'material-ui/CircularProgress';
+import Button from "@mui/material/Button";
+import PropTypes from 'prop-types';
+import Spinner from '@components/Spinner'
 
-export default class ProjectLastAudits extends Component {
-  static propTypes = {
-    loaded: React.PropTypes.bool.isRequired,
-    audits: React.PropTypes.array.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    navigateToLog: React.PropTypes.func.isRequired
-  };
-
-  render() {
-    return (
-      <Card style={styles.card}>
-        <CardHeader title="Last Audits"/>
-        <CardText style={styles.cardText}>
-          {this.props.loaded ?
-            <ProjectLastAuditsList
-              audits={this.props.audits}
-              onClick={this.props.onClick}
-            /> : <CircularProgress/>
-          }
-        </CardText>
-        <CardActions>
-          <FlatButton
-            label="View All"
-            onTouchTap={this.props.navigateToLog}
-          />
-        </CardActions>
-      </Card>
-    );
-  }
+function ProjectLastAudits(props) {
+  return (
+    <Card
+      sx={{
+        // margin: 1,
+        // flexGrow: 1,
+        // flexShrink: 1,
+        flex: 50
+      }}
+    >
+      <CardHeader title="Last Audits"/>
+      <CardContent
+        // sx={{paddingTop: 0}}
+      >
+        <Spinner loading={!props.loaded}>
+          <ProjectLastAuditsList
+              audits={props.audits}
+              navigateToAudit={props.navigateToAudit}
+            />
+        </Spinner>
+      </CardContent>
+      <CardActions>
+        <Button onClick={props.navigateToLog}>
+          View All
+        </Button>
+      </CardActions>
+    </Card>
+  )
 }
 
-const styles = {
-  card: {
-    margin: 10,
-    flexGrow: 1,
-    flexShrink: 1
-  },
-  cardText: {
-    paddingTop: 0
-  }
+ProjectLastAudits.propTypes = {
+  loaded: PropTypes.bool.isRequired,
+  audits: PropTypes.array.isRequired,
+  navigateToAudit: PropTypes.func.isRequired,
+  navigateToLog: PropTypes.func.isRequired,
 };
+
+export default ProjectLastAudits;

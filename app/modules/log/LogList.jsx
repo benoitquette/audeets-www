@@ -1,110 +1,47 @@
-import React, {Component} from "react";
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableRow,
-  TableHeaderColumn,
-  TableRowColumn
-} from 'material-ui/Table';
-import FontIcon from 'material-ui/FontIcon';
-import ChipsList from '@components/ChipsList';
+import React from "react";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import PropTypes from 'prop-types';
+import LogListItem from './LogListItem'
 
-export default class LogList extends Component {
-  static propTypes = {
-    items: React.PropTypes.array.isRequired,
-    onClick: React.PropTypes.func.isRequired
-  };
-
-  onChipsClick(e) {
-    const date = e.target.parentElement.dataset.key;
-    this.props.onClick(date);
-  }
-
-  onTableClick(rowNumber, columnKey, e) {
-    const date = e.target.dataset.key;
-    this.props.onClick(date);
-  }
-
-  render() {
-    // clone the children for immutability
-    // and insert a few styling props
-    let items = this.props.items.map(item => {
-      return (
-        <TableRow key={item.shortDate} style={styles.row}>
-          <TableRowColumn
-            data-key={item.shortDate}
-            style={styles.cellShrink}
-          >
-            {item.multipleAuditsWarning && (
-                <FontIcon className="material-icons">info</FontIcon>
-              )}
-          </TableRowColumn>
-          <TableRowColumn
-            data-key={item.shortDate}
-            style={styles.cellShrink}
-          >
-            {item.urlCount}
-          </TableRowColumn>
-          <TableRowColumn
-            data-key={item.shortDate}
-            style={styles.cellExpand}
-          >
-            {item.longDate}
-          </TableRowColumn>
-          <TableRowColumn
-            data-key={item.shortDate}
-            style={styles.cellExpand}
-          >
-            <ChipsList
-              items={item.categories}
-              dataKey={item.shortDate}
-              onClick={this.onChipsClick.bind(this)}
-            />
-          </TableRowColumn>
+function LogList(props) {
+  return (
+    <Table component="div">
+      <TableHead component="div">
+        <TableRow component="div">
+          <TableCell component="div"/>
+          <TableCell component="div">
+            URLs
+          </TableCell>
+          <TableCell component="div">
+            Timestamp
+          </TableCell>
+          <TableCell component="div">
+            Categories
+          </TableCell>
         </TableRow>
-      );
-    });
-    return (
-        <Table
-          selectable={true}
-          onCellClick={this.onTableClick.bind(this)}
-          fixedHeader={false}
-          style={styles.table}
-        >
-           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn style={styles.shrinkStyle}/>
-              <TableHeaderColumn style={styles.shrinkStyle}>
-                URLs
-              </TableHeaderColumn>
-              <TableHeaderColumn style={styles.expandStyle}>
-                Timestamp
-              </TableHeaderColumn>
-              <TableHeaderColumn style={styles.expandStyle}>
-                Categories
-              </TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false} showRowHover={true}>
-            {items}
-          </TableBody>
-        </Table>
-    );
-  }
+      </TableHead>
+      <TableBody component="div">
+        {props.items.map(item => {
+          return (
+            <LogListItem
+              key={item.shortDate}
+              item={item}
+              getOnClickUrl={props.getOnClickUrl}
+            />
+          );
+        })}
+      </TableBody>
+    </Table>
+  )
 }
 
-const styles = {
-  table: {
-    tableLayout: 'auto'
-  },
-  cellShrink: {
-    width: 1
-  },
-  cellExpand: {
-    width: '48%'
-  },
-  row: {
-    cursor: 'pointer'
-  }
+LogList.propTypes = {
+  items: PropTypes.array.isRequired,
+  getOnClickUrl: PropTypes.func.isRequired,
 };
+
+export default LogList;

@@ -13,5 +13,6 @@ module.exports = new Config().extend('webpack/webpack.config.shared.js').merge({
         NODE_ENV: JSON.stringify('development')
       }
     })
-  ]
+  ],
+  mode: 'development'
 });

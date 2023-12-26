@@ -2,6 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:5000",
+      "webRoot": "${workspaceFolder}",
+      "runtimeExecutable": "debug.javascript.usePreview"
+    },
+    {
       "name": "Launch",
       "type": "node",
       "request": "launch",
@@ -87,7 +95,7 @@
       "name": "Attach",
       "type": "node",
       "request": "attach",
-      "port": 5858,
+      "port": 5000,
       "address": "localhost",
       "restart": false,
       "sourceMaps": false,

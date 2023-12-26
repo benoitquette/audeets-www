@@ -1,34 +1,30 @@
-import React, {Component} from "react";
-import Snackbar from "material-ui/Snackbar";
+import React from "react";
+import Snackbar from "@mui/material/Snackbar";
+import PropTypes from 'prop-types';
 
-export default class DashboardFeedback extends Component {
-  static propTypes = {
-    errors: React.PropTypes.object.isRequired,
-    confirmations: React.PropTypes.object.isRequired,
-    ackProjectDeleted: React.PropTypes.func.isRequired,
-    ackProjectAdded: React.PropTypes.func.isRequired
-  };
-
-  render() {
-    const errors = this.props.errors;
-    const confirmations = this.props.confirmations;
-    return (
-      <div>
-        <Snackbar
-          open={errors.deleteProject}
-          message="Site configuration could not be deleted"
-        />
-        <Snackbar
-          open={confirmations.deleteProject}
-          message="Site configuration was deleted"
-          onRequestClose={this.props.ackProjectDeleted}
-        />
-        <Snackbar
-          open={confirmations.addProject}
-          message="Site configuration was added"
-          onRequestClose={this.props.ackProjectAdded}
-        />
-      </div>
-    );
-  }
+function DashboardFeedback(props) {
+  return (
+    <div>
+      <Snackbar
+        open={props.confirmation}
+        onClose={props.acknowledge}
+        message={props.confirmationMessage}
+      />
+      <Snackbar
+        open={props.error}
+        onClose={props.acknowledge}
+        message={props.errorMessage}
+      />
+    </div>
+  )
 }
+
+DashboardFeedback.propTypes = {
+  error: PropTypes.bool.isRequired,
+  confirmation: PropTypes.bool.isRequired,
+  acknowledge: PropTypes.func,
+  errorMessage: PropTypes.string.isRequired,
+  confirmationMessage: PropTypes.string.isRequired
+};
+
+export default DashboardFeedback;

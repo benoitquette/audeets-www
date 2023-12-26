@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import * as t from './actionTypes';
-import Promise from "bluebird";
 import "isomorphic-fetch";
 
 export const fetchProjects = () => ({
@@ -16,6 +15,27 @@ export const fetchProjects = () => ({
 export const toggleDrawer = () => ({
   type: t.TOGGLE_DRAWER
 });
+
+export const createProject = (url, name) => ({
+  type: t.CREATE_PROJECT,
+  payload: new Promise(resolve => {
+    fetch(`${hosts.apiProjects}/api/projects`, {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        url,
+        title: name
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(response => {
+        resolve(response.json());
+      });
+  })
+});
+
 
 export const deleteProject = id => ({
   type: t.DELETE_PROJECT,
@@ -33,29 +53,3 @@ export const deleteProject = id => ({
   })
 });
 
-export const ackProjectDeleted = () => ({
-  type: `${t.DELETE_PROJECT}_ACK`
-});
-
-export const addProject = url => ({
-  type: t.ADD_PROJECT,
-  payload: new Promise(resolve => {
-    fetch(`${hosts.apiProjects}/api/projects`, {
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify({
-        url
-      }),
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    })
-      .then(response => {
-        resolve(response.json());
-      });
-  })
-});
-
-export const ackProjectAdded = () => ({
-  type: `${t.ADD_PROJECT}_ACK`
-});

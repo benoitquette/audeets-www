@@ -1,32 +1,25 @@
-import React, {Component} from "react";
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import React from "react";
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import PropTypes from 'prop-types';
 
-export default class DashboardButton extends Component {
-  static propTypes = {
-    navigateToCreateProject: React.PropTypes.node.isRequired
-  };
-
-  render() {
-    return (
-      <FloatingActionButton
-        secondary={true}
-        style={styles.fab}
-        containerElement={this.props.navigateToCreateProject}
-        >
-        <ContentAdd />
-      </FloatingActionButton>
-    );
-  }
+function DashboardButton(props) {
+  return (
+    <Fab
+      onClick={props.navigateToCreateProject}
+      sx={{
+        position: "fixed",
+        bottom: (theme) => theme.spacing(2),
+        right: (theme) => theme.spacing(2)
+      }}
+    >
+      <AddIcon />
+    </Fab>
+  )
 }
 
-const styles = {
-  fab: {
-    margin: 0,
-    top: 'auto',
-    right: 20,
-    bottom: 20,
-    left: 'auto',
-    position: 'fixed'
-  }
+DashboardButton.propTypes = {
+  navigateToCreateProject: PropTypes.func.isRequired
 };
+
+export default DashboardButton;

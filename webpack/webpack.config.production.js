@@ -19,5 +19,6 @@ module.exports = new Config().extend('webpack/webpack.config.shared.js').merge({
         comments: false
       }
     })
-  ]
+  ],
+  mode: 'production'
 });

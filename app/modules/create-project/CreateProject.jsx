@@ -1,121 +1,123 @@
-import React, {Component} from "react";
+import React from "react";
 import Canvas from "@components/Canvas";
-import {withRouter} from "react-router";
-import {Step, Stepper, StepLabel, StepContent} from "material-ui/Stepper";
-import RaisedButton from "material-ui/RaisedButton";
-import FlatButton from "material-ui/FlatButton";
-import TextField from "material-ui/TextField";
-import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
+import TextField from "@mui/material/TextField";
 import {
   incrementStepper,
   decrementStepper,
-  setUrl
+  setUrl,
+  setName,
 } from "./actions";
-import CreateProjectFeedback from './CreateProjectFeedback';
+import {createProject} from "@modules/console/actions";
+import CreateProjectStepActions from './CreateProjectStepActions';
+import PropTypes from 'prop-types';
+import {useSelector,useDispatch} from "react-redux";
 
-const STEPS_COUNT = 2;
+const STEPS_COUNT = 3;
 
-@withRouter
-@connect(state => ({
-  stepIndex: state.createProject.stepIndex,
-  url: state.createProject.url
-}), {
-  incrementStepper,
-  decrementStepper,
-  setUrl
-})
-export default class CreateProject extends Component {
-  static propTypes = {
-    stepIndex: React.PropTypes.number.isRequired,
-    incrementStepper: React.PropTypes.func.isRequired,
-    decrementStepper: React.PropTypes.func.isRequired,
-    url: React.PropTypes.string,
-    setUrl: React.PropTypes.func.isRequired,
-    addProject: React.PropTypes.func.isRequired,
-    router: React.PropTypes.object.isRequired,
-    drawerOpen: React.PropTypes.bool.isRequired,
-    errors: React.PropTypes.object.isRequired
-  };
+function CreateProject(props) {
+  const dispatch = useDispatch();
+  const {
+    stepIndex,
+    url,
+    name} = useSelector(state => state.createProject)
 
-  handleNextStep() {
-    if (this.props.stepIndex === STEPS_COUNT - 1) {
-      this.props.addProject(this.props.url);
-      const router = this.props.router;
-      router.push('/console');
-    } else this.props.incrementStepper();
-  }
-
-  renderStepActions(step) {
-    const {stepIndex} = this.props;
-    return (
-      <div style={{margin: '12px 0'}}>
-        <RaisedButton
-          label={stepIndex === STEPS_COUNT - 1 ? 'Finish' : 'Next'}
-          disableTouchRipple={true}
-          disableFocusRipple={true}
-          primary={true}
-          onTouchTap={() => this.handleNextStep()}
-          style={{marginRight: 12}}
-        />
-        {step > 0 && (
-          <FlatButton
-            label="Back"
-            disabled={stepIndex === 0}
-            disableTouchRipple={true}
-            disableFocusRipple={true}
-            onTouchTap={() => this.props.decrementStepper()}
-          />
-        )}
-      </div>
-    );
-  }
-
-  render() {
-    const {stepIndex} = this.props;
-    return (
-      <Canvas
-        title="Create a new audit configuration"
-        drawerOpen={this.props.drawerOpen}
-      >
-        <div style={styles.stepper}>
-          <Stepper activeStep={stepIndex} orientation="vertical">
-            <Step>
-              <StepLabel>Site to audit</StepLabel>
-              <StepContent>
-                <p>
-                  Enter the URL of the homepage of the site to audit:
-                </p>
-                <TextField
-                  id="text-field-url"
-                  hintText="http://www.google.com"
-                  value={this.props.url}
-                  onChange={event => {
-                    this.props.setUrl(event.target.value);
+  return (
+    <Canvas title="Create a new audit configuration">
+      <div>
+        <Stepper activeStep={stepIndex} orientation="vertical">
+          <Step>
+            <StepLabel>Site to audit</StepLabel>
+            <StepContent>
+              <TextField
+                id="text-field-url"
+                placeholder="http://www.google.com"
+                helperText="Enter the URL of the homepage of the site to audit"
+                fullWidth
+                value={url}
+                onChange={event => {
+                  dispatch(setUrl(event.target.value));
+                }}
+              />
+                <CreateProjectStepActions
+                  stepIndex={0}
+                  stepsCount={STEPS_COUNT}
+                  currentStep={stepIndex}
+                  handlePreviousStep={() => {
+                    dispatch(decrementStepper())
+                  }}
+                  handleNextStep={() => {
+                    dispatch(incrementStepper())
+                  }}
+                  handleLastStep={() => {
+                    dispatch(addProject(url));
+                    props.history.push('/console');
                   }}
                 />
-                {this.renderStepActions(0)}
-              </StepContent>
-            </Step>
-            <Step>
-              <StepLabel>Confirm new configuration</StepLabel>
-              <StepContent>
-                <p>
-                  Enter the URL of the homepage of the site to audit:
-                </p>
-                {this.renderStepActions(1)}
-              </StepContent>
-            </Step>
-          </Stepper>
-          <CreateProjectFeedback errors={this.props.errors} />
-        </div>
-      </Canvas>
-    );
-  }
+            </StepContent>
+          </Step>
+          <Step>
+            <StepLabel>Name of the site</StepLabel>
+            <StepContent>
+              <TextField
+                id="text-field-name"
+                placeholder="Site name"
+                helperText="Enter the name of the site to audit"
+                fullWidth
+                value={name}
+                onChange={event => {
+                  dispatch(setName(event.target.value));
+                }}
+              />
+                <CreateProjectStepActions
+                  stepIndex={1}
+                  stepsCount={STEPS_COUNT}
+                  currentStep={stepIndex}
+                  handlePreviousStep={() => {
+                    dispatch(decrementStepper())
+                  }}
+                  handleNextStep={() => {
+                    dispatch(incrementStepper())
+                  }}
+                  handleLastStep={() => {
+                    dispatch(addProject(url));
+                    props.history.push('/console');
+                  }}
+                />
+            </StepContent>
+          </Step>
+          <Step>
+            <StepLabel>Confirm new site configuration</StepLabel>
+            <StepContent>
+            <CreateProjectStepActions
+                  stepIndex={2}
+                  stepsCount={STEPS_COUNT}
+                  currentStep={stepIndex}
+                  handlePreviousStep={() => {
+                    dispatch(decrementStepper())
+                  }}
+                  handleNextStep={() => {
+                    dispatch(incrementStepper())
+                  }}
+                  handleLastStep={() => {
+                    dispatch(createProject(url, name));
+                    props.history.push('/console/dashboard');
+                  }}
+                />
+            </StepContent>
+          </Step>
+        </Stepper>
+      </div>
+    </Canvas>
+  )
 }
 
-const styles = {
-  stepper: {
-    maxWidth: 380,
-    maxHeight: 400
-  }
+CreateProject.propTypes = {
+  history: PropTypes.object.isRequired,
 };
+
+export default withRouter(CreateProject);

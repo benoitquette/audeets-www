@@ -1,48 +1,40 @@
-import React, {Component} from "react";
+import React from "react";
 import _ from 'lodash';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@mui/material/Button';
 import Text from '@components/Text';
+import PropTypes from 'prop-types';
 
-export default class AuditUrlResultsDetailsItem extends Component {
-  static propTypes = {
-    text: React.PropTypes.string.isRequired,
-    link: React.PropTypes.string,
-    urls: React.PropTypes.array
-  };
-
-  render() {
-    return (
-      <div key={this.props.text}>
-        <Text>{this.props.text}</Text>
-        {this.props.urls && (
-          <ul style={styles.list}>
-            {_.map(this.props.urls, url => {
-              return (
-                <li key={url.text}>{url.text}</li>
-              );
-            })
-            }
-          </ul>
-        )}
-        {this.props.link && (
-          <RaisedButton
-            label="More Details"
-            labelPosition="before"
-            primary={true}
-            href={this.props.link}
-            style={styles.button}
-          />
-        )}
-      </div>
-    );
-  }
+function AuditUrlResultsDetailsItem(props) {
+  return (
+    <div key={this.props.text}>
+      <Text>{this.props.text}</Text>
+      {this.props.urls && (
+        <ul style={{fontSize: 13}}>
+          {_.map(this.props.urls, url => {
+            return (
+              <li key={url.text}>{url.text}</li>
+            );
+          })
+          }
+        </ul>
+      )}
+      {this.props.link && (
+        <Button
+        variant="contained"
+          label="More Details"
+          labelPosition="before"
+          primary={true}
+          href={this.props.link}
+        />
+      )}
+    </div>
+  )
 }
 
-const styles = {
-  list: {
-    fontSize: 13
-  },
-  button: {
-    marginLeft: 20
-  }
+AuditUrlResultsDetailsItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  urls: PropTypes.array
 };
+
+export default AuditUrlResultsDetailsItem;

@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import * as t from './actionTypes';
-import Promise from "bluebird";
 
 export const fetchAudit = (id, date) => ({
   type: t.FETCH_AUDIT,

@@ -1,53 +1,40 @@
 import React, {Component} from "react";
-import {Card, CardHeader, CardText} from 'material-ui/Card';
-import Avatar from 'material-ui/Avatar';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
 import AuditUrlResults from './AuditUrlResults';
+import PropTypes from 'prop-types';
 
-export default class AuditCategory extends Component {
-  static propTypes = {
-    categoryName: React.PropTypes.string.isRequired,
-    results: React.PropTypes.array.isRequired,
-    showFailsOnly: React.PropTypes.bool.isRequired
-  };
-
-  render() {
-    return (
-      <Card
-        style={styles.card}
-        expandable={false}
-      >
-        <CardHeader
-          title={this.props.categoryName}
-          subtitle="not sure what we can put here..."
-          actAsExpander={false}
-          showExpandableButton={false}
-          avatar={
-            <Avatar
-              style={styles.avatar}
-            >
-              {this.props.categoryName.charAt(0).toUpperCase()}
-            </Avatar>
-          }
-        />
-        <CardText
-          expandable={false}
-        >
-          <div id={this.props.categoryName}>
-            <AuditUrlResults
-              results={this.props.results}
-              showFailsOnly={this.props.showFailsOnly}
-            />
-          </div>
-        </CardText>
-      </Card>
-    );
-  }
+function AuditCategory(props) {
+  return (
+    <Card sx={{margin: 2}}>
+      <CardHeader
+        title={props.categoryName}
+        subtitle="not sure what we can put here..."
+        avatar={
+          <Avatar>
+            {props.categoryName.charAt(0).toUpperCase()}
+          </Avatar>
+        }
+      />
+      <CardContent>
+        <div id={props.categoryName}>
+          <AuditUrlResults
+            results={props.results}
+            showFailsOnly={props.showFailsOnly}
+          />
+        </div>
+      </CardContent>
+    </Card>
+  )
 }
 
-const styles = {
-  card: {
-    margin: 25
-  },
-  avatar: {
-  }
+AuditCategory.propTypes = {
+  categoryName: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired,
+  showFailsOnly: PropTypes.bool.isRequired
 };
+
+export default AuditCategory;
+

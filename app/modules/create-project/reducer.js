@@ -3,9 +3,7 @@ import * as t from './actionTypes';
 const initialState = {
   stepIndex: 0,
   url: '',
-  error: false,
-  confirmation: false,
-  loading: false
+  name: ''
 };
 
 /**
@@ -31,6 +29,13 @@ export default function createProject(state = initialState, action) {
         ...state,
         url: action.url
       };
+    case t.SET_NAME:
+      return {
+        ...state,
+        name: action.name
+      };
+    case t.RESET:
+      return initialState;
     default:
       return state;
   }

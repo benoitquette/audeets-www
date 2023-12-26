@@ -1,63 +1,71 @@
-import React, {Component} from "react";
+import React from "react";
 import DashboardProjectList from "./DashboardProjectList";
 import Canvas from "@components/Canvas";
-import {Link, withRouter} from "react-router";
-import {connect} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
 import {toggleDialog} from './actions';
+import {deleteProject} from "@modules/console/actions";
+import {reset} from "@modules/create-project/actions";
 import DashboardFeedback from './DashboardFeedback';
 import DashboardButton from './DashboardButton';
+import PropTypes from 'prop-types';
+import {withRouter} from "react-router-dom";
 
-@withRouter
-@connect(state => ({
-  dialogOpen: state.dashboard.dialogOpen
-}), {
-  toggleDialog
-})
-export default class Dashboard extends Component {
-  static propTypes = {
-    projects: React.PropTypes.array.isRequired,
-    errors: React.PropTypes.object.isRequired,
-    confirmations: React.PropTypes.object.isRequired,
-    drawerOpen: React.PropTypes.bool.isRequired,
-    dialogOpen: React.PropTypes.bool.isRequired,
-    toggleDialog: React.PropTypes.func.isRequired,
-    router: React.PropTypes.object.isRequired,
-    addProject: React.PropTypes.func.isRequired,
-    ackProjectAdded: React.PropTypes.func.isRequired,
-    deleteProject: React.PropTypes.func.isRequired,
-    ackProjectDeleted: React.PropTypes.func.isRequired,
-    loading: React.PropTypes.bool.isRequired
-  };
+function Dashboard(props) {
+  const dispatch = useDispatch();
+  const {
+    drawerOpen,
+    projects,
+    loading,
+    errors,
+    confirmations} = useSelector(state => state.console)
+  const {dialogOpen} = useSelector(state => state.dashboard)
 
-  navigateToProject(projectId) {
-    const router = this.props.router;
-    router.push(`/console/${projectId}`);
-  }
-
-  removeProject(projectId) {
-    this.props.deleteProject(projectId);
-    this.props.toggleDialog();
-  }
-
-  render() {
-    return (
-      <Canvas drawerOpen={this.props.drawerOpen}>
-        <DashboardProjectList
-          projects={this.props.projects}
-          navigateToProject={this.navigateToProject.bind(this)}
-          dialogOpen={this.props.dialogOpen}
-          toggleDialog={this.props.toggleDialog}
-          removeProject={this.removeProject.bind(this)}
-          loading={this.props.loading}
-        />
-        <DashboardButton navigateToCreateProject={<Link to="/console/add" />}/>
-        <DashboardFeedback
-          errors={this.props.errors}
-          confirmations={this.props.confirmations}
-          ackProjectDeleted={this.props.ackProjectDeleted}
-          ackProjectAdded={this.props.ackProjectAdded}
-        />
-      </Canvas>
-    );
-  }
+  return (
+    <Canvas
+      title="Dashboard"
+      drawerOpen={drawerOpen}
+    >
+      <DashboardProjectList
+        projects={projects}
+        navigateToProject={(projectId) => {
+          props.history.push('/console/' + projectId);
+        }}
+        dialogOpen={dialogOpen}
+        toggleDialog={() => {
+          dispatch(toggleDialog());
+        }}
+        removeProject={(projectId) => {
+          dispatch(deleteProject(projectId));
+          dispatch(toggleDialog());
+        }}
+        loading={loading}
+      />
+      <DashboardButton
+        navigateToCreateProject={() => {
+          props.history.push('/console/add');
+        }}
+      />
+      <DashboardFeedback
+        error={errors.deleteProject}
+        confirmation={confirmations.deleteProject}
+        errorMessage="An error occured whilst deleting the configuration"
+        confirmationMessage="Site removed."
+      />
+      <DashboardFeedback
+        error={errors.createProject}
+        confirmation={confirmations.createProject}
+        acknowledge={() => {
+          dispatch(reset());
+        }}
+        errorMessage="An error occured whilst creating the configuration"
+        confirmationMessage="Site created."
+      />
+    </Canvas>
+  )
 }
+
+Dashboard.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter(Dashboard);
