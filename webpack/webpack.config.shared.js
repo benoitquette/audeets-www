@@ -24,27 +24,6 @@ module.exports = {
     filename: 'javascripts/app.bundle.js',
     publicPath: '/',
   },
-  module: {
-    rules: [
-      // Extract css files
-      {
-        test: /\.css$/,
-        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      // Extract React source files
-      {
-        test: /\.(jsx|js)$/,
-        include: /app/,
-        loader: 'babel-loader',
-        options: { presets: ['@babel/env', '@babel/preset-react'] },
-      },
-      {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file-loader',
-      },
-    ],
-  },
   plugins: [
     new webpack.IgnorePlugin({
       resourceRegExp: /.*/,
@@ -52,4 +31,23 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.(jsx|js)$/,
+        include: /app/,
+        loader: 'babel-loader',
+        options: { presets: ['@babel/env', '@babel/preset-react'] },
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader',
+      },
+    ],
+  },
+
 }
