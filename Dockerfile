@@ -19,10 +19,10 @@ RUN mkdir -p ${appDir} && cp -a /tmp/node_modules ${appDir}/
 # "layer" thats been cached will be used if possible
 WORKDIR ${appDir}
 COPY . ${appDir}
-RUN ${yarnDir}/yarn run build
+RUN ${yarnDir}/yarn build
 
 VOLUME ${appDir}/config
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["npm", "run", "start"]
+CMD ["node", "src/server.js"]
