@@ -19,7 +19,7 @@ RUN mkdir -p ${appDir} && cp -a /tmp/node_modules ${appDir}/
 # "layer" thats been cached will be used if possible
 WORKDIR ${appDir}
 COPY . ${appDir}
-RUN ${yarnDir}/yarn run webpack
+RUN ${yarnDir}/yarn run build
 
 VOLUME ${appDir}/config
 
