@@ -16,4 +16,4 @@ WORKDIR /app/express
 RUN npm install
 
 EXPOSE 5000
-CMD ["node", "express/server.js"]
+CMD ["node", "server.js"]
