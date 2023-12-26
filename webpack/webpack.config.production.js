@@ -9,16 +9,9 @@ module.exports = new Config().extend('webpack/webpack.config.shared.js').merge({
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8: true, // eslint-disable-line camelcase
-      },
-      output: {
-        comments: false,
-      },
-    }),
   ],
   mode: 'production',
+  optimization: {
+    minimize: true,
+  },
 })

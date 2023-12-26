@@ -6,7 +6,7 @@
   "author": "Benoit Quette",
   "main": "app.js",
   "scripts": {
-    "webpack": "NODE_ENV=production `npm bin`/webpack -mode=production --config ./webpack/webpack.config.js",
+    "webpack": "NODE_ENV=production webpack -mode=production --config ./webpack/webpack.config.js",
     "lint": "node ./node_modules/eslint/bin/eslint  --ext .js --ext .jsx .",
     "test": "npm run coverage && npm run check-coverage",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive \"./test/unit/**/*Spec.js\"",
