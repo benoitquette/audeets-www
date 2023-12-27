@@ -2,7 +2,7 @@ FROM node:20.10-alpine3.19
 ENV appDir /usr/app
 
 COPY express ${appDir}/express
-WORKDIR ${appDir}
+WORKDIR ${appDir}/express
 RUN yarn build
 # VOLUME ${appDir}/config
 
