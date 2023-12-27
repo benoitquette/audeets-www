@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 // scroll bar
-import 'simplebar/src/simplebar.css';
+import 'simplebar/dist/simplebar.css';
 
 // third-party
 import { Provider as ReduxProvider } from 'react-redux';
