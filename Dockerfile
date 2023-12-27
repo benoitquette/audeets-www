@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20.10-alpine3.19
 ENV appDir /usr/src/app
 
 # use changes to package.json to force Docker not to use the cache
