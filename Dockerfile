@@ -1,4 +1,4 @@
-FROM node:20.0.0-alpine3.17
+FROM node:20
 
 # build webpack packages
 ADD . /app
@@ -12,5 +12,5 @@ WORKDIR /app/express
 RUN npm install
 
 EXPOSE 5000
-WORKDIR /app
-CMD ["node", "express/server.js"]
+WORKDIR /app/server
+CMD ["node", "server.js"]
