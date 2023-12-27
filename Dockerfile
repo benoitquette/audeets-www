@@ -3,7 +3,7 @@ ENV appDir /usr/src/app
 # ENV yarnDir /root/.yarn/bin
 
 # install Yarn
-RUN npm install --global yarn
+# RUN npm install --global yarn
 
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
