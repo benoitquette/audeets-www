@@ -6,7 +6,7 @@ WORKDIR ${appDir}/express
 RUN yarn install
 
 # add webpack generated files
-COPY build ${appDir}
+COPY build ${appDir}/build
 
 EXPOSE 5000
 WORKDIR ${appDir}/express
