@@ -12,5 +12,5 @@
     "presets": [
       "@babel/preset-react"
     ]
-  },
+  }
 }
