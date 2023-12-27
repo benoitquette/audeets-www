@@ -1,9 +1,5 @@
 FROM node:20-alpine
 ENV appDir /usr/src/app
-# ENV yarnDir /root/.yarn/bin
-
-# install Yarn
-# RUN npm install --global yarn
 
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
@@ -15,7 +11,7 @@ RUN mkdir -p ${appDir} && cp -a /tmp/node_modules ${appDir}/
 # "layer" thats been cached will be used if possible
 WORKDIR ${appDir}
 COPY . ${appDir}
-RUN ${yarnDir}/yarn build
+RUN yarn build
 # VOLUME ${appDir}/config
 
 EXPOSE 5000
