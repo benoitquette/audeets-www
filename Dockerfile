@@ -3,8 +3,7 @@ ENV appDir /usr/app
 
 COPY express ${appDir}/express
 WORKDIR ${appDir}/express
-RUN yarn build
-# VOLUME ${appDir}/config
+RUN yarn install
 
 # add webpack generated files
 COPY express ${appDir}/express
