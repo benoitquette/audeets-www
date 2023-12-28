@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
+
 // project import
-import NavCard from './NavCard';
 import Navigation from './Navigation';
 import SimpleBar from 'components/third-party/SimpleBar';
 
 // ==============================|| DRAWER CONTENT ||============================== //
 
-const DrawerContent = () => (
+const DrawerContent = ({ navigation }) => (
   <SimpleBar
     sx={{
       '& .simplebar-content': {
@@ -14,9 +15,13 @@ const DrawerContent = () => (
       }
     }}
   >
-    <Navigation />
-    <NavCard />
+    <Navigation navigation={navigation} />
+    {/* <NavCard /> */}
   </SimpleBar>
 );
+
+DrawerContent.propTypes = {
+  navigation: PropTypes.object
+};
 
 export default DrawerContent;

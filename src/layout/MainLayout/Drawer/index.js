@@ -13,7 +13,7 @@ import { drawerWidth } from 'config';
 
 // ==============================|| MAIN LAYOUT - DRAWER ||============================== //
 
-const MainDrawer = ({ open, handleDrawerToggle, window }) => {
+const MainDrawer = ({ open, handleDrawerToggle, window, navigation }) => {
   const theme = useTheme();
   const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -21,7 +21,7 @@ const MainDrawer = ({ open, handleDrawerToggle, window }) => {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   // header content
-  const drawerContent = useMemo(() => <DrawerContent />, []);
+  const drawerContent = useMemo(() => <DrawerContent navigation={navigation} />, [navigation]);
   const drawerHeader = useMemo(() => <DrawerHeader open={open} />, [open]);
 
   return (
@@ -60,7 +60,8 @@ const MainDrawer = ({ open, handleDrawerToggle, window }) => {
 MainDrawer.propTypes = {
   open: PropTypes.bool,
   handleDrawerToggle: PropTypes.func,
-  window: PropTypes.object
+  window: PropTypes.object,
+  navigation: PropTypes.object
 };
 
 export default MainDrawer;
