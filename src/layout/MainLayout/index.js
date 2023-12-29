@@ -14,16 +14,14 @@ import Breadcrumbs from 'components/@extended/Breadcrumbs';
 
 // types
 import { openDrawer } from 'store/reducers/menu';
-import { fetchProjects } from 'store/reducers/projects';
-import { selectors } from 'store/reducers/projects';
+import { fetchProjects, selectors } from 'store/reducers/projects';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = () => {
   const theme = useTheme();
-  const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
   const dispatch = useDispatch();
-
+  const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
   const { drawerOpen } = useSelector((state) => state.menu);
   const { status } = useSelector((state) => state.projects);
   const allProjects = useSelector(selectors.selectAll);
@@ -34,7 +32,6 @@ const MainLayout = () => {
       dispatch(fetchProjects());
     }
   }, [dispatch, status]);
-
   const navigation = menuItems(allProjects);
 
   // drawer toggler

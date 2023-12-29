@@ -7,6 +7,9 @@ import MainLayout from 'layout/MainLayout';
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 
+// render - project
+const ProjectDefault = Loadable(lazy(() => import('pages/project')));
+
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
 
@@ -36,6 +39,15 @@ const MainRoutes = {
         {
           path: 'default',
           element: <DashboardDefault />
+        }
+      ]
+    },
+    {
+      path: 'project',
+      children: [
+        {
+          path: ':projectId',
+          element: <ProjectDefault />
         }
       ]
     },

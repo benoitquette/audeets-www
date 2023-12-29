@@ -4,10 +4,9 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/too
 // project import
 import { client } from 'utils/apiClient';
 
-// entity adapter
+// adapters
 const projectsAdapter = createEntityAdapter({
   selectId: (project) => project._id,
-  // Sort alphabetically
   sortComparer: (a, b) => a.title.localeCompare(b.title)
 });
 
