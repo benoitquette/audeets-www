@@ -3,6 +3,8 @@ name: Publish Docker image
 on:
   workflow_dispatch:
   push:
+      branches:
+        - master
 
 jobs:
   push_to_registries:
