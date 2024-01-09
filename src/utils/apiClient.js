@@ -1,7 +1,7 @@
 // A tiny wrapper around fetch(), borrowed from
 // https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
 
-const baseUrl = 'https://islay.ddns.net:5001';
+const baseUrl = process.env.URL_API_PROJECTS;
 
 export async function client(endpoint, { body, ...customConfig } = {}) {
   const url = `${baseUrl}/${endpoint}`;
