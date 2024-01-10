@@ -7,14 +7,15 @@ import { Box, Button, Grid, Stack } from '@mui/material';
 
 // project import
 // import OrdersTable from './OrdersTable';
-import IncomeAreaChart from './IncomeAreaChart';
+import RollingAreaChart from './RollingAreaChart';
 import MainCard from 'components/MainCard';
 import ScoreCards from './ScoreCards';
 import ProjectCard from './ProjectCard';
 
 // types
-import { fetchLatestScore, selectors as scoresSelectors } from 'store/reducers/scores';
 import { selectors as projectsSelectors } from 'store/reducers/projects';
+import { fetchLatestScore, selectors as scoresSelectors } from 'store/reducers/scores';
+import { fetchRollingWeek, selectors as chartsSelectors } from 'store/reducers/charts';
 
 // ==============================|| PROJECT - DEFAULT ||============================== //
 
@@ -24,10 +25,12 @@ const ProjectDefault = () => {
   const [slot, setSlot] = useState('week');
   const project = useSelector((state) => projectsSelectors.selectById(state, projectId));
   const scores = useSelector(scoresSelectors.selectAll);
+  const weekChartData = useSelector(chartsSelectors.selectAll);
 
   // fetch scores
   useEffect(() => {
     dispatch(fetchLatestScore(projectId));
+    dispatch(fetchRollingWeek(projectId));
   }, [dispatch, projectId]);
 
   return (
@@ -59,7 +62,7 @@ const ProjectDefault = () => {
         </Grid>
         <MainCard content={false}>
           <Box sx={{ pt: 1, pr: 2 }}>
-            <IncomeAreaChart slot={slot} />
+            <RollingAreaChart slot={slot} weekData={weekChartData} />
           </Box>
         </MainCard>
       </Grid>

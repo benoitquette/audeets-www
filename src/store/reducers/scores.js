@@ -15,16 +15,10 @@ export const fetchLatestScore = createAsyncThunk('scores/fetchLatestScore', asyn
   return await client.get(`api/projects/${id}/latestscore`);
 });
 
-// export const fetchRollingWeek = (id) => {
-//   createAsyncThunk('projects/fetchRollingWeek', async () => {
-//     return await client.get(`api/projects/${id}/rollingweek`);
-//   });
-// };
-
 // selectors
 export const selectors = scoresAdapter.getSelectors((state) => state.scores);
 
-// ==============================|| SLICE - PROJECTS ||============================== //
+// ==============================|| SLICE - SCORES ||============================== //
 
 const scores = createSlice({
   name: 'scores',
@@ -57,8 +51,3 @@ const scores = createSlice({
 export default scores.reducer;
 
 export const { scoresLoaded, scoresCleared } = scores.actions;
-
-export const reloadAllProjects = () => async (dispatch) => {
-  dispatch(scoresCleared());
-  dispatch(fetchLatestScore());
-};

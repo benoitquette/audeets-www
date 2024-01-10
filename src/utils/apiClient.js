@@ -1,7 +1,7 @@
 // A tiny wrapper around fetch(), borrowed from
 // https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
 
-const baseUrl = process.env.URL_API_PROJECTS;
+const baseUrl = process.env.REACT_APP_URL_API_PROJECTS;
 
 export async function client(endpoint, { body, ...customConfig } = {}) {
   const url = `${baseUrl}/${endpoint}`;
