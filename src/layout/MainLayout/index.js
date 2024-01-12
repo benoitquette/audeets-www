@@ -14,7 +14,7 @@ import Breadcrumbs from 'components/@extended/Breadcrumbs';
 
 // types
 import { openDrawer } from 'store/reducers/menu';
-import { fetchProjects, selectors } from 'store/reducers/projects';
+import { useGetProjectsQuery } from 'store/reducers/projectsApi';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
@@ -23,16 +23,7 @@ const MainLayout = () => {
   const dispatch = useDispatch();
   const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
   const { drawerOpen } = useSelector((state) => state.menu);
-  const { status } = useSelector((state) => state.projects);
-  const allProjects = useSelector(selectors.selectAll);
-
-  // insert projects in navigation
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchProjects());
-    }
-  }, [dispatch, status]);
-  const navigation = menuItems(allProjects);
+  const { data: projects, isSuccess } = useGetProjectsQuery();
 
   // drawer toggler
   const [open, setOpen] = useState(drawerOpen);
@@ -45,7 +36,6 @@ const MainLayout = () => {
   useEffect(() => {
     setOpen(!matchDownLG);
     dispatch(openDrawer({ drawerOpen: !matchDownLG }));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchDownLG]);
 
@@ -54,17 +44,20 @@ const MainLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [drawerOpen]);
 
-  return (
-    <Box sx={{ display: 'flex', width: '100%' }}>
-      <Header open={open} handleDrawerToggle={handleDrawerToggle} />
-      <Drawer open={open} handleDrawerToggle={handleDrawerToggle} navigation={navigation} />
-      <Box component="main" sx={{ width: '100%', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
-        <Toolbar />
-        <Breadcrumbs navigation={navigation} title />
-        <Outlet />
+  if (isSuccess) {
+    const navigation = menuItems(projects);
+    return (
+      <Box sx={{ display: 'flex', width: '100%' }}>
+        <Header open={open} handleDrawerToggle={handleDrawerToggle} />
+        <Drawer open={open} handleDrawerToggle={handleDrawerToggle} navigation={navigation} />
+        <Box component="main" sx={{ width: '100%', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
+          <Toolbar />
+          <Breadcrumbs navigation={navigation} title />
+          <Outlet />
+        </Box>
       </Box>
-    </Box>
-  );
+    );
+  }
 };
 
 export default MainLayout;

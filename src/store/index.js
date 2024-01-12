@@ -2,12 +2,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // project import
-import reducers from './reducers';
+import menu from './reducers/menu';
+import { projectsApi } from './reducers/projectsApi';
 
 // ==============================|| REDUX TOOLKIT - MAIN STORE ||============================== //
 
 const store = configureStore({
-  reducer: reducers
+  reducer: {
+    menu,
+    [projectsApi.reducerPath]: projectsApi.reducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projectsApi.middleware)
 });
 
 const { dispatch } = store;
