@@ -9,7 +9,7 @@ import { capitalize } from 'utils/string-helpers';
 
 // ==============================|| INDICATOR CARD  ||============================== //
 
-const Indicator = ({ title, score, iconName, iconColor }) => (
+const Indicator = ({ title, score, date, iconName, iconColor }) => (
   <MainCard contentSX={{ pt: 2, mb: -1 }}>
     <Grid container justifyContent="space-between" alignItems="flex-start" flexWrap="wrap" border="1">
       <Grid item xs={1} sx={{ mr: 2 }}>
@@ -24,7 +24,7 @@ const Indicator = ({ title, score, iconName, iconColor }) => (
         <Stack>
           <Typography variant="h6">{capitalize(title)}</Typography>
           <Typography variant="caption" color="textSecondary">
-            December 28th 2023
+            {new Date(date).toLocaleDateString('en-us', { month: 'long', day: 'numeric', year: 'numeric' })}
           </Typography>
         </Stack>
       </Grid>
@@ -40,6 +40,7 @@ const Indicator = ({ title, score, iconName, iconColor }) => (
 Indicator.propTypes = {
   title: PropTypes.string,
   score: PropTypes.number,
+  date: PropTypes.date,
   iconName: PropTypes.string,
   iconColor: PropTypes.string
 };

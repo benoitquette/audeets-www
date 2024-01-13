@@ -15,10 +15,15 @@ const ScoreCards = ({ scores }) => {
   } else {
     return scores.map((score) => {
       const categoryTheme = theme[score.category];
-      // const iconName = categoryTheme === undefined ? undefined : categoryTheme.icon;
       return (
         <Grid item xs={12} key={score.category}>
-          <Indicator title={score.category} score={score.score} iconName={categoryTheme.icon} iconColor={categoryTheme.color} />
+          <Indicator
+            title={score.category}
+            score={score.score}
+            date={score.date}
+            iconName={categoryTheme.icon}
+            iconColor={categoryTheme.color}
+          />
         </Grid>
       );
     });

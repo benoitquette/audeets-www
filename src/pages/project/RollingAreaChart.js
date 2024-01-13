@@ -105,7 +105,7 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
     }
   }, [slot, data]);
 
-  return <ReactApexChart options={options} series={series} type="area" height="375" />;
+  return <ReactApexChart options={options} series={series} type="area" height="287" />;
 };
 
 RollingAreaChart.propTypes = {
