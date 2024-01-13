@@ -5,6 +5,7 @@ import { Chip, Grid, Stack, Typography } from '@mui/material';
 
 // project import
 import MainCard from 'components/MainCard';
+import { capitalize } from 'utils/string-helpers';
 
 // assets
 import { RiseOutlined, FallOutlined } from '@ant-design/icons';
@@ -15,7 +16,7 @@ const Indicator = ({ color, title, count, percentage, isLoss }) => (
   <MainCard contentSX={{ p: 2.25 }}>
     <Stack spacing={0.5}>
       <Typography variant="h6" color="textSecondary">
-        {title}
+        {capitalize(title)}
       </Typography>
       <Grid container alignItems="center">
         <Grid item>

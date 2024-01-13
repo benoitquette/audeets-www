@@ -7,6 +7,9 @@ import { useTheme } from '@mui/material/styles';
 // third-party
 import ReactApexChart from 'react-apexcharts';
 
+// project import
+import { capitalize } from 'utils/string-helpers';
+
 // chart options
 const areaChartOptions = {
   chart: {
@@ -30,23 +33,27 @@ const areaChartOptions = {
 
 // ==============================|| ROLLING AREA CHART ||============================== //
 
-const RollingAreaChart = ({ slot, weekData, monthData }) => {
-  const theme = useTheme();
+const buildCategories = (slot, data) => {
+  const options = slot == 'week' ? { weekday: 'short' } : { month: 'short' };
+  return data === undefined ? [] : data[0].data.map((datum) => new Date(datum.date).toLocaleDateString('en-us', options));
+};
 
+const RollingAreaChart = ({ slot, weekData, monthData }) => {
+  const data = slot === 'week' ? weekData : monthData;
+
+  const theme = useTheme();
   const { primary, secondary } = theme.palette.text;
   const line = theme.palette.divider;
 
   const [options, setOptions] = useState(areaChartOptions);
+  const [series, setSeries] = useState([]);
 
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
       colors: [theme.palette.primary.main, theme.palette.primary[700]],
       xaxis: {
-        categories:
-          slot === 'month'
-            ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        categories: buildCategories(slot, data),
         labels: {
           style: {
             colors: [
@@ -69,7 +76,7 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
           show: true,
           color: line
         },
-        tickAmount: slot === 'month' ? 11 : 7
+        tickAmount: data === undefined ? 0 : data.length - 1
       },
       yaxis: {
         labels: {
@@ -85,33 +92,18 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
         theme: 'light'
       }
     }));
-  }, [primary, secondary, line, theme, slot]);
-
-  const [series, setSeries] = useState([
-    {
-      name: 'Page Views',
-      data: [0, 86, 28, 115, 48, 210, 136]
-    },
-    {
-      name: 'Sessions',
-      data: [0, 43, 14, 56, 24, 105, 68]
-    }
-  ]);
+  }, [primary, secondary, line, theme, slot, data]);
 
   useEffect(() => {
-    let data = monthData;
-    if (slot === 'week') {
-      data = weekData;
-    }
     if (data !== undefined) {
       setSeries(
         Array.from(data, (category) => ({
-          name: category.category,
+          name: capitalize(category.category),
           data: Array.from(category.data, (item) => item.score)
         }))
       );
     }
-  }, [slot, weekData, monthData]);
+  }, [slot, data]);
 
   return <ReactApexChart options={options} series={series} type="area" height="375" />;
 };
