@@ -1,57 +1,47 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { Chip, Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography, Avatar, Icon } from '@mui/material';
 
 // project import
 import MainCard from 'components/MainCard';
 import { capitalize } from 'utils/string-helpers';
 
-// assets
-import { RiseOutlined, FallOutlined } from '@ant-design/icons';
-
 // ==============================|| INDICATOR CARD  ||============================== //
 
-const Indicator = ({ color, title, count, percentage, isLoss }) => (
-  <MainCard contentSX={{ p: 2.25 }}>
-    <Stack spacing={0.5}>
-      <Typography variant="h6" color="textSecondary">
-        {capitalize(title)}
-      </Typography>
-      <Grid container alignItems="center">
-        <Grid item>
-          <Typography variant="h4" color="inherit">
-            {count}
-          </Typography>
-        </Grid>
-        {percentage && (
-          <Grid item>
-            <Chip
-              variant="combined"
-              color={color}
-              icon={
-                <>
-                  {!isLoss && <RiseOutlined style={{ fontSize: '0.75rem', color: 'inherit' }} />}
-                  {isLoss && <FallOutlined style={{ fontSize: '0.75rem', color: 'inherit' }} />}
-                </>
-              }
-              label={`${percentage}%`}
-              sx={{ ml: 1.25, pl: 1 }}
-              size="small"
-            />
-          </Grid>
+const Indicator = ({ title, score, iconName, iconColor }) => (
+  <MainCard contentSX={{ pt: 2, mb: -1 }}>
+    <Grid container justifyContent="space-between" alignItems="flex-start" flexWrap="wrap" border="1">
+      <Grid item xs={1} sx={{ mr: 2 }}>
+        {iconName && (
+          <Avatar sx={{ bgcolor: iconColor }}>
+            <Icon>{iconName}</Icon>
+          </Avatar>
         )}
       </Grid>
-    </Stack>
+
+      <Grid item xs={7}>
+        <Stack>
+          <Typography variant="h6">{capitalize(title)}</Typography>
+          <Typography variant="caption" color="textSecondary">
+            December 28th 2023
+          </Typography>
+        </Stack>
+      </Grid>
+      <Grid item xs={2}>
+        <Typography variant="h2" color="inherit">
+          {score}
+        </Typography>
+      </Grid>
+    </Grid>
   </MainCard>
 );
 
 Indicator.propTypes = {
-  color: PropTypes.string,
   title: PropTypes.string,
-  count: PropTypes.string,
-  percentage: PropTypes.number,
-  isLoss: PropTypes.bool
+  score: PropTypes.number,
+  iconName: PropTypes.string,
+  iconColor: PropTypes.string
 };
 
 Indicator.defaultProps = {

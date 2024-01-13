@@ -5,6 +5,7 @@ import { Grid, CircularProgress } from '@mui/material';
 
 // project import
 import Indicator from 'components/cards/statistics/Indicator';
+import theme from './theme';
 
 // ==============================|| SCORE CARDS ||============================== //
 
@@ -13,9 +14,11 @@ const ScoreCards = ({ scores }) => {
     return <CircularProgress />;
   } else {
     return scores.map((score) => {
+      const categoryTheme = theme[score.category];
+      // const iconName = categoryTheme === undefined ? undefined : categoryTheme.icon;
       return (
         <Grid item xs={12} key={score.category}>
-          <Indicator title={score.category} count={`${score.score}%`} percentage={59.3} />
+          <Indicator title={score.category} score={score.score} iconName={categoryTheme.icon} iconColor={categoryTheme.color} />
         </Grid>
       );
     });
