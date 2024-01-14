@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Audeets",
+  "name": "Audeets",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "48x48 32x32 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "android-icon-192x192.png",
+      "src": "android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "ms-icon-310x310.png",
+      "src": "apple-touch-icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
