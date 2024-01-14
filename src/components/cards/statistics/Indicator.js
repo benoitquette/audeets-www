@@ -40,7 +40,7 @@ const Indicator = ({ title, score, date, iconName, iconColor }) => (
 Indicator.propTypes = {
   title: PropTypes.string,
   score: PropTypes.number,
-  date: PropTypes.date,
+  date: PropTypes.string,
   iconName: PropTypes.string,
   iconColor: PropTypes.string
 };

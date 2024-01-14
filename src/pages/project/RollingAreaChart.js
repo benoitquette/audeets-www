@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
 // third-party
 import ReactApexChart from 'react-apexcharts';
@@ -38,6 +39,8 @@ const buildCategories = (slot, data) => {
   return data === undefined ? [] : data[0].data.map((datum) => new Date(datum.date).toLocaleDateString('en-us', options));
 };
 
+// const buildColors = () => [];
+
 const RollingAreaChart = ({ slot, weekData, monthData }) => {
   const data = slot === 'week' ? weekData : monthData;
 
@@ -51,7 +54,7 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: [theme.palette.primary.main, theme.palette.primary[700]],
+      colors: [red[500], theme.palette.primary[700]],
       xaxis: {
         categories: buildCategories(slot, data),
         labels: {
