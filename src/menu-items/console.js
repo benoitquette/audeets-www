@@ -8,20 +8,20 @@ const icons = {
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
 
-const dashboard = {
-  id: 'group-dashboard',
-  title: 'Navigation',
+const console = {
+  id: 'group-console',
+  title: '',
   type: 'group',
   children: [
     {
-      id: 'dashboard',
-      title: 'Dashboard 22',
+      id: 'console',
+      title: 'Console',
       type: 'item',
-      url: '/dashboard/default',
+      url: '/console',
       icon: icons.DashboardOutlined,
       breadcrumbs: false
     }
   ]
 };
 
-export default dashboard;
+export default console;

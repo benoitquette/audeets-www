@@ -34,10 +34,10 @@ const MainRoutes = {
       element: <Color />
     },
     {
-      path: 'dashboard',
+      path: 'console',
       children: [
         {
-          path: 'default',
+          path: '',
           element: <DashboardDefault />
         }
       ]
