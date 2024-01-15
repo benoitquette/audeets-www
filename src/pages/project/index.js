@@ -40,7 +40,7 @@ const ProjectDefault = () => {
       <Grid item xs={12} sm={9}>
         <Grid container sx={{ mb: 1 }} alignItems="center" justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">Rolling Charts</Typography>
+            <Typography variant="h5">Rolling Chart</Typography>
           </Grid>
           <Grid item>
             <Stack direction="row" alignItems="center" spacing={0}>

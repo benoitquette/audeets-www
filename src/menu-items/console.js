@@ -1,9 +1,9 @@
 // assets
-import { DashboardOutlined } from '@ant-design/icons';
+import { ProfileOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
-  DashboardOutlined
+  ProfileOutlined
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -18,7 +18,7 @@ const console = {
       title: 'Console',
       type: 'item',
       url: '/console',
-      icon: icons.DashboardOutlined,
+      icon: icons.ProfileOutlined,
       breadcrumbs: false
     }
   ]

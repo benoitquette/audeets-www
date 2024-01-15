@@ -66,6 +66,10 @@ const MainRoutes = {
     {
       path: 'icons/ant',
       element: <AntIcons />
+    },
+    {
+      path: 'dashboard',
+      element: <DashboardDefault />
     }
   ]
 };

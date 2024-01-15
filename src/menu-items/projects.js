@@ -1,10 +1,10 @@
 // assets
-import { SafetyOutlined } from '@ant-design/icons';
+// import { SafetyOutlined } from '@ant-design/icons';
 
 // icons
-const icons = {
-  SafetyOutlined
-};
+// const icons = {
+//   SafetyOutlined
+// };
 
 // ==============================|| MENU ITEMS - PROJECTS ||============================== //
 
@@ -17,8 +17,8 @@ const projects = (allProjects) => {
       id: project._id,
       title: project.title,
       type: 'item',
-      url: `/project/${project._id}`,
-      icon: icons.SafetyOutlined
+      url: `/project/${project._id}`
+      // icon: icons.SafetyOutlined
     }))
   };
 };

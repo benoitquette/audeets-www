@@ -5,7 +5,8 @@ import {
   BarcodeOutlined,
   BgColorsOutlined,
   FontSizeOutlined,
-  LoadingOutlined
+  LoadingOutlined,
+  DashboardOutlined
 } from '@ant-design/icons';
 
 // icons
@@ -15,7 +16,8 @@ const icons = {
   BarcodeOutlined,
   AntDesignOutlined,
   LoadingOutlined,
-  AppstoreAddOutlined
+  AppstoreAddOutlined,
+  DashboardOutlined
 };
 
 // ==============================|| MENU ITEMS - UTILITIES ||============================== //
@@ -52,6 +54,14 @@ const utilities = {
       type: 'item',
       url: '/icons/ant',
       icon: icons.AntDesignOutlined,
+      breadcrumbs: false
+    },
+    {
+      id: 'dashboard',
+      title: 'Dashboard',
+      type: 'item',
+      url: '/dashboard',
+      icon: icons.DashboardOutlined,
       breadcrumbs: false
     }
   ]
