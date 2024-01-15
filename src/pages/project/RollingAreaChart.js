@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-// material-ui
-import { useTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
-
 // third-party
 import ReactApexChart from 'react-apexcharts';
 
 // project import
 import { capitalize } from 'utils/string-helpers';
+import categoriesTheme from './categories-theme';
 
 // chart options
 const areaChartOptions = {
@@ -29,6 +26,16 @@ const areaChartOptions = {
   },
   grid: {
     strokeDashArray: 0
+  },
+  legend: {
+    show: true,
+    showForSingleSeries: true,
+    showForNullSeries: true,
+    showForZeroSeries: true,
+    horizontalAlign: 'center'
+  },
+  tooltip: {
+    theme: 'light'
   }
 };
 
@@ -39,63 +46,11 @@ const buildCategories = (slot, data) => {
   return data === undefined ? [] : data[0].data.map((datum) => new Date(datum.date).toLocaleDateString('en-us', options));
 };
 
-// const buildColors = () => [];
-
 const RollingAreaChart = ({ slot, weekData, monthData }) => {
   const data = slot === 'week' ? weekData : monthData;
 
-  const theme = useTheme();
-  const { primary, secondary } = theme.palette.text;
-  const line = theme.palette.divider;
-
   const [options, setOptions] = useState(areaChartOptions);
   const [series, setSeries] = useState([]);
-
-  useEffect(() => {
-    setOptions((prevState) => ({
-      ...prevState,
-      colors: [red[500], theme.palette.primary[700]],
-      xaxis: {
-        categories: buildCategories(slot, data),
-        labels: {
-          style: {
-            colors: [
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary,
-              secondary
-            ]
-          }
-        },
-        axisBorder: {
-          show: true,
-          color: line
-        },
-        tickAmount: data === undefined ? 0 : data.length - 1
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: [secondary]
-          }
-        }
-      },
-      grid: {
-        borderColor: line
-      },
-      tooltip: {
-        theme: 'light'
-      }
-    }));
-  }, [primary, secondary, line, theme, slot, data]);
 
   useEffect(() => {
     if (data !== undefined) {
@@ -105,6 +60,14 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
           data: Array.from(category.data, (item) => item.score)
         }))
       );
+      setOptions((prevState) => ({
+        ...prevState,
+        colors: Array.from(data, (category) => categoriesTheme[category.category].color),
+        xaxis: {
+          categories: buildCategories(slot, data),
+          tickAmount: data === undefined ? 0 : data.length - 1
+        }
+      }));
     }
   }, [slot, data]);
 
