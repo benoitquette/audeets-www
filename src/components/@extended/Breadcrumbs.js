@@ -42,11 +42,6 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
     });
   });
 
-  // only used for component demo breadcrumbs
-  if (location.pathname === '/breadcrumbs') {
-    location.pathname = '/dashboard/analytics';
-  }
-
   let mainContent;
   let itemContent;
   let breadcrumbContent = <Typography />;
@@ -73,7 +68,7 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
     // main
     if (item.breadcrumbs !== false) {
       breadcrumbContent = (
-        <MainCard border={false} sx={{ mb: 3, bgcolor: 'transparent' }} {...others} content={false}>
+        <MainCard border={false} sx={{ mb: 0, bgcolor: 'transparent' }} {...others} content={false}>
           <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
             <Grid item>
               <MuiBreadcrumbs aria-label="breadcrumb">
@@ -85,8 +80,8 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
               </MuiBreadcrumbs>
             </Grid>
             {title && (
-              <Grid item sx={{ mt: 2 }}>
-                <Typography variant="h5">{item.title}</Typography>
+              <Grid item sx={{ mt: 0 }}>
+                {/* <Typography variant="h5">{item.title}</Typography> */}
               </Grid>
             )}
           </Grid>

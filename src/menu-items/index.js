@@ -1,7 +1,7 @@
 // project import
 import pages from './pages';
 import projects from './projects';
-import dashboard from './dashboard';
+import console from './console';
 import utilities from './utilities';
 import support from './support';
 
@@ -9,7 +9,7 @@ import support from './support';
 
 const menuItems = (allProjects) => {
   return {
-    items: [dashboard, projects(allProjects), pages, utilities, support]
+    items: [console, projects(allProjects), pages, utilities, support]
   };
 };
 

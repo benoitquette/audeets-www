@@ -7,6 +7,12 @@ import MainLayout from 'layout/MainLayout';
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 
+// render - console
+const ConsolePage = Loadable(lazy(() => import('pages/console')));
+
+// render - project
+const ProjectDefault = Loadable(lazy(() => import('pages/project')));
+
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
 
@@ -24,18 +30,27 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <DashboardDefault />
+      element: <ConsolePage />
     },
     {
       path: 'color',
       element: <Color />
     },
     {
-      path: 'dashboard',
+      path: 'console',
       children: [
         {
-          path: 'default',
-          element: <DashboardDefault />
+          path: '',
+          element: <ConsolePage />
+        }
+      ]
+    },
+    {
+      path: 'project',
+      children: [
+        {
+          path: ':projectId',
+          element: <ProjectDefault />
         }
       ]
     },
@@ -54,6 +69,10 @@ const MainRoutes = {
     {
       path: 'icons/ant',
       element: <AntIcons />
+    },
+    {
+      path: 'dashboard',
+      element: <DashboardDefault />
     }
   ]
 };
