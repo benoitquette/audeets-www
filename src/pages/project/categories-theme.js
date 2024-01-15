@@ -5,19 +5,19 @@ import { green, red, purple, amber } from '@mui/material/colors';
 
 const categoriesTheme = {
   performance: {
-    color: green[500],
+    color: green,
     icon: 'speed'
   },
   search: {
-    color: red[500],
+    color: red,
     icon: 'troubleshoot'
   },
   accessibility: {
-    color: purple[500],
+    color: purple,
     icon: 'settings_accessibility'
   },
   security: {
-    color: amber[500],
+    color: amber,
     icon: 'security'
   }
 };

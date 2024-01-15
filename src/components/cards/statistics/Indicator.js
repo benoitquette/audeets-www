@@ -1,40 +1,33 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { Grid, Stack, Typography, Avatar, Icon } from '@mui/material';
+import { Stack, Typography, Avatar, Icon, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText } from '@mui/material';
 
 // project import
-import MainCard from 'components/MainCard';
 import { capitalize } from 'utils/string-helpers';
 
 // ==============================|| INDICATOR CARD  ||============================== //
 
 const Indicator = ({ title, score, date, iconName, iconColor }) => (
-  <MainCard contentSX={{ pt: 2, mb: -1 }}>
-    <Grid container justifyContent="space-between" alignItems="flex-start" flexWrap="wrap" border="1">
-      <Grid item xs={1} sx={{ mr: 2 }}>
-        {iconName && (
-          <Avatar sx={{ bgcolor: iconColor }}>
-            <Icon>{iconName}</Icon>
-          </Avatar>
-        )}
-      </Grid>
-
-      <Grid item xs={7}>
-        <Stack>
-          <Typography variant="h6">{capitalize(title)}</Typography>
-          <Typography variant="caption" color="textSecondary">
-            {new Date(date).toLocaleDateString('en-us', { month: 'long', day: 'numeric', year: 'numeric' })}
-          </Typography>
-        </Stack>
-      </Grid>
-      <Grid item xs={2}>
-        <Typography variant="h2" color="inherit">
-          {score}
+  <ListItemButton divider>
+    <ListItemAvatar>
+      <Avatar sx={{ color: iconColor[500], bgcolor: iconColor[100] }}>
+        <Icon>{iconName}</Icon>{' '}
+      </Avatar>
+    </ListItemAvatar>
+    <ListItemText
+      primary={<Typography variant="subtitle1">{capitalize(title)}</Typography>}
+      secondary={new Date(date).toLocaleDateString('en-us', { month: 'long', day: 'numeric', year: 'numeric' })}
+    />
+    <ListItemSecondaryAction>
+      <Stack alignItems="flex-end">
+        <Typography variant="subtitle1" noWrap>
+          {score}%
         </Typography>
-      </Grid>
-    </Grid>
-  </MainCard>
+        <Typography variant="h6" color="secondary" noWrap></Typography>
+      </Stack>
+    </ListItemSecondaryAction>
+  </ListItemButton>
 );
 
 Indicator.propTypes = {

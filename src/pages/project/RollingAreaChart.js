@@ -62,7 +62,7 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
       );
       setOptions((prevState) => ({
         ...prevState,
-        colors: Array.from(data, (category) => categoriesTheme[category.category].color),
+        colors: Array.from(data, (category) => categoriesTheme[category.category].color[500]),
         xaxis: {
           categories: buildCategories(slot, data),
           tickAmount: data === undefined ? 0 : data.length - 1

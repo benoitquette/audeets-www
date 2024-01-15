@@ -32,10 +32,7 @@ const ProjectDefault = () => {
         <Grid item sx={{ mb: 2 }}>
           <Typography variant="h5">Key Indicators</Typography>
         </Grid>
-        <Stack direction="column" spacing={1}>
-          <ScoreCards scores={scores} />
-          <ScoreCards scores={scores} />
-        </Stack>
+        <ScoreCards scores={scores} />
       </Grid>
       <Grid item xs={12} sm={9}>
         <Grid container sx={{ mb: 1 }} alignItems="center" justifyContent="space-between">
