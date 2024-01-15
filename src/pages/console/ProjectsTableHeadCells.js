@@ -2,35 +2,28 @@
 
 const headCells = [
   {
-    id: 'trackingNo',
+    id: 'title',
     align: 'left',
     disablePadding: false,
-    label: 'Tracking No.'
+    label: 'Title'
   },
   {
-    id: 'name',
+    id: 'url',
     align: 'left',
     disablePadding: true,
-    label: 'Product Name'
+    label: 'URL'
   },
   {
-    id: 'fat',
+    id: 'urls_count',
     align: 'right',
     disablePadding: false,
-    label: 'Total Order'
+    label: 'To audit'
   },
   {
-    id: 'carbs',
-    align: 'left',
+    id: 'status',
+    align: 'right',
     disablePadding: false,
-
     label: 'Status'
-  },
-  {
-    id: 'protein',
-    align: 'right',
-    disablePadding: false,
-    label: 'Total Amount'
   }
 ];
 

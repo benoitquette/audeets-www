@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
-import { Box, Link, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-
-// third-party
-import { NumericFormat } from 'react-number-format';
+import { Box, Table, TableBody, TableContainer } from '@mui/material';
 
 // project import
-import ProjectsTableStatus from './ProjectsTableStatus';
+import ProjectsTableRow from './ProjectsTableRow';
 import ProjectsTableHead from './ProjectsTableHead';
 
 function createData(trackingNo, name, fat, carbs, protein) {
@@ -58,7 +54,7 @@ function stableSort(array, comparator) {
 
 export default function ProjectsTable() {
   const [order] = useState('asc');
-  const [orderBy] = useState('trackingNo');
+  const [orderBy] = useState('title');
   const [selected] = useState([]);
 
   const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;
@@ -91,32 +87,7 @@ export default function ProjectsTable() {
             {stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
               const isItemSelected = isSelected(row.trackingNo);
               const labelId = `enhanced-table-checkbox-${index}`;
-
-              return (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  aria-checked={isItemSelected}
-                  tabIndex={-1}
-                  key={row.trackingNo}
-                  selected={isItemSelected}
-                >
-                  <TableCell component="th" id={labelId} scope="row" align="left">
-                    <Link color="secondary" component={RouterLink} to="">
-                      {row.trackingNo}
-                    </Link>
-                  </TableCell>
-                  <TableCell align="left">{row.name}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="left">
-                    <ProjectsTableStatus status={row.carbs} />
-                  </TableCell>
-                  <TableCell align="right">
-                    <NumericFormat value={row.protein} displayType="text" thousandSeparator prefix="$" />
-                  </TableCell>
-                </TableRow>
-              );
+              return <ProjectsTableRow key={labelId} data={row} isSelected={isItemSelected} labelId={labelId} />;
             })}
           </TableBody>
         </Table>
