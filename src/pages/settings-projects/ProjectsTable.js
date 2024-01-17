@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 // material-ui
@@ -5,24 +6,7 @@ import { Box, Table, TableBody, TableContainer } from '@mui/material';
 
 // project import
 import ProjectsTableRow from './ProjectsTableRow';
-import ProjectsTableHead from './ProjectsTableHead';
-
-function createData(trackingNo, name, fat, carbs, protein) {
-  return { trackingNo, name, fat, carbs, protein };
-}
-
-const rows = [
-  createData(84564564, 'Camera Lens', 40, 2, 40570),
-  createData(98764564, 'Laptop', 300, 0, 180139),
-  createData(98756325, 'Mobile', 355, 1, 90989),
-  createData(98652366, 'Handset', 50, 1, 10239),
-  createData(13286564, 'Computer Accessories', 100, 1, 83348),
-  createData(86739658, 'TV', 99, 0, 410780),
-  createData(13256498, 'Keyboard', 125, 2, 70999),
-  createData(98753263, 'Mouse', 89, 2, 10570),
-  createData(98753275, 'Desktop', 185, 1, 98063),
-  createData(98753291, 'Chair', 100, 0, 14001)
-];
+// import ProjectsTableHead from './ProjectsTableHead';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -52,7 +36,7 @@ function stableSort(array, comparator) {
 
 // ==============================|| PROJECTS TABLE ||============================== //
 
-export default function ProjectsTable() {
+function ProjectsTable({ data }) {
   const [order] = useState('asc');
   const [orderBy] = useState('title');
   const [selected] = useState([]);
@@ -82,9 +66,9 @@ export default function ProjectsTable() {
             }
           }}
         >
-          <ProjectsTableHead order={order} orderBy={orderBy} />
+          {/* <ProjectsTableHead order={order} orderBy={orderBy} /> */}
           <TableBody>
-            {stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
+            {stableSort(data, getComparator(order, orderBy)).map((row, index) => {
               const isItemSelected = isSelected(row.trackingNo);
               const labelId = `enhanced-table-checkbox-${index}`;
               return <ProjectsTableRow key={labelId} data={row} isSelected={isItemSelected} labelId={labelId} />;
@@ -95,3 +79,9 @@ export default function ProjectsTable() {
     </Box>
   );
 }
+
+ProjectsTable.propTypes = {
+  data: PropTypes.array.isRequired
+};
+
+export default ProjectsTable;

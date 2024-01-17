@@ -1,6 +1,12 @@
 // ==============================|| PROJECTS TABLE - HEADER CELL ||============================== //
 
-const headCells = [
+const header = [
+  {
+    id: 'icon',
+    align: 'left',
+    disablePadding: false,
+    label: ''
+  },
   {
     id: 'title',
     align: 'left',
@@ -10,21 +16,21 @@ const headCells = [
   {
     id: 'url',
     align: 'left',
-    disablePadding: true,
+    disablePadding: false,
     label: 'URL'
   },
   {
-    id: 'urls_count',
-    align: 'right',
-    disablePadding: false,
-    label: 'To audit'
-  },
-  {
     id: 'status',
-    align: 'right',
+    align: 'left',
     disablePadding: false,
     label: 'Status'
+  },
+  {
+    id: 'actions',
+    align: 'left',
+    disablePadding: false,
+    label: ''
   }
 ];
 
-export default headCells;
+export default header;

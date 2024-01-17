@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { TableCell, TableHead, TableRow } from '@mui/material';
 
 // project imports
-import headCells from './ProjectsTableHeadCells';
+import header from './header';
 
 // ==============================|| PROJECT TABLE - HEADER ||============================== //
 
@@ -12,7 +12,7 @@ function ProjectsTableHead({ order, orderBy }) {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
+        {header.map((headCell) => (
           <TableCell
             key={headCell.id}
             align={headCell.align}
