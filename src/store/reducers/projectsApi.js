@@ -23,9 +23,11 @@ export const projectsApi = createApi({
       }),
       invalidatesTags: ['projects']
     }),
-    deleteProject: builder.query({
-      query: (id) => `${id}`,
-      method: 'DELETE',
+    deleteProject: builder.mutation({
+      query: (id) => ({
+        url: `${id}`,
+        method: 'DELETE'
+      }),
       invalidatesTags: ['projects']
     }),
     getScores: builder.query({
@@ -47,5 +49,5 @@ export const {
   useGetRollingWeekQuery,
   useGetRollingMonthQuery,
   useAddProjectMutation,
-  useDeleteProjectQuery
+  useDeleteProjectMutation
 } = projectsApi;

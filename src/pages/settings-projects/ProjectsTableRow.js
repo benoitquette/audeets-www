@@ -29,7 +29,7 @@ function ProjectsTableRow({ data, labelId }) {
         <IconButton>
           <EditOutlined />
         </IconButton>
-        <ProjectDelete />
+        <ProjectDelete id={data._id} />
       </TableCell>
     </TableRow>
   );
