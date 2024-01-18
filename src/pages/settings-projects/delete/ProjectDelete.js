@@ -8,7 +8,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 // ==============================|| DELETE PROJECT DIALOG ||============================== //
 
-function DeleteProject() {
+function ProjectDelete() {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -40,4 +40,4 @@ function DeleteProject() {
   );
 }
 
-export default DeleteProject;
+export default ProjectDelete;

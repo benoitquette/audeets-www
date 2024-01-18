@@ -3,14 +3,30 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // ==============================|| RTK QUERY - PROJECTS ||============================== //
 
 export const projectsApi = createApi({
-  reducerPath: 'projects',
+  tagTypes: ['projects'],
+  reducerPath: 'projectsApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_URL_API_PROJECTS}/api/projects/` }),
   endpoints: (builder) => ({
     getProjects: builder.query({
-      query: () => ''
+      query: () => '',
+      providesTags: ['projects']
     }),
     getProject: builder.query({
-      query: (id) => `${id}`
+      query: (id) => `${id}`,
+      providesTags: ['projects']
+    }),
+    addProject: builder.mutation({
+      query: (body) => ({
+        url: '',
+        method: 'POST',
+        body
+      }),
+      invalidatesTags: ['projects']
+    }),
+    deleteProject: builder.query({
+      query: (id) => `${id}`,
+      method: 'DELETE',
+      invalidatesTags: ['projects']
     }),
     getScores: builder.query({
       query: (id) => `${id}/latestscore`
@@ -24,4 +40,12 @@ export const projectsApi = createApi({
   })
 });
 
-export const { useGetProjectsQuery, useGetProjectQuery, useGetScoresQuery, useGetRollingWeekQuery, useGetRollingMonthQuery } = projectsApi;
+export const {
+  useGetProjectsQuery,
+  useGetProjectQuery,
+  useGetScoresQuery,
+  useGetRollingWeekQuery,
+  useGetRollingMonthQuery,
+  useAddProjectMutation,
+  useDeleteProjectQuery
+} = projectsApi;

@@ -9,6 +9,7 @@ const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 
 // render - settings project
 const SettingsProjects = Loadable(lazy(() => import('pages/settings-projects')));
+const ProjectCreate = Loadable(lazy(() => import('pages/settings-projects/create')));
 
 // render - project
 const ProjectDefault = Loadable(lazy(() => import('pages/project')));
@@ -51,6 +52,10 @@ const MainRoutes = {
         {
           path: 'projects',
           element: <SettingsProjects />
+        },
+        {
+          path: 'projects/create',
+          element: <ProjectCreate />
         }
       ]
     },

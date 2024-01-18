@@ -8,7 +8,7 @@ import ProjectsTableStatus from './ProjectsTableStatus';
 
 // assets
 import { EditOutlined } from '@ant-design/icons';
-import DeleteProject from './DeleteProject';
+import ProjectDelete from './delete/ProjectDelete';
 
 // ==============================|| PROJECTS TABLE ROW ||============================== //
 
@@ -29,7 +29,7 @@ function ProjectsTableRow({ data, labelId }) {
         <IconButton>
           <EditOutlined />
         </IconButton>
-        <DeleteProject />
+        <ProjectDelete />
       </TableCell>
     </TableRow>
   );

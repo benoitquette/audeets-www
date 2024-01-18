@@ -19,8 +19,8 @@ const SettingsProject = () => {
           <Grid item>
             <Typography variant="h5">Projects</Typography>
           </Grid>
-          <Grid item>
-            <Button size="small" variant="contained">
+          <Grid item sx={{ mr: 0.5 }}>
+            <Button size="small" variant="contained" href="/settings/projects/create">
               Create project
             </Button>
           </Grid>
