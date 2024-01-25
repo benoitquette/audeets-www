@@ -23,7 +23,7 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
-import FirebaseSocial from './FirebaseSocial';
+import SocialButtons from './SocialButtons';
 import AnimateButton from 'components/@extended/AnimateButton';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
@@ -250,7 +250,7 @@ const AuthRegister = () => {
                 </Divider>
               </Grid>
               <Grid item xs={12}>
-                <FirebaseSocial />
+                <SocialButtons />
               </Grid>
             </Grid>
           </form>

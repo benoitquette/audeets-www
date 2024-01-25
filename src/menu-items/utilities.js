@@ -42,13 +42,6 @@ const utilities = {
       icon: icons.BgColorsOutlined
     },
     {
-      id: 'util-shadow',
-      title: 'Shadow',
-      type: 'item',
-      url: '/shadow',
-      icon: icons.BarcodeOutlined
-    },
-    {
       id: 'ant-icons',
       title: 'Ant Icons',
       type: 'item',

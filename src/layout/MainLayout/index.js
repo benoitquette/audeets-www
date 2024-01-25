@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
@@ -21,6 +21,7 @@ import { useGetProjectsQuery } from 'store/reducers/projectsApi';
 const MainLayout = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
   const { drawerOpen } = useSelector((state) => state.menu);
   const { data: projects, isSuccess } = useGetProjectsQuery();
@@ -44,7 +45,9 @@ const MainLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [drawerOpen]);
 
-  if (isSuccess) {
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  } else if (isSuccess) {
     const navigation = menuItems(projects);
     return (
       <Box sx={{ display: 'flex', width: '100%' }}>

@@ -18,7 +18,18 @@ const DrawerHeader = ({ open }) => {
     <DrawerHeaderStyled theme={theme} open={open}>
       <Stack direction="row" spacing={1} alignItems="center">
         <Logo />
-        <Typography variant="h4">Audeets</Typography>
+        <Stack direction="column" spacing={-1} alignItems="left">
+          <Typography variant="h4">Audeets</Typography>
+          <Typography
+            sx={{
+              fontStyle: 'italic'
+            }}
+            variant="caption"
+            color="textSecondary"
+          >
+            continuous auditing
+          </Typography>
+        </Stack>
       </Stack>
     </DrawerHeaderStyled>
   );
