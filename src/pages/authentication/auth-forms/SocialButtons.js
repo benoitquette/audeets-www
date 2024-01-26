@@ -33,7 +33,7 @@ const SocialButtons = () => {
         color="secondary"
         fullWidth={!matchDownSM}
         startIcon={<img src={Google} alt="Google" />}
-        href="http://localhost:6080/api/auth/google"
+        href={`${process.env.REACT_APP_URL_API_USERS}/api/auth/google`}
       >
         {!matchDownSM && 'Google'}
       </Button>
