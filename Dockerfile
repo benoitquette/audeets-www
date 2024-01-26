@@ -9,4 +9,4 @@ WORKDIR ${appDir}
 RUN npm i -g serve 
 
 EXPOSE 5000
-CMD ["serve", "-s build"]
+CMD ["serve", "build/"]
