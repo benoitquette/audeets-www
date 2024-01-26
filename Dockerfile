@@ -8,5 +8,5 @@ COPY build ${appDir}/build
 WORKDIR ${appDir}
 RUN npm i -g serve 
 
-EXPOSE 5000
+EXPOSE 3000
 CMD ["serve", "build/"]
