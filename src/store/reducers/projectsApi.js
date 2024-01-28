@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const projectsApi = createApi({
   tagTypes: ['projects'],
   reducerPath: 'projectsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_URL_API_PROJECTS}/api/projects/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_URL_API_PROJECTS}/api/projects/`, credentials: 'include' }),
   endpoints: (builder) => ({
     getProjects: builder.query({
       query: () => '',
