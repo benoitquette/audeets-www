@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Stack, Typography } from '@mui/material';
 
 // project import
-import MainCard from 'components/MainCard';
+import MainCard from '~/components/MainCard';
 import ComponentSkeleton from './ComponentSkeleton';
 
 // ===============================|| SHADOW BOX ||=============================== //
