@@ -6,7 +6,7 @@
   },
   "include": [
     "src/**/*",
-    "vite.config.js"
+    "vite.config.mjs"
   ],
   "exclude": [
     "node_modules"
