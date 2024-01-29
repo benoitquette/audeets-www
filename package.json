@@ -37,7 +37,6 @@
     "react-redux": "^9.0.4",
     "react-router": "^6.21.1",
     "react-router-dom": "^6.21.1",
-    "react-scripts": "^5.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "react-window": "^1.8.10",
     "redux": "^5.0.1",
