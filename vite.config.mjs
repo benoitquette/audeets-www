@@ -10,6 +10,11 @@ export default defineConfig({
     }
   },
   plugins: [react()],
+  preview: {
+    port: 3000,
+    strictPort: true,
+    host: true // needed for the Docker Container port mapping to work
+  },
   server: {
     // this ensures that the browser opens upon server start
     open: true,
