@@ -7,5 +7,6 @@ server {
       ssi on;
       set $urlapiprojects "${VITE_URL_API_PROJECTS}";
       set $urlapiusers "${VITE_URL_API_USERS}";
+      try_files $uri /index.html;
     }
 }
