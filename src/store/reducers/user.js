@@ -3,10 +3,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // project import
 import { client } from '~/utils/apiClient';
+import { urlApiUsers } from '~/config';
 
 // thunks
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
-  return await client.get(`${import.meta.env.VITE_URL_API_USERS}/api/users/current`, { credentials: 'include' });
+  return await client.get(`${urlApiUsers}/api/users/current`, { credentials: 'include' });
 });
 
 // ==============================|| SLICE - USER ||============================== //

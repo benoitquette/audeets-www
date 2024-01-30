@@ -2,6 +2,8 @@
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery, Button, Stack } from '@mui/material';
 
+import { urlApiUsers } from '~/config';
+
 // assets
 import Google from '~/assets/images/icons/google.svg';
 import GitLab from '~/assets/images/icons/gitlab.svg';
@@ -33,7 +35,7 @@ const SocialButtons = () => {
         color="secondary"
         fullWidth={!matchDownSM}
         startIcon={<img src={Google} alt="Google" />}
-        href={`${import.meta.env.VITE_URL_API_USERS}/api/auth/google`}
+        href={`${urlApiUsers}/api/auth/google`}
       >
         {!matchDownSM && 'Google'}
       </Button>

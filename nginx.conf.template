@@ -1,0 +1,6 @@
+location / {
+  root /var/www;
+  ssi on;
+  set $urlapiprojects "${VITE_URL_API_PROJECTS}";
+  set $urlapiusers "${VITE_URL_API_USERS}";
+}

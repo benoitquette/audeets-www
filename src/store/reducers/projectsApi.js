@@ -1,11 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { urlApiProjects } from '~/config';
+
 // ==============================|| RTK QUERY - PROJECTS ||============================== //
 
 export const projectsApi = createApi({
   tagTypes: ['projects'],
   reducerPath: 'projectsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_URL_API_PROJECTS}/api/projects/`, credentials: 'include' }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${urlApiProjects}/api/projects/`, credentials: 'include' }),
   endpoints: (builder) => ({
     getProjects: builder.query({
       query: () => '',
