@@ -16,8 +16,6 @@ export default defineConfig({
     host: true // needed for the Docker Container port mapping to work
   },
   server: {
-    // this ensures that the browser opens upon server start
-    open: true,
     // this sets a default port to 3000
     port: 3000
   },
