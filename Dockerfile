@@ -28,7 +28,7 @@ RUN yarn build
 
 FROM nginx:latest as prod
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
-COPY default.conf.template /etc/nginx/templates/
+COPY nginx.conf.template /etc/nginx/templates/
 ENV VITE_URL_API_PROJECTS=
 ENV VITE_URL_API_USERS=
 CMD ["nginx", "-g", "daemon off;"]
