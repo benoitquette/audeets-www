@@ -16,7 +16,7 @@ const user = createSlice({
   name: 'user',
   initialState: {
     user: null,
-    status: 'succeeded',
+    status: 'idle',
     error: null
   },
   reducers: {},

@@ -35,7 +35,7 @@ Indicator.propTypes = {
   score: PropTypes.number,
   date: PropTypes.string,
   iconName: PropTypes.string,
-  iconColor: PropTypes.string
+  iconColor: PropTypes.object
 };
 
 Indicator.defaultProps = {
