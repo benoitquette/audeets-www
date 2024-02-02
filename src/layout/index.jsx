@@ -18,7 +18,7 @@ import { useGetProjectsQuery } from '~/store/reducers/projectsApi';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = () => {
+const Layout = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -63,4 +63,4 @@ const MainLayout = () => {
   }
 };
 
-export default MainLayout;
+export default Layout;

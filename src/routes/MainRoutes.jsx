@@ -2,7 +2,7 @@ import { lazy } from 'react';
 
 // project import
 import Loadable from '~/components/Loadable';
-import MainLayout from '~/layout';
+import Layout from '~/layout';
 import Protected from '~/components/Protected';
 
 // render - dashboard
@@ -30,7 +30,7 @@ const MainRoutes = {
   path: '/',
   element: (
     <Protected>
-      <MainLayout />
+      <Layout />
     </Protected>
   ),
   children: [
