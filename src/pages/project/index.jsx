@@ -28,13 +28,13 @@ const ProjectDefault = () => {
       <Grid item xs={12}>
         <ProjectCard project={project} />
       </Grid>
-      <Grid item xs={12} sm={3} flexDirection="column">
+      <Grid item xs={12} sm={5} md={3} flexDirection="column">
         <Grid item sx={{ mb: 2 }}>
           <Typography variant="h5">Key Indicators</Typography>
         </Grid>
         <ScoreCards scores={scores} />
       </Grid>
-      <Grid item xs={12} sm={9}>
+      <Grid item xs={12} sm={7} md={9}>
         <Grid container sx={{ mb: 1 }} alignItems="center" justifyContent="space-between">
           <Grid item>
             <Typography variant="h5">Rolling Chart</Typography>
