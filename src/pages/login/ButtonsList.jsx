@@ -13,6 +13,7 @@ import ButtonsListItem from './ButtonsListItem';
 const ButtonsList = ({ returnUrl }) => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const queryString = returnUrl ? `?returnTo=${returnUrl}` : '';
 
   return (
     <Stack
@@ -25,7 +26,7 @@ const ButtonsList = ({ returnUrl }) => {
         <ButtonsListItem
           key={strategy.name}
           name={strategy.name}
-          url={`${strategy.url}?returnTo=${returnUrl}`}
+          url={`${strategy.url}${queryString}`}
           icon={strategy.icon}
           fullWidth={!matchDownSM}
         />
