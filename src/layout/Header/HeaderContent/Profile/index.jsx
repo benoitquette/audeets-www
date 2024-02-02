@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -13,6 +14,7 @@ import Cookies from 'js-cookie';
 import MainCard from '~/components/MainCard';
 import Transitions from '~/components/@extended/Transitions';
 import ProfileTab from './ProfileTab';
+import { logout } from '~/store/reducers/user';
 
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
@@ -41,10 +43,12 @@ TabPanel.propTypes = {
 const Profile = () => {
   const theme = useTheme();
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
-    // logout
-    Cookies.remove('connect.sid');
+    dispatch(logout());
+    navigate('/login');
   };
 
   const anchorRef = useRef(null);

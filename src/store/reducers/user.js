@@ -7,7 +7,11 @@ import { urlApiUsers } from '~/config';
 
 // thunks
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
-  return await client.get(`${urlApiUsers}/api/users/current`, { credentials: 'include' });
+  return await client.get(`${urlApiUsers}/api/user`, { credentials: 'include' });
+});
+
+export const logout = createAsyncThunk('user/logout', async () => {
+  return await client.get(`${urlApiUsers}/api/user/logout`, { credentials: 'include' });
 });
 
 // ==============================|| SLICE - USER ||============================== //
@@ -37,10 +41,24 @@ const user = createSlice({
           state.status = 'failed';
           state.error = action.payload;
         }
+      })
+      .addCase(logout.pending, (state) => {
+        state.status = 'logging out';
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        if (state.status === 'logging out') {
+          state.status = 'succeeded';
+          state.user = null;
+        }
+      })
+      .addCase(logout.rejected, (state, action) => {
+        if (state.status === 'logging out') {
+          state.status = 'failed';
+          state.error = action.payload;
+        }
       });
   }
 });
 
 export default user.reducer;
-
-// export const { userLoaded, userCleared } = user.actions;

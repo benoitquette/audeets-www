@@ -23,6 +23,8 @@ const Protected = ({ children }) => {
     sessionCookie
   });
 
+  if (status === 'failed') Cookies.remove('connect.sid');
+
   useEffect(() => {
     if (!sessionCookie) {
       navigate(`/login?returnTo=${location.pathname}`);

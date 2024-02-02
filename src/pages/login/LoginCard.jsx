@@ -47,7 +47,7 @@ const LoginCard = ({ returnUrl }) => (
 );
 
 LoginCard.propTypes = {
-  returnUrl: PropTypes.string.isRequired
+  returnUrl: PropTypes.string
 };
 
 export default LoginCard;

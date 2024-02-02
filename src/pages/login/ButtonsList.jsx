@@ -36,7 +36,7 @@ const ButtonsList = ({ returnUrl }) => {
 };
 
 ButtonsList.propTypes = {
-  returnUrl: PropTypes.string.isRequired
+  returnUrl: PropTypes.string
 };
 
 export default ButtonsList;
