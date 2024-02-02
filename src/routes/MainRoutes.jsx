@@ -2,7 +2,7 @@ import { lazy } from 'react';
 
 // project import
 import Loadable from '~/components/Loadable';
-import MainLayout from '~/layout/MainLayout';
+import MainLayout from '~/layout';
 import Protected from '~/components/Protected';
 
 // render - dashboard

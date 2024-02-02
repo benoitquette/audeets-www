@@ -31,12 +31,7 @@ const Protected = ({ children }) => {
     }
   }, [dispatch, location.pathname, navigate, sessionCookie, status, user]);
 
-  if (!user) {
-    return 'loading user';
-  } else {
-    console.log('user is here!');
-    return children;
-  }
+  if (user) return children;
 };
 
 Protected.propTypes = {
