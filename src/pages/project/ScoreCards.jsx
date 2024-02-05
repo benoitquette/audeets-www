@@ -29,7 +29,8 @@ const actionSX = {
 
 const ScoreCards = ({ scores }) => {
   return (
-    scores && (
+    scores &&
+    scores.length > 0 && (
       <MainCard sx={{ mt: 2 }} content={false}>
         <List
           component="nav"

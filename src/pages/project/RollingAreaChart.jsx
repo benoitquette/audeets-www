@@ -43,17 +43,18 @@ const areaChartOptions = {
 
 const buildCategories = (slot, data) => {
   const options = slot == 'week' ? { weekday: 'short' } : { month: 'short' };
-  return data === undefined ? [] : data[0].data.map((datum) => new Date(datum.date).toLocaleDateString('en-us', options));
+  return data === undefined || data.length === 0
+    ? []
+    : data[0].data.map((datum) => new Date(datum.date).toLocaleDateString('en-us', options));
 };
 
 const RollingAreaChart = ({ slot, weekData, monthData }) => {
   const data = slot === 'week' ? weekData : monthData;
-
   const [options, setOptions] = useState(areaChartOptions);
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    if (data !== undefined) {
+    if (data !== undefined && data.length > 0) {
       setSeries(
         Array.from(data, (category) => ({
           name: capitalize(category.category),
