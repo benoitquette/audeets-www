@@ -17,11 +17,6 @@ const Protected = ({ children }) => {
   const location = useLocation();
   const { user, status } = useSelector((state) => state.user);
   const sessionCookie = Cookies.get('connect.sid');
-  console.log({
-    user,
-    status,
-    sessionCookie
-  });
 
   if (status === 'failed') Cookies.remove('connect.sid');
 
