@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { CircularProgress, List } from '@mui/material';
+import { List } from '@mui/material';
 
 // project import
 import Indicator from '~/components/cards/statistics/Indicator';
@@ -28,10 +28,8 @@ const actionSX = {
 // ==============================|| SCORE CARDS ||============================== //
 
 const ScoreCards = ({ scores }) => {
-  if (scores === undefined) {
-    return <CircularProgress />;
-  } else {
-    return (
+  return (
+    scores && (
       <MainCard sx={{ mt: 2 }} content={false}>
         <List
           component="nav"
@@ -60,8 +58,8 @@ const ScoreCards = ({ scores }) => {
           })}
         </List>
       </MainCard>
-    );
-  }
+    )
+  );
 };
 
 ScoreCards.propTypes = {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { Grid, Stack, Typography, Avatar, CircularProgress } from '@mui/material';
+import { Grid, Stack, Typography, Avatar } from '@mui/material';
 
 // project import
 import MainCard from '~/components/MainCard';
@@ -9,10 +9,8 @@ import MainCard from '~/components/MainCard';
 // ==============================|| PROJECT CARD ||============================== //
 
 const ProjectCard = ({ project }) => {
-  if (project === undefined) {
-    return <CircularProgress />;
-  } else {
-    return (
+  return (
+    project && (
       <MainCard sx={{ mt: 2 }}>
         <Stack spacing={3}>
           <Grid container justifyContent="flex-start" alignItems="flex-start">
@@ -32,8 +30,8 @@ const ProjectCard = ({ project }) => {
           </Grid>
         </Stack>
       </MainCard>
-    );
-  }
+    )
+  );
 };
 
 ProjectCard.propTypes = {
