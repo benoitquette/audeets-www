@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 const ButtonsListItem = ({ name, icon, url, fullWidth }) => {
   return (
     <Button variant="outlined" color="secondary" fullWidth={fullWidth} startIcon={<img src={icon} alt={name} />} href={url}>
-      {fullWidth && 'Google'}
+      {fullWidth && name}
     </Button>
   );
 };
