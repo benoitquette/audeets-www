@@ -40,8 +40,10 @@ function ProjectDelete({ id }) {
           <DialogContentText id="alert-dialog-description">Are you sure you want to delete this project?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDelete}>Delete</Button>
-          <Button onClick={handleCancel} autoFocus variant="contained">
+          <Button onClick={handleDelete} size="small">
+            Delete
+          </Button>
+          <Button onClick={handleCancel} size="small" autoFocus variant="contained">
             Cancel
           </Button>
         </DialogActions>
