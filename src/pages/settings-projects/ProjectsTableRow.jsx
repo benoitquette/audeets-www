@@ -8,7 +8,7 @@ import ProjectsTableStatus from './ProjectsTableStatus';
 
 // assets
 import { EditOutlined } from '@ant-design/icons';
-import ProjectDelete from './delete/ProjectDelete';
+import ProjectDelete from './delete';
 
 // ==============================|| PROJECTS TABLE ROW ||============================== //
 
