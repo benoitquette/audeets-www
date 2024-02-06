@@ -1,20 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-// material-ui
 import { Button, Grid, Typography, Link, Tooltip } from '@mui/material';
-
-// project import
 import ProjectsTable from './ProjectsTable';
 import MainCard from '~/components/MainCard';
-
-// types
 import { useGetProjectsQuery } from '~/store/reducers/projectsApi';
-
-// assets
 import { WarningOutlined } from '@ant-design/icons';
-
-// ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 const SettingsProject = () => {
   const { data: projects } = useGetProjectsQuery();

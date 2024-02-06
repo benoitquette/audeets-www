@@ -1,16 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-
-// material-ui
 import { IconButton, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-
-// assets
 import { DeleteOutlined } from '@ant-design/icons';
-
-// types
 import { useDeleteProjectMutation } from '~/store/reducers/projectsApi';
-
-// ==============================|| DELETE PROJECT DIALOG ||============================== //
 
 function ProjectDelete({ id }) {
   const [open, setOpen] = useState(false);
@@ -40,10 +32,8 @@ function ProjectDelete({ id }) {
           <DialogContentText id="alert-dialog-description">Are you sure you want to delete this project?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDelete} size="small">
-            Delete
-          </Button>
-          <Button onClick={handleCancel} size="small" autoFocus variant="contained">
+          <Button onClick={handleDelete}>Delete</Button>
+          <Button onClick={handleCancel} autoFocus variant="contained">
             Cancel
           </Button>
         </DialogActions>

@@ -1,21 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
 import { urlApiProjects } from '~/config';
 
-// ==============================|| RTK QUERY - PROJECTS ||============================== //
-
 export const projectsApi = createApi({
-  tagTypes: ['projects'],
+  tagTypes: ['project'],
   reducerPath: 'projectsApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${urlApiProjects}/api/projects/`, credentials: 'include' }),
   endpoints: (builder) => ({
     getProjects: builder.query({
       query: () => '',
-      providesTags: ['projects']
+      providesTags: (result) => (result ? [...result.map((proj) => ({ type: 'project', id: proj._id })), 'project'] : ['project'])
     }),
     getProject: builder.query({
       query: (id) => `${id}`,
-      providesTags: ['projects']
+      providesTags: (result, error, id) => (result ? [{ type: 'project', id }] : ['project'])
     }),
     addProject: builder.mutation({
       query: (body) => ({
@@ -23,14 +20,25 @@ export const projectsApi = createApi({
         method: 'POST',
         body
       }),
-      invalidatesTags: ['projects']
+      invalidatesTags: ['project']
+    }),
+    updateProject: builder.mutation({
+      query(data) {
+        const { id, ...body } = data;
+        return {
+          url: `${id}`,
+          method: 'PUT',
+          body
+        };
+      },
+      invalidatesTags: (result, error, { id }) => [{ type: 'project', id }]
     }),
     deleteProject: builder.mutation({
       query: (id) => ({
         url: `${id}`,
         method: 'DELETE'
       }),
-      invalidatesTags: ['projects']
+      invalidatesTags: (result, error, id) => [{ type: 'project', id }]
     }),
     getScores: builder.query({
       query: (id) => `${id}/latestscore`
@@ -51,5 +59,6 @@ export const {
   useGetRollingWeekQuery,
   useGetRollingMonthQuery,
   useAddProjectMutation,
-  useDeleteProjectMutation
+  useDeleteProjectMutation,
+  useUpdateProjectMutation
 } = projectsApi;

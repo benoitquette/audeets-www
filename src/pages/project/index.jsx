@@ -1,19 +1,11 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
-
-// material-ui
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
-
-// project import
 import RollingAreaChart from './RollingAreaChart';
 import MainCard from '~/components/MainCard';
 import ScoreCards from './ScoreCards';
 import ProjectCard from './ProjectCard';
-
-// types
 import { useGetProjectQuery, useGetScoresQuery, useGetRollingWeekQuery, useGetRollingMonthQuery } from '~/store/reducers/projectsApi';
-
-// ==============================|| PROJECT - DEFAULT ||============================== //
 
 const ProjectDefault = () => {
   const projectId = useParams().projectId;

@@ -1,18 +1,12 @@
 import PropTypes from 'prop-types';
-
-// material-ui
+import { useNavigate } from 'react-router-dom';
 import { Avatar, TableCell, TableRow, IconButton } from '@mui/material';
-
-// project import
 import ProjectsTableStatus from './ProjectsTableStatus';
-
-// assets
 import { EditOutlined } from '@ant-design/icons';
 import ProjectDelete from './delete';
 
-// ==============================|| PROJECTS TABLE ROW ||============================== //
-
 function ProjectsTableRow({ data, labelId }) {
+  const navigate = useNavigate();
   return (
     <TableRow hover role="checkbox" tabIndex={-1} key={data.title}>
       <TableCell size="small" align="left" sx={{ width: 25 }}>
@@ -26,7 +20,7 @@ function ProjectsTableRow({ data, labelId }) {
         <ProjectsTableStatus status={data.carbs} />
       </TableCell>
       <TableCell size="small" align="right" sx={{ width: 50 }}>
-        <IconButton>
+        <IconButton onClick={() => navigate(`/settings/project/${data._id}/update`)}>
           <EditOutlined />
         </IconButton>
         <ProjectDelete id={data._id} />

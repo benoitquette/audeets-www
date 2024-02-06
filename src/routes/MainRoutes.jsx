@@ -1,30 +1,18 @@
 import { lazy } from 'react';
-
-// project import
 import Loadable from '~/components/Loadable';
 import Layout from '~/layout';
 import Protected from '~/components/Protected';
 
-// render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('~/pages/dashboard')));
-
-// render - settings project
 const SettingsProjects = Loadable(lazy(() => import('~/pages/settings-projects')));
 const ProjectCreate = Loadable(lazy(() => import('~/pages/settings-projects/create')));
-
-// render - project
+const ProjectUpdate = Loadable(lazy(() => import('~/pages/settings-projects/update')));
 const ProjectDefault = Loadable(lazy(() => import('~/pages/project')));
-
-// render - sample page
 const SamplePage = Loadable(lazy(() => import('~/pages/extra-pages/SamplePage')));
-
-// render - utilities
 const Typography = Loadable(lazy(() => import('~/pages/components-overview/Typography')));
 const Color = Loadable(lazy(() => import('~/pages/components-overview/Color')));
 const Shadow = Loadable(lazy(() => import('~/pages/components-overview/Shadow')));
 const AntIcons = Loadable(lazy(() => import('~/pages/components-overview/AntIcons')));
-
-// ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
   path: '/',
@@ -61,6 +49,10 @@ const MainRoutes = {
         {
           path: 'projects/create',
           element: <ProjectCreate />
+        },
+        {
+          path: 'project/:projectId/update',
+          element: <ProjectUpdate />
         }
       ]
     },
