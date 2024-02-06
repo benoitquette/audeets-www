@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // material-ui
 import { Button, Grid, Typography, Link, Tooltip } from '@mui/material';
@@ -17,8 +18,9 @@ import { WarningOutlined } from '@ant-design/icons';
 
 const SettingsProject = () => {
   const { data: projects } = useGetProjectsQuery();
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const limitReached = projects.length >= 5;
+  const limitReached = projects.length >= user.projectsMax;
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
       <Grid item xs={12}>
@@ -28,7 +30,7 @@ const SettingsProject = () => {
           </Grid>
           <Grid item sx={{ mr: 0.5 }}>
             {limitReached && (
-              <Tooltip title="Max number of 5 projects reached">
+              <Tooltip title="Max number of projects reached">
                 <WarningOutlined style={{ color: 'red' }} />
               </Tooltip>
             )}
