@@ -7,9 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase, ClickAwayListener, Paper, Popper, Stack, Typography } from '@mui/material';
 
-// third party
-import Cookies from 'js-cookie';
-
 // project import
 import MainCard from '~/components/MainCard';
 import Transitions from '~/components/@extended/Transitions';
@@ -63,12 +60,6 @@ const Profile = () => {
     }
     setOpen(false);
   };
-
-  // const [value, setValue] = useState(0);
-
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
 
   const iconBackColorOpen = 'grey.300';
 
