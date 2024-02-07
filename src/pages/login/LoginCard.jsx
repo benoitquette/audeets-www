@@ -1,14 +1,8 @@
 import PropTypes from 'prop-types';
-
-// material-ui
 import { Grid, Stack, Typography, Box } from '@mui/material';
-
-// project import
 import ButtonsList from './ButtonsList';
 import Logo from '~/components/Logo/Logo';
 import MainCard from '~/components/MainCard';
-
-// ================================|| LOGIN ||================================ //
 
 const LoginCard = ({ returnUrl }) => (
   <MainCard

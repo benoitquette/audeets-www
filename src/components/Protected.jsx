@@ -2,14 +2,8 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
-// third party
 import Cookies from 'js-cookie';
-
-// project import
 import { fetchUser } from '~/store/reducers/user';
-
-// ==============================|| AUTHENTICATION ||============================== //
 
 const Protected = ({ children }) => {
   const dispatch = useDispatch();

@@ -1,21 +1,22 @@
-import { useLocation } from 'react-router-dom';
-
-// material-ui
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Grid } from '@mui/material';
-
-// project import
 import LoginCard from './LoginCard';
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 // import AuthFooter from 'components/cards/AuthFooter';
-
-// assets
 // import AuthBackground from 'assets/images/auth/AuthBackground';
-
-// ==============================|| AUTHENTICATION - LOGIN ||============================== //
 
 const Login = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
-  const returnUrl = params.get('returnTo');
+  const returnUrl = params.get('returnTo') || '/';
+  const sessionCookie = Cookies.get('connect.sid');
+
+  useEffect(() => {
+    if (sessionCookie) navigate(returnUrl);
+  }, [sessionCookie, navigate]);
+
   return (
     <Box sx={{ minHeight: '100vh' }}>
       {/* <AuthBackground /> */}

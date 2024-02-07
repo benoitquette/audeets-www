@@ -1,9 +1,5 @@
 import PropTypes from 'prop-types';
-
-// material-ui
 import { Button } from '@mui/material';
-
-// ==============================|| CONNECT/LOGIN BUTTON ||============================== //
 
 const ButtonsListItem = ({ name, icon, url, fullWidth }) => {
   return (
