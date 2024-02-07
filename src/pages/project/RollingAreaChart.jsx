@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-
-// third-party
 import ReactApexChart from 'react-apexcharts';
-
-// project import
 import { capitalize } from '~/utils/string-helpers';
 import categoriesTheme from './categories-theme';
 
-// chart options
 const areaChartOptions = {
   chart: {
     height: 450,
@@ -39,8 +34,6 @@ const areaChartOptions = {
   }
 };
 
-// ==============================|| ROLLING AREA CHART ||============================== //
-
 const buildCategories = (slot, data) => {
   const options = slot == 'week' ? { weekday: 'short' } : { month: 'short' };
   return data === undefined || data.length === 0
@@ -54,7 +47,7 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    if (data !== undefined && data.length > 0) {
+    if (data) {
       setSeries(
         Array.from(data, (category) => ({
           name: capitalize(category.category),
