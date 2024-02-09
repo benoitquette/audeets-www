@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
-// material-ui
+import Cookies from 'js-cookie';
 import { useTheme } from '@mui/material/styles';
 import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-
-// assets
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
-
-// ==============================|| HEADER PROFILE - PROFILE TAB ||============================== //
 
 const ProfileTab = ({ handleLogout }) => {
   const theme = useTheme();

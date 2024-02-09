@@ -45,6 +45,7 @@ const Profile = () => {
 
   const handleLogout = async () => {
     dispatch(logout());
+    Cookies.remove('connect.sid');
     navigate('/login');
   };
 
