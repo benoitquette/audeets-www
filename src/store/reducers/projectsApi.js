@@ -41,13 +41,13 @@ export const projectsApi = createApi({
       invalidatesTags: (result, error, id) => [{ type: 'project', id }]
     }),
     getScores: builder.query({
-      query: (id) => `${id}/latestscore`
+      query: (id) => `${id}/scores/latest`
     }),
     getRollingWeek: builder.query({
-      query: (id) => `${id}/rollingweek`
+      query: (id) => `${id}/scores/week`
     }),
     getRollingMonth: builder.query({
-      query: (id) => `${id}/rollingmonth`
+      query: (id) => `${id}/scores/month`
     })
   })
 });
