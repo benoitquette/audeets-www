@@ -22,7 +22,7 @@ const ProjectDefault = () => {
       </Grid>
       <Grid item xs={12} sm={5} md={3} flexDirection="column">
         <Grid item sx={{ mb: 2 }}>
-          <Typography variant="h5">Key Indicators</Typography>
+          <Typography variant="h5">Indicators</Typography>
         </Grid>
         <ScoreCards scores={scores} />
       </Grid>
@@ -52,8 +52,8 @@ const ProjectDefault = () => {
             </Stack>
           </Grid>
         </Grid>
-        <MainCard content={false}>
-          <Box sx={{ pt: 1, pr: 2 }}>
+        <MainCard sx={{ p: 0 }}>
+          <Box>
             <RollingAreaChart slot={slot} weekData={weekChartData} monthData={monthChartData} />
           </Box>
         </MainCard>
