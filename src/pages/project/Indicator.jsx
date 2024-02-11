@@ -1,18 +1,12 @@
 import PropTypes from 'prop-types';
-
-// material-ui
 import { Stack, Typography, Avatar, Icon, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText } from '@mui/material';
-
-// project import
 import { capitalize } from '~/utils/string-helpers';
-
-// ==============================|| INDICATOR CARD  ||============================== //
 
 const Indicator = ({ title, score, date, iconName, iconColor }) => (
   <ListItemButton divider>
     <ListItemAvatar>
       <Avatar sx={{ color: iconColor[500], bgcolor: iconColor[100] }}>
-        <Icon>{iconName}</Icon>{' '}
+        <Icon>{iconName}</Icon>
       </Avatar>
     </ListItemAvatar>
     <ListItemText
