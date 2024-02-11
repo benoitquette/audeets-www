@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
-
-// material-ui
 import { List } from '@mui/material';
-
-// project import
-import Indicator from '~/components/cards/statistics/Indicator';
+import Indicator from './Indicator';
 import categoriesTheme from './categories-theme';
 import MainCard from '~/components/MainCard';
 
@@ -24,8 +20,6 @@ const actionSX = {
   alignSelf: 'flex-start',
   transform: 'none'
 };
-
-// ==============================|| SCORE CARDS ||============================== //
 
 const ScoreCards = ({ scores }) => {
   return (
