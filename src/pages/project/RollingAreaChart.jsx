@@ -42,14 +42,16 @@ const buildCategories = (slot, data) => {
 };
 
 const RollingAreaChart = ({ slot, weekData, monthData }) => {
-  const data = slot === 'week' ? weekData : monthData;
+  let data = slot === 'week' ? weekData : monthData;
   const [options, setOptions] = useState(areaChartOptions);
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
     if (data) {
+      data = data.toSorted((a, b) => a.category.localeCompare(b.category));
+      console.log(data);
       setSeries(
-        Array.from(data, (category) => ({
+        data.map((category) => ({
           name: capitalize(category.category),
           data: Array.from(category.data, (item) => item.score)
         }))
