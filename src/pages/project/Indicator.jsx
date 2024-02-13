@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Stack, Typography, Avatar, Icon, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText } from '@mui/material';
 import { capitalize } from '~/utils/string-helpers';
+import IndicatorGauge from './IndicatorGauge';
 
 const Indicator = ({ title, score, date, iconName, iconColor }) => (
   <ListItemButton divider>
@@ -15,10 +16,11 @@ const Indicator = ({ title, score, date, iconName, iconColor }) => (
     />
     <ListItemSecondaryAction>
       <Stack alignItems="flex-end">
-        <Typography variant="subtitle1" noWrap>
+        <IndicatorGauge value={score}></IndicatorGauge>
+        {/* <Typography variant="subtitle1" noWrap>
           {score}%
         </Typography>
-        <Typography variant="h6" color="secondary" noWrap></Typography>
+        <Typography variant="h6" color="secondary" noWrap></Typography> */}
       </Stack>
     </ListItemSecondaryAction>
   </ListItemButton>

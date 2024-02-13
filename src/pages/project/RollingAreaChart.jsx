@@ -31,6 +31,9 @@ const areaChartOptions = {
   },
   tooltip: {
     theme: 'light'
+  },
+  zoom: {
+    enabled: false
   }
 };
 
@@ -49,7 +52,6 @@ const RollingAreaChart = ({ slot, weekData, monthData }) => {
   useEffect(() => {
     if (data) {
       data = data.toSorted((a, b) => a.category.localeCompare(b.category));
-      console.log(data);
       setSeries(
         data.map((category) => ({
           name: capitalize(category.category),
