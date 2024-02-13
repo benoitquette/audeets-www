@@ -6,7 +6,6 @@ import { Provider as ReduxProvider } from 'react-redux';
 import '~/assets/third-party/apex-chart.css';
 import App from '~/App';
 import { store } from '~/store';
-import reportWebVitals from '~/reportWebVitals';
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
