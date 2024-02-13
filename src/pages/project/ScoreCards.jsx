@@ -38,19 +38,21 @@ const ScoreCards = ({ scores }) => {
             }
           }}
         >
-          {scores.map((score) => {
-            const categoryTheme = categoriesTheme[score.category];
-            return (
-              <Indicator
-                key={score.category}
-                title={score.category}
-                score={score.score}
-                date={score.date}
-                iconName={categoryTheme.icon}
-                iconColor={categoryTheme.color}
-              />
-            );
-          })}
+          {scores
+            .toSorted((a, b) => a.category.localeCompare(b.category))
+            .map((score) => {
+              const categoryTheme = categoriesTheme[score.category];
+              return (
+                <Indicator
+                  key={score.category}
+                  title={score.category}
+                  score={score.score}
+                  date={score.date}
+                  iconName={categoryTheme.icon}
+                  iconColor={categoryTheme.color}
+                />
+              );
+            })}
         </List>
       </MainCard>
     )
