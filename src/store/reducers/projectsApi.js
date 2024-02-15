@@ -2,8 +2,27 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { urlApiProjects } from '~/config';
 import { capitalize } from '~/utils/string-helpers';
 
-const sortScores = (response) => {
+const sortAndCapitalize = (response) => {
   return response.map((item) => ({ ...item, category: capitalize(item.category) })).sort((a, b) => a.category.localeCompare(b.category));
+};
+
+const flattenData = (data, length, format) => {
+  let res = null;
+  if (data) {
+    data = sortAndCapitalize(data);
+    res = [];
+    for (let i = 0; i < length; i++) {
+      let day = {
+        name: new Date(data[0].data[i].date).toLocaleDateString('en-us', format)
+      };
+      for (let j = 0; j < data.length; j++) {
+        const categoryName = data[j].category;
+        day[categoryName] = data[j].data[i].score;
+      }
+      res.push(day);
+    }
+  }
+  return res;
 };
 
 export const projectsApi = createApi({
@@ -47,19 +66,19 @@ export const projectsApi = createApi({
     }),
     getScores: builder.query({
       query: (id) => `${id}/scores/latest`,
-      transformResponse: sortScores
+      transformResponse: sortAndCapitalize
     }),
     getRollingWeek: builder.query({
       query: (id) => `${id}/scores/week`,
-      transformResponse: sortScores
+      transformResponse: (response) => flattenData(response, 7, { weekday: 'short' })
     }),
     getRollingMonth: builder.query({
       query: (id) => `${id}/scores/month`,
-      transformResponse: sortScores
+      transformResponse: (response) => flattenData(response, 30, { month: 'short', day: 'numeric' })
     }),
     getRollingYear: builder.query({
       query: (id) => `${id}/scores/year`,
-      transformResponse: sortScores
+      transformResponse: (response) => flattenData(response, 12, { month: 'short' })
     })
   })
 });

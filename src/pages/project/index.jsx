@@ -6,24 +6,6 @@ import MainCard from '~/components/MainCard';
 import ScoreCards from './ScoreCards';
 import { useGetScoresQuery, useGetRollingWeekQuery, useGetRollingMonthQuery, useGetRollingYearQuery } from '~/store/reducers/projectsApi';
 
-const flattenData = (data, length, format) => {
-  let res = null;
-  if (data) {
-    res = [];
-    for (let i = 0; i < length; i++) {
-      let day = {
-        name: new Date(data[0].data[i].date).toLocaleDateString('en-us', format)
-      };
-      for (let j = 0; j < data.length; j++) {
-        const categoryName = data[j].category;
-        day[categoryName] = data[j].data[i].score;
-      }
-      res.push(day);
-    }
-  }
-  return res;
-};
-
 const ProjectDefault = () => {
   const projectId = useParams().projectId;
   const { data: scores } = useGetScoresQuery(projectId);
@@ -35,13 +17,13 @@ const ProjectDefault = () => {
   let rollingData = null;
   switch (slot) {
     case 'week':
-      rollingData = flattenData(weekChartData, 7, { weekday: 'short' });
+      rollingData = weekChartData;
       break;
     case 'month':
-      rollingData = flattenData(monthChartData, 30, { month: 'short', day: 'numeric' });
+      rollingData = monthChartData;
       break;
     case 'year':
-      rollingData = flattenData(yearChartData, 12, { month: 'short' });
+      rollingData = yearChartData;
       break;
   }
 
