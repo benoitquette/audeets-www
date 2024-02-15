@@ -1,81 +1,73 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import { capitalize } from '~/utils/string-helpers';
+import { useTheme } from '@mui/material/styles';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Legend } from 'recharts';
 import categoriesTheme from './categories-theme';
 
-const areaChartOptions = {
-  chart: {
-    height: 450,
-    type: 'area',
-    toolbar: {
-      show: false
-    }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    curve: 'smooth',
-    width: 2
-  },
-  grid: {
-    strokeDashArray: 0
-  },
-  legend: {
-    show: true,
-    showForSingleSeries: true,
-    showForNullSeries: true,
-    showForZeroSeries: true,
-    horizontalAlign: 'center'
-  },
-  tooltip: {
-    theme: 'light'
-  },
-  zoom: {
-    enabled: false
-  }
-};
-
-const buildCategories = (slot, data) => {
-  const options = slot == 'week' ? { weekday: 'short' } : { month: 'short' };
-  return data === undefined || data.length === 0
-    ? []
-    : data[0].data.map((datum) => new Date(datum.date).toLocaleDateString('en-us', options));
-};
-
-const RollingAreaChart = ({ slot, weekData, monthData }) => {
-  let data = slot === 'week' ? weekData : monthData;
-  const [options, setOptions] = useState(areaChartOptions);
-  const [series, setSeries] = useState([]);
-
-  useEffect(() => {
-    if (data) {
-      data = data.toSorted((a, b) => a.category.localeCompare(b.category));
-      setSeries(
-        data.map((category) => ({
-          name: capitalize(category.category),
-          data: Array.from(category.data, (item) => item.score)
-        }))
-      );
-      setOptions((prevState) => ({
-        ...prevState,
-        colors: Array.from(data, (category) => categoriesTheme[category.category].color[500]),
-        xaxis: {
-          categories: buildCategories(slot, data),
-          tickAmount: data === undefined ? 0 : data.length - 1
-        }
-      }));
-    }
-  }, [slot, data]);
-
-  return <ReactApexChart options={options} series={series} type="area" height="287" />;
+const RollingAreaChart = ({ data }) => {
+  const theme = useTheme();
+  const fontStyle = {
+    fontSize: theme.typography.body2.fontSize,
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.body2.fontWeight,
+    lineHeight: theme.typography.body2.lineHeight
+  };
+  return (
+    <ResponsiveContainer width="100%" height={260}>
+      <AreaChart
+        data={data}
+        margin={{
+          top: 15,
+          right: 10,
+          left: -25,
+          bottom: -10
+        }}
+      >
+        <defs>
+          {data &&
+            Object.entries(data[0]).map(([key]) => {
+              if (key !== 'name')
+                return (
+                  <linearGradient key={key} id={key} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor={categoriesTheme[key].color[300]} stopOpacity={0.5} />
+                    <stop offset="95%" stopColor={categoriesTheme[key].color[300]} stopOpacity={0} />
+                  </linearGradient>
+                );
+            })}
+        </defs>
+        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="name" style={fontStyle} />
+        <YAxis style={fontStyle} axisLine={false} tick={true} domain={[0, 100]} />
+        <Tooltip itemStyle={fontStyle} />
+        <Legend
+          verticalAlign="bottom"
+          height={36}
+          wrapperStyle={{ ...fontStyle, position: 'relative', marginTop: '-40px' }}
+          iconType="circle"
+          iconSize={12}
+        />
+        {data &&
+          Object.entries(data[0]).map(([key]) => {
+            if (key !== 'name')
+              return (
+                <Area
+                  connectNulls
+                  type="monotone"
+                  dataKey={key}
+                  key={key}
+                  fillOpacity={1}
+                  stroke={categoriesTheme[key].color[700]}
+                  strokeWidth={2}
+                  fill={`url(#${key})`}
+                />
+              );
+          })}
+      </AreaChart>
+    </ResponsiveContainer>
+  );
 };
 
 RollingAreaChart.propTypes = {
-  slot: PropTypes.string,
-  weekData: PropTypes.array,
-  monthData: PropTypes.array
+  data: PropTypes.array
 };
 
 export default RollingAreaChart;

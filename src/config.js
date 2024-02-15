@@ -1,6 +1,6 @@
-// ==============================|| THEME CONFIG  ||============================== //
+import { red, orange, green } from '@mui/material/colors';
 
-const config = {
+export default {
   defaultPath: '/',
   fontFamily: `'Public Sans', sans-serif`,
   i18n: 'en',
@@ -11,12 +11,21 @@ const config = {
   themeDirection: 'ltr'
 };
 
-export default config;
 export const drawerWidth = 260;
-
-export const twitterColor = '#1DA1F2';
-export const facebookColor = '#3b5998';
-export const linkedInColor = '#0e76a8';
 
 export const urlApiProjects = import.meta.env.VITE_URL_API_PROJECTS ? import.meta.env.VITE_URL_API_PROJECTS : apiProjectsUrl;
 export const urlApiUsers = import.meta.env.VITE_URL_API_USERS ? import.meta.env.VITE_URL_API_USERS : apiUsersUrl;
+
+export const severities = [
+  { from: 0, color: red },
+  { from: 50, color: orange },
+  { from: 80, color: green }
+];
+
+export const getColorFromScore = (score) => {
+  let res = null;
+  for (const severity of severities) {
+    if (score >= severity.from) res = severity.color;
+  }
+  return res;
+};

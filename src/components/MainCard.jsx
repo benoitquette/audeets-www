@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import { Card, CardContent, CardHeader, Divider, Typography, CardActions } from '@mui/material';
 import Highlighter from './third-party/Highlighter';
 
 const headerSX = {
@@ -24,6 +24,9 @@ const MainCard = forwardRef(
       sx = {},
       title,
       codeHighlight,
+      avatar,
+      subtitle,
+      actions,
       ...others
     },
     ref
@@ -55,7 +58,14 @@ const MainCard = forwardRef(
       >
         {/* card header and action */}
         {!darkTitle && title && (
-          <CardHeader sx={headerSX} titleTypographyProps={{ variant: 'subtitle1' }} title={title} action={secondary} />
+          <CardHeader
+            sx={headerSX}
+            titleTypographyProps={{ variant: 'subtitle1' }}
+            title={title}
+            subheader={subtitle}
+            action={secondary}
+            avatar={avatar}
+          />
         )}
         {darkTitle && title && <CardHeader sx={headerSX} title={<Typography variant="h3">{title}</Typography>} action={secondary} />}
 
@@ -72,6 +82,9 @@ const MainCard = forwardRef(
             </Highlighter>
           </>
         )}
+
+        {/* card actions */}
+        {actions && <CardActions>{actions}</CardActions>}
       </Card>
     );
   }
@@ -90,7 +103,10 @@ MainCard.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   codeHighlight: PropTypes.bool,
   content: PropTypes.bool,
-  children: PropTypes.node
+  children: PropTypes.node,
+  avatar: PropTypes.node,
+  subtitle: PropTypes.string,
+  actions: PropTypes.node
 };
 
 export default MainCard;

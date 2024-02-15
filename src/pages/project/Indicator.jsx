@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import { Stack, Typography, Avatar, Icon, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText } from '@mui/material';
+import { Typography, Avatar, Icon, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText } from '@mui/material';
 import { capitalize } from '~/utils/string-helpers';
 import IndicatorGauge from './IndicatorGauge';
+import { getColorFromScore } from '~/config.js';
 
 const Indicator = ({ title, score, date, iconName, iconColor }) => (
-  <ListItemButton divider>
+  <ListItemButton>
     <ListItemAvatar>
-      <Avatar sx={{ color: iconColor[500], bgcolor: iconColor[100] }}>
+      <Avatar sx={{ bgcolor: iconColor[200] }}>
         <Icon>{iconName}</Icon>
       </Avatar>
     </ListItemAvatar>
@@ -15,13 +16,7 @@ const Indicator = ({ title, score, date, iconName, iconColor }) => (
       secondary={new Date(date).toLocaleDateString('en-us', { month: 'long', day: 'numeric', year: 'numeric' })}
     />
     <ListItemSecondaryAction>
-      <Stack alignItems="flex-end">
-        <IndicatorGauge value={score}></IndicatorGauge>
-        {/* <Typography variant="subtitle1" noWrap>
-          {score}%
-        </Typography>
-        <Typography variant="h6" color="secondary" noWrap></Typography> */}
-      </Stack>
+      <IndicatorGauge score={score} color={getColorFromScore(score)}></IndicatorGauge>
     </ListItemSecondaryAction>
   </ListItemButton>
 );
@@ -32,10 +27,6 @@ Indicator.propTypes = {
   date: PropTypes.string,
   iconName: PropTypes.string,
   iconColor: PropTypes.object
-};
-
-Indicator.defaultProps = {
-  color: 'primary'
 };
 
 export default Indicator;

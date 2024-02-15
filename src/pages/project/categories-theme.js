@@ -1,23 +1,23 @@
 // material-ui
-import { green, red, purple, amber } from '@mui/material/colors';
+import { purple, indigo, blue, lightBlue, deepPurple } from '@mui/material/colors';
 
 // ==============================|| THEME FOR CATEGORIES ||============================== //
 
 const categoriesTheme = {
-  performance: {
-    color: green,
-    icon: 'speed'
-  },
-  search: {
-    color: red,
-    icon: 'troubleshoot'
-  },
-  accessibility: {
-    color: purple,
+  Accessibility: {
+    color: deepPurple,
     icon: 'settings_accessibility'
   },
-  security: {
-    color: amber,
+  Performance: {
+    color: purple,
+    icon: 'speed'
+  },
+  Search: {
+    color: indigo,
+    icon: 'troubleshoot'
+  },
+  Security: {
+    color: blue,
     icon: 'security'
   }
 };

@@ -4,63 +4,28 @@ import Indicator from './Indicator';
 import categoriesTheme from './categories-theme';
 import MainCard from '~/components/MainCard';
 
-// avatar style
-const avatarSX = {
-  width: 36,
-  height: 36,
-  fontSize: '1rem'
-};
-
-// action style
-const actionSX = {
-  mt: 0.75,
-  ml: 1,
-  top: 'auto',
-  right: 'auto',
-  alignSelf: 'flex-start',
-  transform: 'none'
-};
-
-const ScoreCards = ({ scores }) => {
-  return (
-    scores &&
-    scores.length > 0 && (
-      <MainCard sx={{ mt: 2 }} content={false}>
-        <List
-          component="nav"
-          sx={{
-            px: 0,
-            py: 0,
-            '& .MuiListItemButton-root': {
-              py: 1.5,
-              '& .MuiAvatar-root': avatarSX,
-              '& .MuiListItemSecondaryAction-root': { ...actionSX, position: 'relative' }
-            }
-          }}
-        >
-          {scores
-            .toSorted((a, b) => a.category.localeCompare(b.category))
-            .map((score) => {
-              const categoryTheme = categoriesTheme[score.category];
-              return (
-                <Indicator
-                  key={score.category}
-                  title={score.category}
-                  score={score.score}
-                  date={score.date}
-                  iconName={categoryTheme.icon}
-                  iconColor={categoryTheme.color}
-                />
-              );
-            })}
-        </List>
-      </MainCard>
-    )
-  );
-};
+const ScoreCards = ({ scores }) => (
+  <MainCard contentSX={{ m: 0, p: 0, mb: -2 }}>
+    <List>
+      {scores.map((score) => {
+        const categoryTheme = categoriesTheme[score.category];
+        return (
+          <Indicator
+            key={score.category}
+            title={score.category}
+            score={score.score}
+            date={score.date}
+            iconName={categoryTheme.icon}
+            iconColor={categoryTheme.color}
+          />
+        );
+      })}
+    </List>
+  </MainCard>
+);
 
 ScoreCards.propTypes = {
-  scores: PropTypes.array
+  scores: PropTypes.array.isRequired
 };
 
 export default ScoreCards;

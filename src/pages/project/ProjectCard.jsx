@@ -1,12 +1,6 @@
 import PropTypes from 'prop-types';
-
-// material-ui
 import { Grid, Stack, Typography, Avatar } from '@mui/material';
-
-// project import
 import MainCard from '~/components/MainCard';
-
-// ==============================|| PROJECT CARD ||============================== //
 
 const ProjectCard = ({ project }) => {
   return (

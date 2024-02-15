@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { urlApiProjects } from '~/config';
+import { capitalize } from '~/utils/string-helpers';
+
+const sortScores = (response) => {
+  return response.map((item) => ({ ...item, category: capitalize(item.category) })).sort((a, b) => a.category.localeCompare(b.category));
+};
 
 export const projectsApi = createApi({
   tagTypes: ['project'],
@@ -41,13 +46,20 @@ export const projectsApi = createApi({
       invalidatesTags: (result, error, id) => [{ type: 'project', id }]
     }),
     getScores: builder.query({
-      query: (id) => `${id}/scores/latest`
+      query: (id) => `${id}/scores/latest`,
+      transformResponse: sortScores
     }),
     getRollingWeek: builder.query({
-      query: (id) => `${id}/scores/week`
+      query: (id) => `${id}/scores/week`,
+      transformResponse: sortScores
     }),
     getRollingMonth: builder.query({
-      query: (id) => `${id}/scores/month`
+      query: (id) => `${id}/scores/month`,
+      transformResponse: sortScores
+    }),
+    getRollingYear: builder.query({
+      query: (id) => `${id}/scores/year`,
+      transformResponse: sortScores
     })
   })
 });
@@ -58,6 +70,7 @@ export const {
   useGetScoresQuery,
   useGetRollingWeekQuery,
   useGetRollingMonthQuery,
+  useGetRollingYearQuery,
   useAddProjectMutation,
   useDeleteProjectMutation,
   useUpdateProjectMutation
