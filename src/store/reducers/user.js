@@ -1,20 +1,13 @@
-// types
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-// project import
 import { client } from '~/utils/apiClient';
 import { urlApiUsers } from '~/config';
 
-// thunks
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
   return await client.get(`${urlApiUsers}/api/user`, { credentials: 'include' });
 });
-
 export const logout = createAsyncThunk('user/logout', async () => {
   return await client.get(`${urlApiUsers}/api/user/logout`, { credentials: 'include' });
 });
-
-// ==============================|| SLICE - USER ||============================== //
 
 const user = createSlice({
   name: 'user',

@@ -15,7 +15,7 @@ const ProjectUpdateForm = () => {
     navigate('/settings/projects');
   };
 
-  const handleCancel = () => navigate('/settings/projects');
+  const handleCancel = () => navigate('/');
 
   return (
     isSuccess && (

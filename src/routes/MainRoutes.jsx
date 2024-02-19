@@ -3,11 +3,11 @@ import Loadable from '~/components/Loadable';
 import Layout from '~/layout';
 import Protected from '~/components/Protected';
 
-const DashboardDefault = Loadable(lazy(() => import('~/pages/dashboard')));
-const SettingsProjects = Loadable(lazy(() => import('~/pages/settings-projects')));
-const ProjectCreate = Loadable(lazy(() => import('~/pages/settings-projects/create')));
-const ProjectUpdate = Loadable(lazy(() => import('~/pages/settings-projects/update')));
+const Dashboard = Loadable(lazy(() => import('~/pages/dashboard')));
+const ProjectCreate = Loadable(lazy(() => import('~/pages/dashboard/create')));
+const ProjectUpdate = Loadable(lazy(() => import('~/pages/dashboard/update')));
 const ProjectDefault = Loadable(lazy(() => import('~/pages/project')));
+const Category = Loadable(lazy(() => import('~/pages/category')));
 const SamplePage = Loadable(lazy(() => import('~/pages/extra-pages/SamplePage')));
 const Typography = Loadable(lazy(() => import('~/pages/components-overview/Typography')));
 const Color = Loadable(lazy(() => import('~/pages/components-overview/Color')));
@@ -24,7 +24,20 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <DashboardDefault />
+      children: [
+        {
+          path: '',
+          element: <Dashboard />
+        },
+        {
+          path: 'create',
+          element: <ProjectCreate />
+        },
+        {
+          path: ':projectId/update',
+          element: <ProjectUpdate />
+        }
+      ]
     },
     {
       path: 'color',
@@ -36,23 +49,10 @@ const MainRoutes = {
         {
           path: ':projectId',
           element: <ProjectDefault />
-        }
-      ]
-    },
-    {
-      path: 'settings',
-      children: [
-        {
-          path: 'projects',
-          element: <SettingsProjects />
         },
         {
-          path: 'projects/create',
-          element: <ProjectCreate />
-        },
-        {
-          path: 'project/:projectId/update',
-          element: <ProjectUpdate />
+          path: ':projectId/:category',
+          element: <Category />
         }
       ]
     },
@@ -71,10 +71,6 @@ const MainRoutes = {
     {
       path: 'icons/ant',
       element: <AntIcons />
-    },
-    {
-      path: 'dashboard',
-      element: <DashboardDefault />
     }
   ]
 };

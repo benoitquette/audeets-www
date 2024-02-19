@@ -1,12 +1,4 @@
-// assets
 import { StarOutlined } from '@ant-design/icons';
-
-// icons
-const icons = {
-  StarOutlined
-};
-
-// ==============================|| MENU ITEMS - PROJECTS ||============================== //
 
 const projects = (allProjects) => {
   return {
@@ -18,7 +10,7 @@ const projects = (allProjects) => {
       title: project.title,
       type: 'item',
       url: `/project/${project._id}`,
-      icon: icons.StarOutlined
+      icon: StarOutlined
     }))
   };
 };
