@@ -60,7 +60,7 @@
     "react/no-array-index-key": "off",
     "react/jsx-props-no-spreading": "off",
     "react/forbid-prop-types": "off",
-    "import/order": "on",
+    "import/order": 1,
     "import/no-cycle": "off",
     "no-console": "off",
     "jsx-a11y/anchor-is-valid": "off",
