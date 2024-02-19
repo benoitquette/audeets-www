@@ -53,7 +53,7 @@
     "react/react-in-jsx-scope": "off",
     "no-undef": "off",
     "react/display-name": "off",
-    "react/jsx-filename-extension": "3",
+    "react/jsx-filename-extension": 2,
     "no-param-reassign": "off",
     "react/prop-types": 1,
     "react/require-default-props": "off",
