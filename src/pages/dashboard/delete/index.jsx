@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { DeleteOutlined } from '@ant-design/icons';
-import { useDeleteProjectMutation } from '~/store/reducers/projectsApi';
+import { useDeleteProjectMutation } from '~/store/reducers/projects-api';
 
 function ProjectDelete({ id }) {
   const [open, setOpen] = useState(false);

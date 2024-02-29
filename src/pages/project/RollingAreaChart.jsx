@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Legend } from 'recharts';
-import categoriesTheme from './categories-theme';
+import { categoriesTheme } from '~/config.js';
 
-const RollingAreaChart = ({ data }) => {
+const RollingAreaChart = ({ data, selectedCategory }) => {
   const theme = useTheme();
   const fontStyle = {
     fontSize: theme.typography.body2.fontSize,
@@ -11,6 +11,7 @@ const RollingAreaChart = ({ data }) => {
     fontWeight: theme.typography.body2.fontWeight,
     lineHeight: theme.typography.body2.lineHeight
   };
+
   return (
     <ResponsiveContainer width="100%" height={260}>
       <AreaChart
@@ -38,16 +39,16 @@ const RollingAreaChart = ({ data }) => {
         <XAxis dataKey="name" style={fontStyle} />
         <YAxis style={fontStyle} axisLine={false} tick={true} domain={[0, 100]} />
         <Tooltip itemStyle={fontStyle} />
-        <Legend
+        {/* <Legend
           verticalAlign="bottom"
           height={36}
           wrapperStyle={{ ...fontStyle, position: 'relative', marginTop: '-40px' }}
           iconType="circle"
           iconSize={12}
-        />
+        /> */}
         {data &&
           Object.entries(data[0]).map(([key]) => {
-            if (key !== 'name')
+            if (key === selectedCategory)
               return (
                 <Area
                   connectNulls
@@ -67,7 +68,8 @@ const RollingAreaChart = ({ data }) => {
 };
 
 RollingAreaChart.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  selectedCategory: PropTypes.string
 };
 
 export default RollingAreaChart;

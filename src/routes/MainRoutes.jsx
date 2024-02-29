@@ -6,8 +6,7 @@ import Protected from '~/components/Protected';
 const Dashboard = Loadable(lazy(() => import('~/pages/dashboard')));
 const ProjectCreate = Loadable(lazy(() => import('~/pages/dashboard/create')));
 const ProjectUpdate = Loadable(lazy(() => import('~/pages/dashboard/update')));
-const ProjectDefault = Loadable(lazy(() => import('~/pages/project')));
-const Category = Loadable(lazy(() => import('~/pages/category')));
+const ProjectPage = Loadable(lazy(() => import('~/pages/project/ProjectPage')));
 const SamplePage = Loadable(lazy(() => import('~/pages/extra-pages/SamplePage')));
 const Typography = Loadable(lazy(() => import('~/pages/components-overview/Typography')));
 const Color = Loadable(lazy(() => import('~/pages/components-overview/Color')));
@@ -48,11 +47,7 @@ const MainRoutes = {
       children: [
         {
           path: ':projectId',
-          element: <ProjectDefault />
-        },
-        {
-          path: ':projectId/:category',
-          element: <Category />
+          element: <ProjectPage />
         }
       ]
     },

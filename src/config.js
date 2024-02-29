@@ -1,4 +1,5 @@
 import { red, orange, green } from '@mui/material/colors';
+import { purple, indigo, blue, deepPurple } from '@mui/material/colors';
 
 export default {
   defaultPath: '/',
@@ -28,4 +29,23 @@ export const getColorFromScore = (score) => {
     if (score >= severity.from) res = severity.color;
   }
   return res;
+};
+
+export const categoriesTheme = {
+  Accessibility: {
+    color: deepPurple,
+    icon: 'settings_accessibility'
+  },
+  Performance: {
+    color: purple,
+    icon: 'speed'
+  },
+  Search: {
+    color: indigo,
+    icon: 'troubleshoot'
+  },
+  Security: {
+    color: blue,
+    icon: 'security'
+  }
 };

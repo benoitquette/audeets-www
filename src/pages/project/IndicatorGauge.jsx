@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 import { PieChart, Pie, Cell, Label } from 'recharts';
+import { Typography } from '@mui/material';
 
-const IndicatorGauge = ({ score, color }) => (
+const IndicatorGauge = ({ score, color, size }) => (
   <PieChart
     style={{
       lineHeight: '80px',
       cursor: 'pointer'
     }}
-    width={50}
-    height={50}
+    width={size}
+    height={size}
     margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
   >
     <Pie
@@ -26,14 +27,30 @@ const IndicatorGauge = ({ score, color }) => (
     >
       <Cell fill={color[500]} />
       <Cell fill={color[50]} />
-      <Label position="center">{score}</Label>
+      <Label
+        position="center"
+        content={({ viewBox }) => {
+          const { cx, cy } = viewBox;
+          const fontSize = size / 5;
+          return (
+            <text x={cx - fontSize / 1.6} y={cy + fontSize / 2.7} fontSize={fontSize}>
+              {score}
+            </text>
+          );
+        }}
+      ></Label>
     </Pie>
   </PieChart>
 );
 
 IndicatorGauge.propTypes = {
   score: PropTypes.number.isRequired,
-  color: PropTypes.object.isRequired
+  color: PropTypes.object.isRequired,
+  size: PropTypes.number
+};
+
+IndicatorGauge.defaultProps = {
+  size: 50
 };
 
 export default IndicatorGauge;

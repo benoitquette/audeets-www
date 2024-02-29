@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { List } from '@mui/material';
 import Indicator from './Indicator';
-import categoriesTheme from './categories-theme';
+import { categoriesTheme } from '~/config.js';
 import MainCard from '~/components/MainCard';
 
 const ScoreCards = ({ scores }) => (

@@ -1,35 +1,65 @@
 import PropTypes from 'prop-types';
-import { Grid, Stack, Typography, Avatar } from '@mui/material';
-import MainCard from '~/components/MainCard';
+import { Grid, Tooltip, Avatar, Chip, IconButton } from '@mui/material';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import CategorySelector from '../project/CategorySelector';
+import UrlSelector from './UrlSelector';
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({
+  title,
+  domain,
+  urls,
+  selectedUrl,
+  handleUrlChange,
+  categories,
+  selectedCategory,
+  handleCategoryChange,
+  selectedDate
+}) => {
   return (
-    project && (
-      <MainCard sx={{ mt: 2 }}>
-        <Stack spacing={3}>
-          <Grid container justifyContent="flex-start" alignItems="flex-start">
-            <Grid item sx={{ mr: 2 }}>
-              <Avatar src={project.url + '/favicon.ico'} />
-            </Grid>
-            <Grid item>
-              <Stack>
-                <Typography variant="h5" noWrap>
-                  {project.title}
-                </Typography>
-                <Typography variant="caption" color="secondary" noWrap>
-                  {project.url}
-                </Typography>
-              </Stack>
-            </Grid>
+    <Grid container alignItems="center" justifyContent="space-between">
+      <Grid item>
+        <Grid container columnSpacing={2} alignItems="center">
+          <Grid item>
+            <Tooltip title={title}>
+              <Avatar src={`https://${domain}/favicon.ico`} />
+            </Tooltip>
           </Grid>
-        </Stack>
-      </MainCard>
-    )
+          <Grid item>
+            <UrlSelector domain={domain} urls={urls} selectedUrl={selectedUrl} handleUrlChange={handleUrlChange} />
+          </Grid>
+          <Grid item>
+            <CategorySelector categories={categories} selectedCategory={selectedCategory} handleChange={handleCategoryChange} />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container columnSpacing={2} alignItems="center">
+          <Grid item>
+            <Chip label={new Date(selectedDate).toLocaleDateString('en-us', { month: 'long', day: 'numeric', year: 'numeric' })} />
+          </Grid>
+          <Grid>
+            <Tooltip title="Reset to latest">
+              <IconButton aria-label="delete">
+                <RestartAltIcon />
+              </IconButton>
+            </Tooltip>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
 ProjectCard.propTypes = {
-  project: PropTypes.object
+  title: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired,
+  urls: PropTypes.array.isRequired,
+  selectedUrl: PropTypes.string.isRequired,
+  handleUrlChange: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
+  handleCategoryChange: PropTypes.func.isRequired,
+  selectedDate: PropTypes.string.isRequired
 };
 
 export default ProjectCard;

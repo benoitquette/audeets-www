@@ -1,7 +1,13 @@
 import { capitalize } from '~/utils/string-helpers';
 
+const capitalizeCats = (item) => ({ ...item, category: capitalize(item.category) });
+
 export const sortAndCapitalizeCategories = (response) => {
-  return response.map((item) => ({ ...item, category: capitalize(item.category) })).sort((a, b) => a.category.localeCompare(b.category));
+  return response.map(capitalizeCats).sort((a, b) => a.category.localeCompare(b.category));
+};
+
+export const capitalizeCategories = (response) => {
+  return response.map(capitalizeCats);
 };
 
 export const sortProjects = (response) => {

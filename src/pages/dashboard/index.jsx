@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Button, Grid, Typography, Link, Tooltip } from '@mui/material';
 import ProjectsTable from './ProjectsTable';
 import MainCard from '~/components/MainCard';
-import { useGetProjectsQuery } from '~/store/reducers/projectsApi';
+import { useGetProjectsQuery } from '~/store/reducers/projects-api';
 import { WarningOutlined } from '@ant-design/icons';
 
 const Dashboard = () => {

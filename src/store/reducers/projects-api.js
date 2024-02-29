@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { urlApiProjects } from '~/config';
-import { sortAndCapitalizeCategories, sortProjects, flattenProjectsData } from './transformers';
+import { sortAndCapitalizeCategories, sortProjects, flattenProjectsData, capitalizeCategories } from './transformers';
 
 export const projectsApi = createApi({
   tagTypes: ['project'],
@@ -43,7 +43,7 @@ export const projectsApi = createApi({
       invalidatesTags: (result, error, id) => [{ type: 'project', id }]
     }),
     getScores: builder.query({
-      query: (id) => `${id}/scores/latest`,
+      query: ({ id, url }) => `${id}/scores/latest?url=${encodeURIComponent(url)}`,
       transformResponse: sortAndCapitalizeCategories
     }),
     getRollingWeek: builder.query({
@@ -57,6 +57,10 @@ export const projectsApi = createApi({
     getRollingYear: builder.query({
       query: (id) => `${id}/scores/year`,
       transformResponse: (response) => flattenProjectsData(response, 12, { month: 'short' })
+    }),
+    getAudit: builder.query({
+      query: ({ id, date, url }) => `${id}/audits/${date}?url=${encodeURIComponent(url)}`,
+      transformResponse: capitalizeCategories
     })
   })
 });
@@ -70,5 +74,6 @@ export const {
   useGetRollingYearQuery,
   useAddProjectMutation,
   useDeleteProjectMutation,
-  useUpdateProjectMutation
+  useUpdateProjectMutation,
+  useGetAuditQuery
 } = projectsApi;

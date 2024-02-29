@@ -4,11 +4,13 @@ import { Typography, Avatar, Icon, ListItemAvatar, ListItemButton, ListItemSecon
 import { capitalize } from '~/utils/string-helpers';
 import IndicatorGauge from './IndicatorGauge';
 import { getColorFromScore } from '~/config.js';
+import dayjs from 'dayjs';
 
 const Indicator = ({ title, score, date, iconName, iconColor }) => {
   const navigate = useNavigate();
+
   return (
-    <ListItemButton onClick={() => navigate(title)}>
+    <ListItemButton onClick={() => navigate(`${title}/${dayjs(date).format('YYYYMMDD')}`)}>
       <ListItemAvatar>
         <Avatar sx={{ bgcolor: iconColor[200] }}>
           <Icon>{iconName}</Icon>

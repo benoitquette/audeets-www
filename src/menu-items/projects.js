@@ -10,7 +10,8 @@ const projects = (allProjects) => {
       title: project.title,
       type: 'item',
       url: `/project/${project._id}`,
-      icon: StarOutlined
+      icon: StarOutlined,
+      breadcrumbs: false
     }))
   };
 };

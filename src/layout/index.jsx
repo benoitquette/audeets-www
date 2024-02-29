@@ -14,7 +14,7 @@ import Breadcrumbs from '~/components/@extended/Breadcrumbs';
 
 // types
 import { openDrawer } from '~/store/reducers/menu';
-import { useGetProjectsQuery } from '~/store/reducers/projectsApi';
+import { useGetProjectsQuery } from '~/store/reducers/projects-api';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
