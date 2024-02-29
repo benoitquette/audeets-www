@@ -1,16 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// material-ui
 import { Stepper, StepLabel, StepContent, TextField, Step } from '@mui/material';
-
-// project import
 import ProjectCreateStepActions from './ProjectCreateStepActions';
-
-// types
-import { useAddProjectMutation } from '~/store/reducers/projectsApi';
-
-// ============================|| PROJECT - CREATE ||============================ //
+import { useAddProjectMutation } from '~/store/reducers/projects-api';
 
 const STEPS_COUNT = 3;
 

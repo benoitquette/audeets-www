@@ -1,9 +1,5 @@
 import PropTypes from 'prop-types';
-
-// material-ui
 import Button from '@mui/material/Button';
-
-// ==============================|| STEP ACTIONS ||============================== //
 
 function ProjectCreateStepActions({ stepIndex, stepsCount, currentStep, handleLastStep, setStepIndex }) {
   const nextStep = () => {

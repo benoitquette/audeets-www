@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { Stack, Button } from '@mui/material';
-import { useGetProjectQuery, useUpdateProjectMutation } from '~/store/reducers/projectsApi';
+import { useGetProjectQuery, useUpdateProjectMutation } from '~/store/reducers/projects-api';
 
 const ProjectUpdateForm = () => {
   const navigate = useNavigate();
