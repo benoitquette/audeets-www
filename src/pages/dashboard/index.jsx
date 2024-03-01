@@ -12,7 +12,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const limitReached = projects.length >= user.projectsMax;
   return (
-    <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+    <Grid container rowSpacing={3} columnSpacing={2.75}>
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
