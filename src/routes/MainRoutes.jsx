@@ -3,7 +3,7 @@ import Loadable from '~/components/Loadable';
 import Layout from '~/layout';
 import Protected from '~/components/Protected';
 
-const Dashboard = Loadable(lazy(() => import('~/pages/dashboard')));
+const Dashboard = Loadable(lazy(() => import('~/pages/dashboard/Dashboard')));
 const ProjectCreate = Loadable(lazy(() => import('~/pages/dashboard/create')));
 const ProjectUpdate = Loadable(lazy(() => import('~/pages/dashboard/update')));
 const ProjectPage = Loadable(lazy(() => import('~/pages/project/ProjectPage')));

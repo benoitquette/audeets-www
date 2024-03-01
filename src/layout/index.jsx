@@ -1,22 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Box, Toolbar, useMediaQuery } from '@mui/material';
-
-// project import
 import Drawer from './Drawer';
 import Header from './Header';
 import menuItems from '~/menu-items';
 import Breadcrumbs from '~/components/@extended/Breadcrumbs';
-
-// types
 import { openDrawer } from '~/store/reducers/menu';
 import { useGetProjectsQuery } from '~/store/reducers/projects-api';
-
-// ==============================|| MAIN LAYOUT ||============================== //
 
 const Layout = () => {
   const theme = useTheme();
