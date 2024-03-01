@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button, Grid, Typography, Link, Tooltip } from '@mui/material';
-import ProjectsTable from './ProjectsTable';
-import MainCard from '~/components/MainCard';
 import { useGetProjectsQuery } from '~/store/reducers/projects-api';
 import { WarningOutlined } from '@ant-design/icons';
+import ProjectCard from './ProjectCard';
 
 const Dashboard = () => {
   const { data: projects } = useGetProjectsQuery();
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const limitReached = projects.length >= user.projectsMax;
+
   return (
     <Grid container rowSpacing={3} columnSpacing={2.75}>
       <Grid item xs={12}>
@@ -36,12 +36,12 @@ const Dashboard = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid item>
-          <MainCard sx={{ mt: 2 }} content={false}>
-            <ProjectsTable data={projects} />
-          </MainCard>
-        </Grid>
       </Grid>
+      {projects.map((project, index) => (
+        <Grid key={index} item>
+          <ProjectCard {...project} />
+        </Grid>
+      ))}
     </Grid>
   );
 };

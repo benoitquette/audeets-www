@@ -3,7 +3,6 @@ import ProjectCreateStepper from './ProjectCreateStepper';
 import MainCard from '~/components/MainCard';
 
 const ProjectCreate = () => {
-  console.log('here');
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
       <Grid item xs={12}>

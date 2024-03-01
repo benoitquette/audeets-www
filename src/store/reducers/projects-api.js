@@ -46,6 +46,10 @@ export const projectsApi = createApi({
       query: ({ id, url }) => `${id}/scores/latest?url=${encodeURIComponent(url)}`,
       transformResponse: sortAndCapitalizeCategories
     }),
+    getGlobalScores: builder.query({
+      query: (id) => `${id}/scores/latest/global`,
+      transformResponse: sortAndCapitalizeCategories
+    }),
     getRollingWeek: builder.query({
       query: (id) => `${id}/scores/week`,
       transformResponse: (response) => flattenProjectsData(response, 7, { weekday: 'short' })
@@ -69,6 +73,7 @@ export const {
   useGetProjectsQuery,
   useGetProjectQuery,
   useGetScoresQuery,
+  useGetGlobalScoresQuery,
   useGetRollingWeekQuery,
   useGetRollingMonthQuery,
   useGetRollingYearQuery,

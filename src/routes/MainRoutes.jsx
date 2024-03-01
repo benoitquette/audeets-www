@@ -4,8 +4,8 @@ import Layout from '~/layout';
 import Protected from '~/components/Protected';
 
 const Dashboard = Loadable(lazy(() => import('~/pages/dashboard/Dashboard')));
-const ProjectCreate = Loadable(lazy(() => import('~/pages/dashboard/create')));
-const ProjectUpdate = Loadable(lazy(() => import('~/pages/dashboard/update')));
+const ProjectCreate = Loadable(lazy(() => import('~/pages/dashboard/create/ProjectCreate')));
+const ProjectUpdate = Loadable(lazy(() => import('~/pages/dashboard/update/ProjectUpdate')));
 const ProjectPage = Loadable(lazy(() => import('~/pages/project/ProjectPage')));
 const SamplePage = Loadable(lazy(() => import('~/pages/extra-pages/SamplePage')));
 const Typography = Loadable(lazy(() => import('~/pages/components-overview/Typography')));

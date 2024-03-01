@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { PieChart, Pie, Cell, Label } from 'recharts';
-import { Typography } from '@mui/material';
 
 const IndicatorGauge = ({ score, color, size }) => (
   <PieChart
