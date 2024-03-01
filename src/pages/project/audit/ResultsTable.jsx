@@ -1,14 +1,13 @@
 import React from 'react';
 import Table from '@mui/material/Table';
-import { TableRow, TableBody, TableCell, Icon, TableHead, Avatar, Chip } from '@mui/material';
-import ResultsDetails from './ResultsDetails';
+import { TableRow, TableBody, TableCell, TableHead, Card, CardHeader, CardContent, Switch } from '@mui/material';
 import PropTypes from 'prop-types';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined';
 
 const tableCellSx = { padding: 0.5 };
 
-const ResultsTable = ({ results, showFailsOnly, selectedCategory }) => (
+const ResultsTable = ({ results, showFailsOnly }) => (
   <Table size="small">
     <TableHead>
       <TableRow>
@@ -47,8 +46,7 @@ const ResultsTable = ({ results, showFailsOnly, selectedCategory }) => (
 
 ResultsTable.propTypes = {
   results: PropTypes.array.isRequired,
-  showFailsOnly: PropTypes.bool.isRequired,
-  selectedCategory: PropTypes.string.isRequired
+  showFailsOnly: PropTypes.bool.isRequired
 };
 
 export default ResultsTable;

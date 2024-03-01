@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Legend } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { categoriesTheme } from '~/config.js';
 
 const RollingAreaChart = ({ data, selectedCategory }) => {
@@ -13,11 +13,11 @@ const RollingAreaChart = ({ data, selectedCategory }) => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={260}>
+    <ResponsiveContainer width="100%" height={95}>
       <AreaChart
         data={data}
         margin={{
-          top: 15,
+          top: 0,
           right: 10,
           left: -25,
           bottom: -10
@@ -39,13 +39,6 @@ const RollingAreaChart = ({ data, selectedCategory }) => {
         <XAxis dataKey="name" style={fontStyle} />
         <YAxis style={fontStyle} axisLine={false} tick={true} domain={[0, 100]} />
         <Tooltip itemStyle={fontStyle} />
-        {/* <Legend
-          verticalAlign="bottom"
-          height={36}
-          wrapperStyle={{ ...fontStyle, position: 'relative', marginTop: '-40px' }}
-          iconType="circle"
-          iconSize={12}
-        /> */}
         {data &&
           Object.entries(data[0]).map(([key]) => {
             if (key === selectedCategory)

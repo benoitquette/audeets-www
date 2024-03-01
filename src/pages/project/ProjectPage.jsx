@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
-import { Button, Grid, Stack, Typography, Switch } from '@mui/material';
-import RollingAreaChart from './RollingAreaChart';
-import MainCard from '~/components/MainCard';
-import ScoreCard from './ScoreCard';
+import { Grid } from '@mui/material';
+import ScoreCard from './score/ScoreCard';
 import {
   useGetProjectQuery,
   useGetScoresQuery,
@@ -13,10 +11,10 @@ import {
   useGetAuditQuery
 } from '~/store/reducers/projects-api';
 import { categoriesTheme } from '~/config.js';
-
-import ResultsTable from './ResultsTable';
 import dayjs from 'dayjs';
-import ProjectCard from './ProjectCard';
+import HeaderCard from './header/HeaderCard';
+import EvolutionCard from './evolution/EvolutionCard';
+import AuditCard from './audit/AuditCard';
 
 const ProjectPage = () => {
   const [slot, setSlot] = useState('week');
@@ -69,8 +67,8 @@ const ProjectPage = () => {
   return (
     <Grid container rowSpacing={4} columnSpacing={2.75}>
       <Grid item xs={12}>
-        {project && selectedUrl && selectedCategory && selectedDate && (
-          <ProjectCard
+        {project && (
+          <HeaderCard
             {...project}
             handleUrlChange={setSelectedUrl}
             selectedUrl={selectedUrl}
@@ -82,64 +80,13 @@ const ProjectPage = () => {
         )}
       </Grid>
       <Grid item xs={12} sm={4} md={3} lg={2}>
-        <Typography variant="h5" sx={{ mb: 2 }}>
-          Score
-        </Typography>
-        {scores && selectedCategory && <ScoreCard score={selectedScore} date={selectedDate} />}
+        <ScoreCard score={selectedScore} />
       </Grid>
       <Grid item xs={12} sm={8} md={9} lg={10}>
-        <Grid container sx={{ mb: 1 }} alignItems="center" justifyContent="space-between">
-          <Grid item>
-            <Typography variant="h5">Rolling chart</Typography>
-          </Grid>
-          <Grid item>
-            <Button
-              size="small"
-              onClick={() => setSlot('year')}
-              color={slot === 'year' ? 'primary' : 'secondary'}
-              variant={slot === 'year' ? 'outlined' : 'text'}
-            >
-              Year
-            </Button>
-            <Button
-              size="small"
-              onClick={() => setSlot('month')}
-              color={slot === 'month' ? 'primary' : 'secondary'}
-              variant={slot === 'month' ? 'outlined' : 'text'}
-            >
-              Month
-            </Button>
-            <Button
-              size="small"
-              onClick={() => setSlot('week')}
-              color={slot === 'week' ? 'primary' : 'secondary'}
-              variant={slot === 'week' ? 'outlined' : 'text'}
-            >
-              Week
-            </Button>
-          </Grid>
-        </Grid>
-        <MainCard sx={{ p: 0 }}>
-          <RollingAreaChart data={rollingData} selectedCategory={selectedCategory} />
-        </MainCard>
+        <EvolutionCard data={rollingData} selectedCategory={selectedCategory} slot={slot} onSelectSlot={setSlot} />
       </Grid>
       <Grid item xs={12}>
-        <Grid container alignItems="center" justifyContent="space-between">
-          <Grid item>
-            <Typography variant="h5" sx={{ mb: 2 }}>
-              Audit details
-            </Typography>
-          </Grid>
-          <Grid item sx={{ pr: 1 }}>
-            <Switch checked={showFailsOnly} size="small" onChange={(event) => setshowFailsOnly(event.target.checked)} />
-            Filter failed rules
-          </Grid>
-        </Grid>
-        {isSuccess && (
-          <MainCard sx={{ mt: 0 }} contentSX={{ p: 0 }}>
-            <ResultsTable results={filteredResults} showFailsOnly={showFailsOnly} selectedCategory={selectedCategory} />
-          </MainCard>
-        )}
+        <AuditCard results={filteredResults} showFailsOnly={showFailsOnly} onChangeFailsOnly={setshowFailsOnly} />
       </Grid>
     </Grid>
   );

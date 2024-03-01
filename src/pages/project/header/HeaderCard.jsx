@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { Grid, Tooltip, Avatar, Chip, IconButton } from '@mui/material';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import CategorySelector from '../project/CategorySelector';
+import CategorySelector from './CategorySelector';
 import UrlSelector from './UrlSelector';
 
-const ProjectCard = ({
+const HeaderCard = ({
   title,
   domain,
   urls,
@@ -21,7 +21,7 @@ const ProjectCard = ({
         <Grid container columnSpacing={2} alignItems="center">
           <Grid item>
             <Tooltip title={title}>
-              <Avatar src={`https://${domain}/favicon.ico`} />
+              <Avatar src={`https://${domain}/favicon.ico`} sx={{ width: 30, height: 30 }} />
             </Tooltip>
           </Grid>
           <Grid item>
@@ -50,7 +50,7 @@ const ProjectCard = ({
   );
 };
 
-ProjectCard.propTypes = {
+HeaderCard.propTypes = {
   title: PropTypes.string.isRequired,
   domain: PropTypes.string.isRequired,
   urls: PropTypes.array.isRequired,
@@ -62,4 +62,4 @@ ProjectCard.propTypes = {
   selectedDate: PropTypes.string.isRequired
 };
 
-export default ProjectCard;
+export default HeaderCard;
