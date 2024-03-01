@@ -65,7 +65,7 @@ const ProjectPage = () => {
 
   const filteredResults = auditResults ? auditResults.filter((result) => result.category === selectedCategory) : [];
   return (
-    <Grid container rowSpacing={4} columnSpacing={2.75}>
+    <Grid container rowSpacing={3} columnSpacing={2.75}>
       <Grid item xs={12}>
         {project && (
           <HeaderCard
