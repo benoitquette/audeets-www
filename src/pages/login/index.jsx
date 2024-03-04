@@ -3,8 +3,6 @@ import { Box, Grid } from '@mui/material';
 import LoginCard from './LoginCard';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
-// import AuthFooter from 'components/cards/AuthFooter';
-// import AuthBackground from 'assets/images/auth/AuthBackground';
 
 const Login = () => {
   const location = useLocation();

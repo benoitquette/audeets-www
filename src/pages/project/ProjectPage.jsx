@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import ScoreCard from './score/ScoreCard';
 import {
@@ -17,8 +18,20 @@ import EvolutionCard from './evolution/EvolutionCard';
 import AuditCard from './audit/AuditCard';
 
 const ProjectPage = () => {
-  const [slot, setSlot] = useState('week');
   const [selectedCategory, setSelectedCategory] = useState();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.has('category')) {
+      setSelectedCategory(params.get('category'));
+      navigate(location.pathname);
+    }
+  });
+
+  const [slot, setSlot] = useState('week');
+
   const [selectedUrl, setSelectedUrl] = useState();
   const [showFailsOnly, setshowFailsOnly] = useState(false);
 
