@@ -1,9 +1,5 @@
 import PropTypes from 'prop-types';
-
-// third-party
 import { motion } from 'framer-motion';
-
-// ==============================|| ANIMATION BUTTON ||============================== //
 
 export default function AnimateButton({ children, type }) {
   switch (type) {

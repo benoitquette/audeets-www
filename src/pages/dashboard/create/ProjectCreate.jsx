@@ -1,6 +1,5 @@
-import { Grid, Typography } from '@mui/material';
+import { Card, Grid, Typography } from '@mui/material';
 import ProjectCreateStepper from './ProjectCreateStepper';
-import MainCard from '~/components/MainCard';
 
 const ProjectCreate = () => {
   return (
@@ -12,9 +11,9 @@ const ProjectCreate = () => {
           </Grid>
         </Grid>
         <Grid item>
-          <MainCard sx={{ mt: 2, p: 2 }} content={false}>
+          <Card sx={{ mt: 2, p: 2 }}>
             <ProjectCreateStepper />
-          </MainCard>
+          </Card>
         </Grid>
       </Grid>
     </Grid>

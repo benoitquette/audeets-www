@@ -6,7 +6,6 @@ import { Box, Toolbar, useMediaQuery } from '@mui/material';
 import Drawer from './Drawer';
 import Header from './Header';
 import menuItems from '~/menu-items';
-import Breadcrumbs from '~/components/@extended/Breadcrumbs';
 import { openDrawer } from '~/store/reducers/menu';
 import { useGetProjectsQuery } from '~/store/reducers/projects-api';
 
@@ -44,7 +43,6 @@ const Layout = () => {
         <Drawer open={open} handleDrawerToggle={handleDrawerToggle} navigation={navigation} />
         <Box component="main" sx={{ width: '100%', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
           <Toolbar />
-          <Breadcrumbs navigation={navigation} title />
           <Outlet />
         </Box>
       </Box>

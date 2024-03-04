@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
-
-// project import
 import Navigation from './Navigation';
 import SimpleBar from '~/components/third-party/SimpleBar';
-
-// ==============================|| DRAWER CONTENT ||============================== //
 
 const DrawerContent = ({ navigation }) => (
   <SimpleBar
@@ -16,7 +12,6 @@ const DrawerContent = ({ navigation }) => (
     }}
   >
     <Navigation navigation={navigation} />
-    {/* <NavCard /> */}
   </SimpleBar>
 );
 

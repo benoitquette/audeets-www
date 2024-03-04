@@ -3,9 +3,9 @@ import { Grid, Card, CardContent, CardHeader } from '@mui/material';
 import IndicatorGauge from './IndicatorGauge';
 import { getColorFromScore } from '~/config.js';
 
-const ScoreCard = ({ score }) => (
+const ScoreCard = ({ category, score }) => (
   <Card>
-    <CardHeader title="Score"></CardHeader>
+    <CardHeader title={`${category} score`}></CardHeader>
     <CardContent sx={{ mt: -1 }}>
       <Grid container justifyContent="center">
         <Grid item>
@@ -17,7 +17,8 @@ const ScoreCard = ({ score }) => (
 );
 
 ScoreCard.propTypes = {
-  score: PropTypes.number.isRequired
+  category: PropTypes.string,
+  score: PropTypes.number
 };
 
 export default ScoreCard;

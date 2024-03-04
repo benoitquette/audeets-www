@@ -1,6 +1,5 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Card } from '@mui/material';
 import ProjectUpdateForm from './ProjectUpdateForm';
-import MainCard from '~/components/MainCard';
 
 const ProjectUpdate = () => {
   return (
@@ -12,9 +11,9 @@ const ProjectUpdate = () => {
           </Grid>
         </Grid>
         <Grid item>
-          <MainCard sx={{ mt: 2, p: 2 }} content={false}>
+          <Card sx={{ mt: 2, p: 2 }}>
             <ProjectUpdateForm />
-          </MainCard>
+          </Card>
         </Grid>
       </Grid>
     </Grid>

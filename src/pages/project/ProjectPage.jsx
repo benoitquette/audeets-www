@@ -80,7 +80,7 @@ const ProjectPage = () => {
         )}
       </Grid>
       <Grid item xs={12} sm={4} md={3} lg={2}>
-        <ScoreCard score={selectedScore} />
+        <ScoreCard category={selectedCategory} score={selectedScore} />
       </Grid>
       <Grid item xs={12} sm={8} md={9} lg={10}>
         <EvolutionCard data={rollingData} selectedCategory={selectedCategory} slot={slot} onSelectSlot={setSlot} />

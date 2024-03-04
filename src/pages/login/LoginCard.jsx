@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { Grid, Stack, Typography, Box } from '@mui/material';
+import { Grid, Stack, Typography, Box, Card } from '@mui/material';
 import ButtonsList from './ButtonsList';
 import Logo from '~/components/Logo/Logo';
-import MainCard from '~/components/MainCard';
 
 const LoginCard = ({ returnUrl }) => (
-  <MainCard
+  <Card
     sx={{
       maxWidth: { xs: 400, lg: 475 },
       margin: { xs: 2.5, md: 3 },
@@ -37,7 +36,7 @@ const LoginCard = ({ returnUrl }) => (
         </Grid>
       </Grid>
     </Box>
-  </MainCard>
+  </Card>
 );
 
 LoginCard.propTypes = {

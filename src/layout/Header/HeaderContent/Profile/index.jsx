@@ -8,7 +8,6 @@ import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase, ClickAwayListener, Paper, Popper, Stack, Typography } from '@mui/material';
 
 // project import
-import MainCard from '~/components/MainCard';
 import Transitions from '~/components/@extended/Transitions';
 import ProfileTab from './ProfileTab';
 import { logout } from '~/store/reducers/user';
@@ -117,66 +116,7 @@ const Profile = () => {
                 }}
               >
                 <ClickAwayListener onClickAway={handleClose}>
-                  <MainCard elevation={0} border={false} content={false}>
-                    {/* <CardContent sx={{ px: 2.5, pt: 3 }}>
-                      <Grid container justifyContent="space-between" alignItems="center">
-                        <Grid item>
-                          <Stack direction="row" spacing={1.25} alignItems="center">
-                            <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
-                            <Stack>
-                              <Typography variant="h6">John Doe</Typography>
-                              <Typography variant="body2" color="textSecondary">
-                                UI/UX Designer
-                              </Typography>
-                            </Stack>
-                          </Stack>
-                        </Grid>
-                        <Grid item>
-                          <IconButton size="large" color="secondary" onClick={handleLogout}>
-                            <LogoutOutlined />
-                          </IconButton>
-                        </Grid>
-                      </Grid>
-                    </CardContent> */}
-                    {open && <ProfileTab handleLogout={handleLogout} />}
-                    {/* <>
-                      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <Tabs variant="fullWidth" value={value} onChange={handleChange} aria-label="profile tabs">
-                          <Tab
-                            sx={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              textTransform: 'capitalize'
-                            }}
-                            icon={<UserOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
-                            label="Profile"
-                            {...a11yProps(0)}
-                          />
-                          <Tab
-                            sx={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              textTransform: 'capitalize'
-                            }}
-                            icon={<SettingOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
-                            label="Setting"
-                            {...a11yProps(1)}
-                          />
-                        </Tabs>
-                      </Box>
-                      <TabPanel value={value} index={0} dir={theme.direction}>
-                        <ProfileTab handleLogout={handleLogout} />
-                      </TabPanel>
-                      <TabPanel value={value} index={1} dir={theme.direction}>
-                        <SettingTab />
-                      </TabPanel>
-                    </>
-                    )} */}
-                  </MainCard>
+                  <Box>{open && <ProfileTab handleLogout={handleLogout} />}</Box>
                 </ClickAwayListener>
               </Paper>
             )}

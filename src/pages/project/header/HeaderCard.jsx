@@ -54,12 +54,12 @@ HeaderCard.propTypes = {
   title: PropTypes.string.isRequired,
   domain: PropTypes.string.isRequired,
   urls: PropTypes.array.isRequired,
-  selectedUrl: PropTypes.string.isRequired,
+  selectedUrl: PropTypes.string,
   handleUrlChange: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
-  selectedCategory: PropTypes.string.isRequired,
+  selectedCategory: PropTypes.string,
   handleCategoryChange: PropTypes.func.isRequired,
-  selectedDate: PropTypes.string.isRequired
+  selectedDate: PropTypes.string
 };
 
 export default HeaderCard;
