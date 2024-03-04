@@ -2,17 +2,13 @@ import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase, ClickAwayListener, Paper, Popper, Stack, Typography } from '@mui/material';
-
-// project import
 import Transitions from '~/components/@extended/Transitions';
 import ProfileTab from './ProfileTab';
 import { logout } from '~/store/reducers/user';
+import Cookies from 'js-cookie';
 
-// tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
   return (
     <div role="tabpanel" hidden={value !== index} id={`profile-tabpanel-${index}`} aria-labelledby={`profile-tab-${index}`} {...other}>
@@ -26,15 +22,6 @@ TabPanel.propTypes = {
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired
 };
-
-// function a11yProps(index) {
-//   return {
-//     id: `profile-tab-${index}`,
-//     'aria-controls': `profile-tabpanel-${index}`
-//   };
-// }
-
-// ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 const Profile = () => {
   const theme = useTheme();
