@@ -23,7 +23,13 @@ function ProjectCard({ _id, title, domain, onViewCategory, onEditProject, onView
 
   return (
     <Card>
-      <CardHeader avatar={<Avatar src={`https://${domain}/favicon.ico`} />} title={title} subheader={domain} />
+      <CardHeader
+        avatar={<Avatar src={`https://${domain}/favicon.ico`} />}
+        title={title}
+        subheader={domain}
+        titleTypographyProps={{ variant: 'h5' }}
+        subheaderTypographyProps={{ variant: 'h6' }}
+      />
       <CardContent sx={{ mt: -1 }}>{scores && <Indicator data={scores} onClickCategory={handleCategoryClick} />}</CardContent>
       <CardActions>
         <Tooltip title="View project statistics">
