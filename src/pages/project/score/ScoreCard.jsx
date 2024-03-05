@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Grid, Card, CardContent, CardHeader } from '@mui/material';
 import IndicatorGauge from './IndicatorGauge';
-import { getColorFromScore } from '~/config.js';
+import { getColorFromScore } from '~/config';
 
 const ScoreCard = ({ category, score }) => (
   <Card>

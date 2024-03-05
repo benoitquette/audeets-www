@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
-import { categoriesTheme } from '~/config.js';
+import { categoriesTheme } from '~/config';
 
 const RollingAreaChart = ({ data, selectedCategory }) => {
   const theme = useTheme();

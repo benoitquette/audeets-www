@@ -6,7 +6,7 @@ const CategorySelector = ({ categories, selectedCategory, handleChange }) => (
     {categories.map((category) => (
       <Tooltip title={category.name} key={category.name}>
         <ToggleButton label={category.name} value={category.name}>
-          <Icon>{category.icon}</Icon>
+          {category.icon}
         </ToggleButton>
       </Tooltip>
     ))}

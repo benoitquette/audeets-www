@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { Grid } from '@mui/material';
 import ScoreCard from './score/ScoreCard';
 import { useGetProjectQuery, useGetScoresQuery } from '~/store/reducers/projects-api';
-import { categoriesTheme } from '~/config.js';
+import { categoriesTheme } from '~/config';
 import HeaderCard from './header/HeaderCard';
 import EvolutionCard from './evolution/EvolutionCard';
 import AuditCard from './audit/AuditCard';

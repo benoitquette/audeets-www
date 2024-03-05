@@ -1,5 +1,9 @@
 import { red, orange, green } from '@mui/material/colors';
 import { purple, indigo, blue, deepPurple } from '@mui/material/colors';
+import SettingsAccessibilityIcon from '@mui/icons-material/SettingsAccessibility';
+import SpeedIcon from '@mui/icons-material/Speed';
+import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
+import SecurityIcon from '@mui/icons-material/Security';
 
 export default {
   defaultPath: '/',
@@ -18,9 +22,9 @@ export const urlApiProjects = import.meta.env.VITE_URL_API_PROJECTS ?? apiProjec
 export const urlApiUsers = import.meta.env.VITE_URL_API_USERS ?? apiUsersUrl;
 
 export const severities = [
-  { from: 0, color: red },
-  { from: 50, color: orange },
-  { from: 80, color: green }
+  { from: 0, color: red, name: 'bad' },
+  { from: 50, color: orange, name: 'warning' },
+  { from: 80, color: green, name: 'good' }
 ];
 
 export const getColorFromScore = (score) => {
@@ -31,21 +35,29 @@ export const getColorFromScore = (score) => {
   return res;
 };
 
+export const getSeverityFromScore = (score) => {
+  let res = null;
+  for (const severity of severities) {
+    if (score >= severity.from) res = severity;
+  }
+  return res;
+};
+
 export const categoriesTheme = {
   Accessibility: {
     color: deepPurple,
-    icon: 'settings_accessibility'
+    icon: <SettingsAccessibilityIcon />
   },
   Performance: {
     color: purple,
-    icon: 'speed'
+    icon: <SpeedIcon />
   },
   Search: {
     color: indigo,
-    icon: 'troubleshoot'
+    icon: <TroubleshootIcon />
   },
   Security: {
     color: blue,
-    icon: 'security'
+    icon: <SecurityIcon />
   }
 };
