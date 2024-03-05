@@ -54,7 +54,7 @@ HeaderCard.propTypes = {
   title: PropTypes.string.isRequired,
   domain: PropTypes.string.isRequired,
   urls: PropTypes.array.isRequired,
-  selectedUrl: PropTypes.string,
+  selectedUrl: PropTypes.string.isRequired,
   handleUrlChange: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   selectedCategory: PropTypes.string,
