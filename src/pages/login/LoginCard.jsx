@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Grid, Stack, Typography, Box, Card } from '@mui/material';
 import ButtonsList from './ButtonsList';
-import Logo from '~/components/Logo/Logo';
+import logo from '~/assets/images/logo.png';
 
 const LoginCard = ({ returnUrl }) => (
   <Card
@@ -18,7 +18,7 @@ const LoginCard = ({ returnUrl }) => (
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Stack direction="row" justifyContent="center" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
-            <Logo />
+            <img src={logo} alt="Audeets" width="30" />
             <Typography sx={{ ml: 1 }} variant="h3">
               Signin for Audeets
             </Typography>
