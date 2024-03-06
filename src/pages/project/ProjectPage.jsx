@@ -43,6 +43,9 @@ const ProjectPage = () => {
               setFilter((state) => ({ ...state, category }));
             }}
             selectedDate={filter.date}
+            handleDateChange={() => {
+              setFilter((state) => ({ ...state, date: null }));
+            }}
           />
         )}
       </Grid>

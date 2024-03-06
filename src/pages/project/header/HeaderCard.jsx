@@ -13,7 +13,8 @@ const HeaderCard = ({
   categories,
   selectedCategory,
   handleCategoryChange,
-  selectedDate
+  selectedDate,
+  handleDateChange
 }) => {
   return (
     <Grid container alignItems="center" justifyContent="space-between">
@@ -39,7 +40,7 @@ const HeaderCard = ({
           </Grid>
           <Grid>
             <Tooltip title="Reset to latest">
-              <IconButton aria-label="delete">
+              <IconButton onClick={handleDateChange}>
                 <RestartAltIcon />
               </IconButton>
             </Tooltip>
@@ -59,7 +60,8 @@ HeaderCard.propTypes = {
   categories: PropTypes.array.isRequired,
   selectedCategory: PropTypes.string,
   handleCategoryChange: PropTypes.func.isRequired,
-  selectedDate: PropTypes.string
+  selectedDate: PropTypes.string,
+  handleDateChange: PropTypes.func.isRequired
 };
 
 export default HeaderCard;
