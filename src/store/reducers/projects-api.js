@@ -46,20 +46,24 @@ export const projectsApi = createApi({
       query: ({ id, url }) => `${id}/scores/latest?url=${encodeURIComponent(url)}`,
       transformResponse: sortAndCapitalizeCategories
     }),
+    getScoresByDate: builder.query({
+      query: ({ id, date, url }) => `${id}/scores/${date}?url=${encodeURIComponent(url)}`,
+      transformResponse: sortAndCapitalizeCategories
+    }),
     getGlobalScores: builder.query({
       query: (id) => `${id}/scores/latest/global`,
       transformResponse: sortAndCapitalizeCategories
     }),
     getRollingWeek: builder.query({
-      query: (id) => `${id}/scores/week`,
+      query: (id) => `${id}/rolling/week`,
       transformResponse: (response) => flattenProjectsData(response, 7, { weekday: 'short' })
     }),
     getRollingMonth: builder.query({
-      query: (id) => `${id}/scores/month`,
+      query: (id) => `${id}/rolling/month`,
       transformResponse: (response) => flattenProjectsData(response, 30, { month: 'short', day: 'numeric' })
     }),
     getRollingYear: builder.query({
-      query: (id) => `${id}/scores/year`,
+      query: (id) => `${id}/rolling/year`,
       transformResponse: (response) => flattenProjectsData(response, 12, { month: 'short' })
     }),
     getAudit: builder.query({
@@ -73,6 +77,7 @@ export const {
   useGetProjectsQuery,
   useGetProjectQuery,
   useGetScoresQuery,
+  useGetScoresByDateQuery,
   useGetGlobalScoresQuery,
   useGetRollingWeekQuery,
   useGetRollingMonthQuery,

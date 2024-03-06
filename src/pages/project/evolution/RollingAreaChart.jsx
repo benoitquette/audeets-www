@@ -3,13 +3,17 @@ import { useTheme } from '@mui/material/styles';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { categoriesTheme } from '~/config';
 
-const RollingAreaChart = ({ data, selectedCategory }) => {
+const RollingAreaChart = ({ data, selectedCategory, selectDate }) => {
   const theme = useTheme();
   const fontStyle = {
     fontSize: theme.typography.body2.fontSize,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.body2.fontWeight,
     lineHeight: theme.typography.body2.lineHeight
+  };
+
+  const handleClick = (e) => {
+    selectDate(e.activePayload[0].payload.date);
   };
 
   return (
@@ -22,11 +26,12 @@ const RollingAreaChart = ({ data, selectedCategory }) => {
           left: -25,
           bottom: -10
         }}
+        onClick={handleClick}
       >
         <defs>
           {data &&
             Object.entries(data[0]).map(([key]) => {
-              if (key !== 'name')
+              if (key !== 'name' && key !== 'date')
                 return (
                   <linearGradient key={key} id={key} x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor={categoriesTheme[key].color[300]} stopOpacity={0.5} />
@@ -62,7 +67,8 @@ const RollingAreaChart = ({ data, selectedCategory }) => {
 
 RollingAreaChart.propTypes = {
   data: PropTypes.array,
-  selectedCategory: PropTypes.string
+  selectedCategory: PropTypes.string,
+  selectDate: PropTypes.func.isRequired
 };
 
 export default RollingAreaChart;

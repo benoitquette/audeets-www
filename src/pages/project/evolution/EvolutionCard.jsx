@@ -5,14 +5,14 @@ import RollingAreaChart from './RollingAreaChart';
 import SlotSelector from './SlotSelector';
 import useGetRollingData from './useGetRollingData';
 
-const EvolutionCard = ({ projectId, selectedCategory }) => {
+const EvolutionCard = ({ projectId, selectedCategory, selectDate }) => {
   const [slot, setSlot] = useState('week');
   const data = useGetRollingData(projectId, slot);
   return (
     <Card>
       <CardHeader title="Evolution" action={<SlotSelector slot={slot} onClick={setSlot} />} />
       <CardContent sx={{ mt: -2 }}>
-        <RollingAreaChart data={data} selectedCategory={selectedCategory} />
+        <RollingAreaChart data={data} selectedCategory={selectedCategory} selectDate={selectDate} />
       </CardContent>
     </Card>
   );
@@ -20,7 +20,8 @@ const EvolutionCard = ({ projectId, selectedCategory }) => {
 
 EvolutionCard.propTypes = {
   projectId: PropTypes.string.isRequired,
-  selectedCategory: PropTypes.string
+  selectedCategory: PropTypes.string,
+  selectDate: PropTypes.func.isRequired
 };
 
 export default EvolutionCard;

@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import { Grid } from '@mui/material';
 import ScoreCard from './score/ScoreCard';
-import { useGetProjectQuery, useGetScoresQuery } from '~/store/reducers/projects-api';
+import { useGetProjectQuery, useGetScoresQuery, useGetScoresByDateQuery } from '~/store/reducers/projects-api';
 import { categoriesTheme } from '~/config';
 import HeaderCard from './header/HeaderCard';
 import EvolutionCard from './evolution/EvolutionCard';
 import AuditCard from './audit/AuditCard';
 import useSetFilters from './useSetFilters';
+import dayjs from 'dayjs';
 
 const ProjectPage = () => {
   const [score, setScore] = useState(0);
@@ -16,7 +17,9 @@ const ProjectPage = () => {
   const projectId = useParams().projectId;
   const { data: project } = useGetProjectQuery(projectId);
 
-  const { data: scores = [] } = useGetScoresQuery({ id: projectId, url: filter.url }, { skip: !filter.url });
+  const { data: scores = [] } = !filter.date
+    ? useGetScoresQuery({ id: projectId, url: filter.url }, { skip: !filter.url })
+    : useGetScoresByDateQuery({ id: projectId, date: dayjs(filter.date).format('YYYYMMDD'), url: filter.url }, { skip: !filter.url });
   useSetFilters(project, scores, filter, setFilter, setScore);
 
   const categories = scores.map((item) => ({
@@ -47,7 +50,13 @@ const ProjectPage = () => {
         <ScoreCard category={filter.category} score={score} />
       </Grid>
       <Grid item xs={12} sm={8} md={9} lg={10}>
-        <EvolutionCard projectId={projectId} selectedCategory={filter.category} />
+        <EvolutionCard
+          projectId={projectId}
+          selectedCategory={filter.category}
+          selectDate={(date) => {
+            setFilter((state) => ({ ...state, date }));
+          }}
+        />
       </Grid>
       <Grid item xs={12}>
         <AuditCard projectId={projectId} filter={filter} />

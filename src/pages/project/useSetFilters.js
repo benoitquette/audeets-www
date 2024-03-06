@@ -28,6 +28,9 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
 
   useEffect(() => {
     setScore(scores.reduce((scoreNumber, score) => (filter.category && score.category === filter.category ? score.score : scoreNumber), 0));
+  }, [scores, filter.category, filter.date]);
+
+  useEffect(() => {
     setFilter((state) => ({
       ...state,
       date: scores.reduce((date, score) => (score.category === filter.category ? score.date : date), null)
