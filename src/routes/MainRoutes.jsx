@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import Loadable from '~/components/Loadable';
-import Layout from '~/layout';
+import Layout from '~/layout/Layout';
 import Protected from '~/components/Protected';
 
 const Dashboard = Loadable(lazy(() => import('~/pages/dashboard/Dashboard')));

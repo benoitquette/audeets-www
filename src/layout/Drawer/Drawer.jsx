@@ -1,17 +1,11 @@
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Box, Drawer, useMediaQuery } from '@mui/material';
-
-// project import
-import DrawerHeader from './DrawerHeader';
+import DrawerHeader from './DrawerHeader/DrawerHeader';
 import DrawerContent from './DrawerContent';
 import MiniDrawerStyled from './MiniDrawerStyled';
 import { drawerWidth } from '~/config';
-
-// ==============================|| MAIN LAYOUT - DRAWER ||============================== //
 
 const MainDrawer = ({ open, handleDrawerToggle, window, navigation }) => {
   const theme = useTheme();
