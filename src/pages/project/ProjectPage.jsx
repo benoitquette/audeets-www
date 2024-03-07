@@ -17,11 +17,11 @@ const ProjectPage = () => {
   const projectId = useParams().projectId;
   const { data: project } = useGetProjectQuery(projectId);
 
-  let { data: scores = [] } = useGetScoresQuery({ id: projectId, url: filter.url }, { skip: !filter.url && filter.date });
-  scores = useGetScoresByDateQuery(
-    { id: projectId, date: dayjs(filter.date).format('YYYYMMDD'), url: filter.url },
-    { skip: !filter.url && !filter.date }
-  ).data;
+  const { data: scores = [] } = !filter.date
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useGetScoresQuery({ id: projectId, url: filter.url }, { skip: !filter.url })
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useGetScoresByDateQuery({ id: projectId, date: dayjs(filter.date).format('YYYYMMDD'), url: filter.url }, { skip: !filter.url });
   useSetFilters(project, scores, filter, setFilter, setScore);
 
   const categories = scores.map((item) => ({
