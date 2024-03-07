@@ -12,7 +12,7 @@ export const sortProjects = (response) => response.sort((a, b) => a.title.locale
 
 export const flattenProjectsData = (data, length, format) => {
   let res = null;
-  if (data) {
+  if (data?.length > 0) {
     data = sortAndCapitalizeCategories(data);
     res = [];
     for (let i = 0; i < length; i++) {

@@ -15,7 +15,7 @@ const CategorySelector = ({ categories, selectedCategory, handleChange }) => (
 
 CategorySelector.propTypes = {
   categories: PropTypes.array.isRequired,
-  selectedCategory: PropTypes.string.isRequired,
+  selectedCategory: PropTypes.string,
   handleChange: PropTypes.func.isRequired
 };
 

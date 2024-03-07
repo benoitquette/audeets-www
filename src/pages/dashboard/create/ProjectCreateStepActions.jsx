@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
+import { Button, Box } from '@mui/material';
 
-function ProjectCreateStepActions({ stepIndex, stepsCount, currentStep, handleLastStep, setStepIndex }) {
+function ProjectCreateStepActions({ stepIndex, stepsCount, currentStep, handleLastStep, setStepIndex, enabled = true }) {
   const nextStep = () => {
     if (stepIndex === stepsCount - 1) {
       handleLastStep();
@@ -10,16 +10,16 @@ function ProjectCreateStepActions({ stepIndex, stepsCount, currentStep, handleLa
     }
   };
   return (
-    <>
+    <Box sx={{ mt: 2 }}>
       {currentStep > 0 && (
         <Button disabled={stepIndex === 0} onClick={() => setStepIndex(stepIndex - 1)}>
           Back
         </Button>
       )}
-      <Button variant="contained" onClick={() => nextStep()} sx={{ marginRight: 1 }}>
+      <Button type="submit" variant="contained" onClick={nextStep} sx={{ marginRight: 1 }} disabled={!enabled}>
         {stepIndex === stepsCount - 1 ? 'Finish' : 'Next'}
       </Button>
-    </>
+    </Box>
   );
 }
 
@@ -28,7 +28,8 @@ ProjectCreateStepActions.propTypes = {
   stepsCount: PropTypes.number.isRequired,
   currentStep: PropTypes.number.isRequired,
   handleLastStep: PropTypes.func,
-  setStepIndex: PropTypes.func.isRequired
+  setStepIndex: PropTypes.func.isRequired,
+  enabled: PropTypes.bool
 };
 
 export default ProjectCreateStepActions;
