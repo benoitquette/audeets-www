@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Card, CardHeader, CardContent, Switch } from '@mui/material';
 import PropTypes from 'prop-types';
-import ResultsTable from './ResultsTable';
 import dayjs from 'dayjs';
+import ResultsTable from './ResultsTable';
 import { useGetAuditQuery } from '~/store/reducers/projects-api';
 
 const AuditCard = ({ projectId, filter }) => {

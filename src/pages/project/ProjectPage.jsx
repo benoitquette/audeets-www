@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import { Grid } from '@mui/material';
+import dayjs from 'dayjs';
 import ScoreCard from './score/ScoreCard';
-import { useGetProjectQuery, useGetScoresQuery, useGetScoresByDateQuery } from '~/store/reducers/projects-api';
-import { categoriesTheme } from '~/config';
 import HeaderCard from './header/HeaderCard';
 import EvolutionCard from './evolution/EvolutionCard';
 import AuditCard from './audit/AuditCard';
 import useSetFilters from './useSetFilters';
-import dayjs from 'dayjs';
+import { categoriesTheme } from '~/config';
+import { useGetProjectQuery, useGetScoresQuery, useGetScoresByDateQuery } from '~/store/reducers/projects-api';
 
 const ProjectPage = () => {
   const [score, setScore] = useState(0);
@@ -17,9 +17,11 @@ const ProjectPage = () => {
   const projectId = useParams().projectId;
   const { data: project } = useGetProjectQuery(projectId);
 
-  const { data: scores = [] } = !filter.date
-    ? useGetScoresQuery({ id: projectId, url: filter.url }, { skip: !filter.url })
-    : useGetScoresByDateQuery({ id: projectId, date: dayjs(filter.date).format('YYYYMMDD'), url: filter.url }, { skip: !filter.url });
+  let { data: scores = [] } = useGetScoresQuery({ id: projectId, url: filter.url }, { skip: !filter.url && filter.date });
+  scores = useGetScoresByDateQuery(
+    { id: projectId, date: dayjs(filter.date).format('YYYYMMDD'), url: filter.url },
+    { skip: !filter.url && !filter.date }
+  ).data;
   useSetFilters(project, scores, filter, setFilter, setScore);
 
   const categories = scores.map((item) => ({

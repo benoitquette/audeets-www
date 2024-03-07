@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button, Grid, Typography, Link, Tooltip } from '@mui/material';
-import { useGetProjectsQuery } from '~/store/reducers/projects-api';
 import { WarningOutlined } from '@ant-design/icons';
 import ProjectCard from './ProjectCard';
+import { useGetProjectsQuery } from '~/store/reducers/projects-api';
 
 const Dashboard = () => {
   const { data: projects } = useGetProjectsQuery();

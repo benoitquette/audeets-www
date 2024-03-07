@@ -2,15 +2,9 @@ import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
-
-// project import
 import { activeItem } from '~/store/reducers/menu';
-
-// ==============================|| NAVIGATION - LIST ITEM ||============================== //
 
 const NavItem = ({ item, level }) => {
   const theme = useTheme();
@@ -42,6 +36,7 @@ const NavItem = ({ item, level }) => {
     if (pathname.includes(item.url)) {
       dispatch(activeItem({ openItem: [item.id] }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const textColor = 'text.primary';

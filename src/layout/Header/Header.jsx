@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import { AppBar, IconButton, Toolbar, useMediaQuery } from '@mui/material';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import AppBarStyled from './AppBarStyled';
 import HeaderContent from './HeaderContent';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 const Header = ({ open, handleDrawerToggle }) => {
   const theme = useTheme();

@@ -15,7 +15,7 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
       setFilter((state) => ({ ...state, category: params.get('category') }));
       navigate(location.pathname);
     }
-  }, []);
+  });
 
   useEffect(() => {
     if (scores.length > 0) {
@@ -24,10 +24,12 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
         category: filter.category || scores[0].category
       }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scores]);
 
   useEffect(() => {
     setScore(scores.reduce((scoreNumber, score) => (filter.category && score.category === filter.category ? score.score : scoreNumber), 0));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scores, filter.category, filter.date]);
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
       ...state,
       date: scores.reduce((date, score) => (score.category === filter.category ? score.date : date), null)
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scores, filter.category]);
 };
 

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { urlApiProjects } from '~/config';
 import { sortAndCapitalizeCategories, sortProjects, flattenProjectsData, capitalizeCategories } from './transformers';
+import { urlApiProjects } from '~/config';
 
 export const projectsApi = createApi({
   tagTypes: ['project'],

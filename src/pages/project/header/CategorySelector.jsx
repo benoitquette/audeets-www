@@ -1,5 +1,5 @@
 import { PropTypes } from 'prop-types';
-import { ToggleButtonGroup, ToggleButton, Icon, Tooltip } from '@mui/material';
+import { ToggleButtonGroup, ToggleButton, Tooltip } from '@mui/material';
 
 const CategorySelector = ({ categories, selectedCategory, handleChange }) => (
   <ToggleButtonGroup exclusive size="small" value={selectedCategory} onChange={(event, value) => handleChange(value)}>
@@ -13,7 +13,7 @@ const CategorySelector = ({ categories, selectedCategory, handleChange }) => (
   </ToggleButtonGroup>
 );
 
-CategorySelector.prototype = {
+CategorySelector.propTypes = {
   categories: PropTypes.array.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired

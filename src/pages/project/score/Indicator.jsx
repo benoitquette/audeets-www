@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Avatar, Icon, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText } from '@mui/material';
-import { capitalize } from '~/utils/string-helpers';
-import IndicatorGauge from './IndicatorGauge';
-import { getColorFromScore } from '~/config.js';
 import dayjs from 'dayjs';
+import IndicatorGauge from './IndicatorGauge';
+import { capitalize } from '~/utils/string-helpers';
+import { getColorFromScore } from '~/config';
 
 const Indicator = ({ title, score, date, iconName, iconColor }) => {
   const navigate = useNavigate();

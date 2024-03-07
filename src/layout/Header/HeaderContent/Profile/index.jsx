@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase, ClickAwayListener, Paper, Popper, Stack, Typography } from '@mui/material';
-import Transitions from '~/components/@extended/Transitions';
-import ProfileTab from './ProfileTab';
-import { logout } from '~/store/reducers/user';
 import Cookies from 'js-cookie';
+import ProfileTab from './ProfileTab';
+import Transitions from '~/components/@extended/Transitions';
+import { logout } from '~/store/reducers/user';
 
 function TabPanel({ children, value, index, ...other }) {
   return (

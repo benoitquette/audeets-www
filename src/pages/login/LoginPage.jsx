@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Grid } from '@mui/material';
-import LoginCard from './LoginCard';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
+import LoginCard from './LoginCard';
 
-const Login = () => {
+const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
@@ -13,7 +13,7 @@ const Login = () => {
 
   useEffect(() => {
     if (sessionCookie) navigate(returnUrl);
-  }, [sessionCookie, navigate]);
+  }, [sessionCookie, navigate, returnUrl]);
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
@@ -48,4 +48,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

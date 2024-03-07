@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
   root: true,
   env: {
@@ -25,11 +27,11 @@ module.exports = {
       flowVersion: '0.53' // Flow version
     },
     'import/resolver': {
-      node: {
-        moduleDirectory: ['node_modules', 'src/', 'express/']
-      },
+      // node: {
+      //   moduleDirectory: ['node_modules', 'src/']
+      // },
       alias: {
-        map: [['~', path.resolve(__dirname, './src')]],
+        map: [['~', './src']],
         extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx']
       }
     }
@@ -44,6 +46,7 @@ module.exports = {
     ecmaVersion: 12
   },
   plugins: ['prettier', 'react', 'react-hooks'],
+  ignorePatterns: ['**/node_modules/**', 'node_modules/'],
   rules: {
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',

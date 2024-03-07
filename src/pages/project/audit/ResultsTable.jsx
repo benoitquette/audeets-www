@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from '@mui/material/Table';
-import { TableRow, TableBody, TableCell, TableHead, Card, CardHeader, CardContent, Switch } from '@mui/material';
+import { TableRow, TableBody, TableCell, TableHead } from '@mui/material';
 import PropTypes from 'prop-types';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined';
@@ -37,7 +37,7 @@ const ResultsTable = ({ results, showFailsOnly }) => (
               )}
             </TableCell>
             <TableCell sx={tableCellSx}>{result.title}</TableCell>
-            <TableCell sx={tableCellSx}>{/* <ResultsDetails details={result.details} /> */}</TableCell>
+            <TableCell sx={tableCellSx}></TableCell>
           </TableRow>
         ))}
     </TableBody>

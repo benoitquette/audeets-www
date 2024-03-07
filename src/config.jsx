@@ -1,5 +1,4 @@
-import { red, orange, green } from '@mui/material/colors';
-import { purple, indigo, blue, deepPurple } from '@mui/material/colors';
+import { red, orange, green, purple, indigo, blue, deepPurple } from '@mui/material/colors';
 import SettingsAccessibilityIcon from '@mui/icons-material/SettingsAccessibility';
 import SpeedIcon from '@mui/icons-material/Speed';
 import TroubleshootIcon from '@mui/icons-material/Troubleshoot';

@@ -1,12 +1,6 @@
 import { lazy } from 'react';
-
-// project import
 import Loadable from '~/components/Loadable';
-
-// render - login
-const Login = Loadable(lazy(() => import('~/pages/login')));
-
-// ==============================|| AUTH ROUTING ||============================== //
+const Login = Loadable(lazy(() => import('~/pages/login/LoginPage')));
 
 const LoginRoutes = {
   path: '/login',

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import ProjectDelete from './delete/ProjectDelete';
-import { CardActions, CardHeader, Card, CardContent, Avatar, IconButton, Tooltip } from '@mui/material/index';
+import { CardActions, CardHeader, Card, CardContent, Avatar, IconButton, Tooltip } from '@mui/material';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { useGetGlobalScoresQuery } from '~/store/reducers/projects-api';
+import ProjectDelete from './delete/ProjectDelete';
 import Indicator from './Indicator';
+import { useGetGlobalScoresQuery } from '~/store/reducers/projects-api';
 
 function ProjectCard({ _id, title, domain, onViewCategory, onEditProject, onViewProject }) {
   const { data: scores } = useGetGlobalScoresQuery(_id);

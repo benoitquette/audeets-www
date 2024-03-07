@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import TestRenderer from 'react-test-renderer';
 import { BarChart, Bar, XAxis, YAxis, Cell } from 'recharts';
-import { categoriesTheme } from '~/config';
-import { getSeverityFromScore, severities } from '~/config';
+import { categoriesTheme, getSeverityFromScore, severities } from '~/config';
 
 const getIconPath = (icon) => {
   const iconComponent = TestRenderer.create(icon);
