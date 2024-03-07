@@ -6,9 +6,10 @@ import { useAddProjectMutation } from '~/store/reducers/projects-api';
 
 const STEPS_COUNT = 3;
 const URL_REGEX =
+  // eslint-disable-next-line no-useless-escape
   /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
 
-function ProjectCreateStepper() {
+const ProjectCreateStepper = () => {
   const navigate = useNavigate();
   const [stepIndex, setStepIndex] = useState(0);
   const [url, setUrl] = useState({ url: '', error: true });
@@ -82,6 +83,6 @@ function ProjectCreateStepper() {
       </Step>
     </Stepper>
   );
-}
+};
 
 export default ProjectCreateStepper;
