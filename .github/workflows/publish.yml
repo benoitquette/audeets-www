@@ -31,6 +31,14 @@ jobs:
           images: |
             ghcr.io/${{ github.repository }}
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: yarn install
+
+      - run: yarn lint
+
       - name: Build and push Docker images
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
