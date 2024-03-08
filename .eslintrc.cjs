@@ -30,7 +30,7 @@ module.exports = {
       // },
       alias: {
         map: [['~', './src']],
-        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx', '.scss']
       }
     }
   },

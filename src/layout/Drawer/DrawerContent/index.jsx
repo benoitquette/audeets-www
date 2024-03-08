@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Navigation from './Navigation';
-import SimpleBar from '~/components/third-party/SimpleBar';
+import SimpleBar from '~/components/SimpleBar/SimpleBar';
 
 const DrawerContent = ({ navigation }) => (
   <SimpleBar

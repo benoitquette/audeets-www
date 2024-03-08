@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase, ClickAwayListener, Paper, Popper, Stack, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import ProfileTab from './ProfileTab';
-import Transitions from '~/components/@extended/Transitions';
+import Transitions from '~/components/Transitions/Transitions';
 import { logout } from '~/store/reducers/user';
 
 function TabPanel({ children, value, index, ...other }) {

@@ -1,7 +1,7 @@
 import { lazy } from 'react';
-import Loadable from '~/components/Loadable';
+import Loadable from '~/components/Loadable/Loadable';
 import Layout from '~/layout/Layout';
-import Protected from '~/components/Protected';
+import Protected from '~/components/Protected/Protected';
 
 const Dashboard = Loadable(lazy(() => import('~/pages/dashboard/Dashboard')));
 const ProjectCreate = Loadable(lazy(() => import('~/pages/dashboard/create/ProjectCreate')));
