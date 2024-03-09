@@ -3,17 +3,17 @@ import TestRenderer from 'react-test-renderer';
 import { BarChart, Bar, XAxis, YAxis, Cell } from 'recharts';
 import { categoriesTheme, getSeverityFromScore, severities } from '~/config';
 
-const getIconPath = (icon) => {
-  const iconComponent = TestRenderer.create(icon);
-  const iconJson = iconComponent.toJSON();
-  return iconJson.children[0].props.d;
-};
-
 const Indicator = ({ data, onClickCategory }) => {
   data = data.map((datum) => ({
     ...datum,
     severity: getSeverityFromScore(datum.score).name
   }));
+
+  const getIconPath = (icon) => {
+    const iconComponent = TestRenderer.create(icon);
+    const iconJson = iconComponent.toJSON();
+    return iconJson.children[0].props.d;
+  };
 
   const handleClick = (data) => {
     onClickCategory(data.category);
@@ -35,7 +35,7 @@ const Indicator = ({ data, onClickCategory }) => {
   };
 
   return (
-    <BarChart width={300} height={100} data={data} layout="vertical" barSize={15} margin={{ top: 7, bottom: 6, right: 25, left: 5 }}>
+    <BarChart width={250} height={100} data={data} layout="vertical" barSize={15} margin={{ top: 7, bottom: 6, right: 30, left: 5 }}>
       <defs>
         {severities.map((item) => (
           <linearGradient key={item.name} id={item.name} x1="0" y1="0" x2="1" y2="0">
