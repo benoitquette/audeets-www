@@ -36,7 +36,8 @@ const ProjectPage = () => {
           <HeaderCard
             {...project}
             handleUrlChange={(url) => {
-              setFilter((state) => ({ ...state, url }));
+              const newUrl = new URL(url, `https://${project.domain}`).href;
+              setFilter((state) => ({ ...state, url: newUrl }));
             }}
             selectedUrl={new URL(filter.url).pathname}
             categories={categories}
