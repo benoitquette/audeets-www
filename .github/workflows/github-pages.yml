@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Build
-        run: yarn build
+        run: yarn build --base=/audeets-www/
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
