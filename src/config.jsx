@@ -60,3 +60,5 @@ export const categoriesTheme = {
     icon: <SecurityIcon />
   }
 };
+
+export const cookieName = import.meta.env.VITE_COOKIE_NAME;
