@@ -26,10 +26,18 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: yarn install
-      - name: setup project variables
-        run: |
-          echo "URL users is ${{vars.URL_API_USERS}}"
-          echo "URL projects is ${{vars.URL_API_PROJECTS}}"
+      - name: setup projects API URL
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: '<!--#echo var="urlapiprojects"-->'
+          replace: ${{vars.URL_API_PROJECTS}}
+          include: 'index.html'
+      - name: setup users API URL
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: '<!--#echo var="urlapiusers"-->'
+          replace: ${{vars.URL_API_USERS}}
+          include: 'index.html'
       - name: Build
         run: yarn build --base=/audeets-www/
       - name: Setup Pages
