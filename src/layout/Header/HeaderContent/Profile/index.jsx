@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 import ProfileTab from './ProfileTab';
 import Transitions from '~/components/Transitions/Transitions';
 import { logout } from '~/store/reducers/user';
-import { cookieName } from '~/config';
+import { sessionCookieName } from '~/config';
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -32,7 +32,7 @@ const Profile = () => {
 
   const handleLogout = async () => {
     dispatch(logout());
-    Cookies.remove(cookieName);
+    Cookies.remove(sessionCookieName);
     navigate('/login');
   };
 

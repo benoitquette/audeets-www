@@ -3,14 +3,14 @@ import { Box, Grid } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import LoginCard from './LoginCard';
-import { cookieName } from '~/config';
+import { sessionCookieName } from '~/config';
 
 const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const returnUrl = params.get('returnTo') || '/';
-  const sessionCookie = Cookies.get(cookieName);
+  const sessionCookie = Cookies.get(sessionCookieName);
 
   useEffect(() => {
     if (sessionCookie) navigate(returnUrl);

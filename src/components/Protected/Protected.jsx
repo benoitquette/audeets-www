@@ -4,16 +4,16 @@ import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { fetchUser } from '~/store/reducers/user';
-import { cookieName } from '~/config';
+import { sessionCookieName } from '~/config';
 
 const Protected = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const { user, status } = useSelector((state) => state.user);
-  const sessionCookie = Cookies.get(cookieName);
+  const sessionCookie = Cookies.get(sessionCookieName);
 
-  if (status === 'failed') Cookies.remove(cookieName);
+  if (status === 'failed') Cookies.remove(sessionCookieName);
 
   useEffect(() => {
     if (!sessionCookie) {
