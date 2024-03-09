@@ -26,7 +26,6 @@
     "isomorphic-fetch": "^3.0.0",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
-    "prettier": "^3.1.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
@@ -58,7 +57,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
-    "lint": "eslint ./src --ext js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
     "test": "jest"
   },
@@ -109,6 +108,8 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "jest": "^29.7.0",
+    "prettier": "^3.2.5",
     "sass": "^1.71.1"
-  }
+  },
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
