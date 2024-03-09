@@ -7,6 +7,7 @@ server {
       ssi on;
       set $urlapiprojects "${VITE_URL_API_PROJECTS}";
       set $urlapiusers "${VITE_URL_API_USERS}";
+      set $cookiename "${VITE_COOKIE_NAME}";
       try_files $uri /index.html;
     }
 }
