@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Grid, Card, CardHeader, CardContent, Switch } from '@mui/material';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
 import ResultsTable from './ResultsTable';
-import { useGetAuditQuery } from '~/store/reducers/projects-api';
+import { fetchAudit } from '~/store/reducers/audits';
 
 const AuditCard = ({ projectId, filter }) => {
+  const dispatch = useDispatch();
   const [showFailsOnly, setShowFailsOnly] = useState(false);
+  const { data } = useSelector((state) => state.audits.audit);
+  const results = data.filter((result) => result.category === filter.category);
 
-  const { data: results = [] } = useGetAuditQuery(
-    { id: projectId, date: dayjs(filter.date).format('YYYYMMDD'), url: filter.url },
-    {
-      skip: !filter.url || !filter.date,
-      selectFromResult: (result) => ({
-        ...result,
-        data: result.data?.filter((result) => result.category === filter.category)
-      })
-    }
-  );
+  useEffect(() => {
+    if (filter.url && filter.date)
+      dispatch(
+        fetchAudit({
+          id: projectId,
+          url: filter.url,
+          date: dayjs(filter.date).format('YYYYMMDD')
+        })
+      );
+  }, [dispatch, filter.date, filter.url, projectId]);
 
   return (
     <Card>

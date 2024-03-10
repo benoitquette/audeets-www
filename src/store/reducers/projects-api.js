@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { sortProjects, flattenProjectsData, capitalizeCategories } from './transformers';
+import { sortProjects } from './transformers';
 import { urlApiProjects } from '~/config';
 
 const projects = createApi({
@@ -41,36 +41,11 @@ const projects = createApi({
         method: 'DELETE'
       }),
       invalidatesTags: (result, error, id) => [{ type: 'project', id }]
-    }),
-    getRollingWeek: builder.query({
-      query: (id) => `${id}/rolling/week`,
-      transformResponse: (response) => flattenProjectsData(response, 7, { weekday: 'short' })
-    }),
-    getRollingMonth: builder.query({
-      query: (id) => `${id}/rolling/month`,
-      transformResponse: (response) => flattenProjectsData(response, 30, { month: 'short', day: 'numeric' })
-    }),
-    getRollingYear: builder.query({
-      query: (id) => `${id}/rolling/year`,
-      transformResponse: (response) => flattenProjectsData(response, 12, { month: 'short' })
-    }),
-    getAudit: builder.query({
-      query: ({ id, date, url }) => `${id}/audits/${date}?url=${encodeURIComponent(url)}`,
-      transformResponse: capitalizeCategories
     })
   })
 });
 
-export const {
-  useGetProjectsQuery,
-  useGetProjectQuery,
-  useGetRollingWeekQuery,
-  useGetRollingMonthQuery,
-  useGetRollingYearQuery,
-  useAddProjectMutation,
-  useDeleteProjectMutation,
-  useUpdateProjectMutation,
-  useGetAuditQuery
-} = projects;
+export const { useGetProjectsQuery, useGetProjectQuery, useAddProjectMutation, useDeleteProjectMutation, useUpdateProjectMutation } =
+  projects;
 
 export default projects;
