@@ -30,6 +30,7 @@ const RollingAreaChart = ({ data, selectedCategory, selectDate }) => {
       >
         <defs>
           {data &&
+            data.length > 0 &&
             Object.entries(data[0]).map(([key]) => {
               if (key !== 'name' && key !== 'date')
                 return (
@@ -45,6 +46,7 @@ const RollingAreaChart = ({ data, selectedCategory, selectDate }) => {
         <YAxis style={fontStyle} axisLine={false} tick={true} domain={[0, 100]} />
         <Tooltip itemStyle={fontStyle} />
         {data &&
+          data.length > 0 &&
           Object.entries(data[0]).map(([key]) => {
             if (key === selectedCategory)
               return (
