@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { sortAndCapitalizeCategories, sortProjects, flattenProjectsData, capitalizeCategories } from './transformers';
+import { sortProjects, flattenProjectsData, capitalizeCategories } from './transformers';
 import { urlApiProjects } from '~/config';
 
 const projects = createApi({
@@ -42,18 +42,6 @@ const projects = createApi({
       }),
       invalidatesTags: (result, error, id) => [{ type: 'project', id }]
     }),
-    // getScores: builder.query({
-    //   query: ({ id, url }) => `${id}/scores/latest?url=${encodeURIComponent(url)}`,
-    //   transformResponse: sortAndCapitalizeCategories
-    // }),
-    // getScoresByDate: builder.query({
-    //   query: ({ id, date, url }) => `${id}/scores/${date}?url=${encodeURIComponent(url)}`,
-    //   transformResponse: sortAndCapitalizeCategories
-    // }),
-    // getGlobalScores: builder.query({
-    //   query: (id) => `${id}/scores/latest/global`,
-    //   transformResponse: sortAndCapitalizeCategories
-    // }),
     getRollingWeek: builder.query({
       query: (id) => `${id}/rolling/week`,
       transformResponse: (response) => flattenProjectsData(response, 7, { weekday: 'short' })
@@ -76,9 +64,6 @@ const projects = createApi({
 export const {
   useGetProjectsQuery,
   useGetProjectQuery,
-  // useGetScoresQuery,
-  // useGetScoresByDateQuery,
-  // useGetGlobalScoresQuery,
   useGetRollingWeekQuery,
   useGetRollingMonthQuery,
   useGetRollingYearQuery,
