@@ -2,12 +2,19 @@ import PropTypes from 'prop-types';
 import { CardActions, CardHeader, Card, CardContent, Avatar, IconButton, Tooltip } from '@mui/material';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import ProjectDelete from './delete/ProjectDelete';
 import Indicator from './Indicator';
-import { useGetGlobalScoresQuery } from '~/store/reducers/projects-api';
+import { fetchGlobalScores, selectors } from '~/store/reducers/global-scores';
 
 function ProjectCard({ _id, title, domain, onViewCategory, onEditProject, onViewProject }) {
-  const { data: scores } = useGetGlobalScoresQuery(_id);
+  const dispatch = useDispatch();
+  const scores = useSelector((state) => selectors.selectById(state, _id));
+
+  useEffect(() => {
+    dispatch(fetchGlobalScores(_id));
+  });
 
   const handleCategoryClick = (category) => {
     onViewCategory(_id, category);

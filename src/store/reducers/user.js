@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { client } from '~/utils/apiClient';
+import client from '~/utils/api-client';
 import { urlApiUsers } from '~/config';
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
@@ -54,4 +54,4 @@ const user = createSlice({
   }
 });
 
-export default user.reducer;
+export default user;

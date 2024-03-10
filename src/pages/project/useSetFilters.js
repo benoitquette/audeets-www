@@ -7,6 +7,13 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
     setFilter((state) => ({ ...state, url }));
   }
 
+  useEffect(() => {
+    if (project) {
+      const url = new URL(project.urls[0], `https://${project.domain}`).href;
+      setFilter((state) => ({ ...state, url }));
+    }
+  }, [project]);
+
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {

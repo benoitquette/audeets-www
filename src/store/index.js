@@ -1,15 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
 import menu from './reducers/menu';
-import { projectsApi } from './reducers/projects-api';
+import projects from './reducers/projects-api';
 import user from './reducers/user';
+import globalScores from './reducers/global-scores';
+import audits from './reducers/audits';
 
 const store = configureStore({
   reducer: {
-    menu,
-    user,
-    [projectsApi.reducerPath]: projectsApi.reducer
+    [menu.reducerPath]: menu.reducer,
+    [user.reducerPath]: user.reducer,
+    [globalScores.reducerPath]: globalScores.reducer,
+    [projects.reducerPath]: projects.reducer,
+    [audits.reducerPath]: audits.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projectsApi.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projects.middleware)
 });
 
 const { dispatch } = store;

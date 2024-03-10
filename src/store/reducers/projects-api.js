@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { sortAndCapitalizeCategories, sortProjects, flattenProjectsData, capitalizeCategories } from './transformers';
 import { urlApiProjects } from '~/config';
 
-export const projectsApi = createApi({
+const projects = createApi({
   tagTypes: ['project'],
   reducerPath: 'projectsApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${urlApiProjects}/api/projects/`, credentials: 'include' }),
@@ -42,18 +42,18 @@ export const projectsApi = createApi({
       }),
       invalidatesTags: (result, error, id) => [{ type: 'project', id }]
     }),
-    getScores: builder.query({
-      query: ({ id, url }) => `${id}/scores/latest?url=${encodeURIComponent(url)}`,
-      transformResponse: sortAndCapitalizeCategories
-    }),
-    getScoresByDate: builder.query({
-      query: ({ id, date, url }) => `${id}/scores/${date}?url=${encodeURIComponent(url)}`,
-      transformResponse: sortAndCapitalizeCategories
-    }),
-    getGlobalScores: builder.query({
-      query: (id) => `${id}/scores/latest/global`,
-      transformResponse: sortAndCapitalizeCategories
-    }),
+    // getScores: builder.query({
+    //   query: ({ id, url }) => `${id}/scores/latest?url=${encodeURIComponent(url)}`,
+    //   transformResponse: sortAndCapitalizeCategories
+    // }),
+    // getScoresByDate: builder.query({
+    //   query: ({ id, date, url }) => `${id}/scores/${date}?url=${encodeURIComponent(url)}`,
+    //   transformResponse: sortAndCapitalizeCategories
+    // }),
+    // getGlobalScores: builder.query({
+    //   query: (id) => `${id}/scores/latest/global`,
+    //   transformResponse: sortAndCapitalizeCategories
+    // }),
     getRollingWeek: builder.query({
       query: (id) => `${id}/rolling/week`,
       transformResponse: (response) => flattenProjectsData(response, 7, { weekday: 'short' })
@@ -76,9 +76,9 @@ export const projectsApi = createApi({
 export const {
   useGetProjectsQuery,
   useGetProjectQuery,
-  useGetScoresQuery,
-  useGetScoresByDateQuery,
-  useGetGlobalScoresQuery,
+  // useGetScoresQuery,
+  // useGetScoresByDateQuery,
+  // useGetGlobalScoresQuery,
   useGetRollingWeekQuery,
   useGetRollingMonthQuery,
   useGetRollingYearQuery,
@@ -86,4 +86,6 @@ export const {
   useDeleteProjectMutation,
   useUpdateProjectMutation,
   useGetAuditQuery
-} = projectsApi;
+} = projects;
+
+export default projects;
