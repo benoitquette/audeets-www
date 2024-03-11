@@ -12,7 +12,7 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
       const url = new URL(project.urls[0], `https://${project.domain}`).href;
       setFilter((state) => ({ ...state, url }));
     }
-  }, [project]);
+  }, [project, setFilter]);
 
   const navigate = useNavigate();
   const location = useLocation();
