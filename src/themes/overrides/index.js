@@ -1,7 +1,3 @@
-// third-party
-import { merge } from 'lodash';
-
-// project import
 import Badge from './Badge';
 import Button from './Button';
 import CardContent from './CardContent';
@@ -17,8 +13,7 @@ import Tab from './Tab';
 import TableCell from './TableCell';
 import Tabs from './Tabs';
 import Typography from './Typography';
-
-// ==============================|| OVERRIDES - MAIN ||============================== //
+import merge from '~/utils/enumerables-helpers.js';
 
 export default function ComponentsOverrides(theme) {
   return merge(

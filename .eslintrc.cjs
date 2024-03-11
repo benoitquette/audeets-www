@@ -5,7 +5,6 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'prettier',
     'plugin:react/jsx-runtime',
     'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',
@@ -40,8 +39,7 @@ module.exports = {
     },
     ecmaVersion: 12
   },
-  plugins: ['prettier', 'react', 'react-hooks'],
-  ignorePatterns: ['**/node_modules/**', 'node_modules/'],
+  plugins: ['react', 'react-hooks'],
   rules: {
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
@@ -74,18 +72,6 @@ module.exports = {
       'error',
       {
         ignoreRestSiblings: false
-      }
-    ],
-    'prettier/prettier': [
-      'warn',
-      {
-        bracketSpacing: true,
-        printWidth: 140,
-        singleQuote: true,
-        trailingComma: 'none',
-        tabWidth: 2,
-        useTabs: false,
-        endOfLine: 'auto'
       }
     ]
   }
