@@ -25,9 +25,6 @@ module.exports = {
       flowVersion: '0.53' // Flow version
     },
     'import/resolver': {
-      // node: {
-      //   moduleDirectory: ['node_modules', 'src/']
-      // },
       alias: {
         map: [['~', './src']],
         extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx', '.scss']
