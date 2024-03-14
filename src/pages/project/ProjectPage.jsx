@@ -7,7 +7,7 @@ import ScoreCard from './score/ScoreCard';
 import HeaderCard from './header/HeaderCard';
 import EvolutionCard from './evolution/EvolutionCard';
 import AuditCard from './audit/AuditCard';
-import useSetFilters from './useSetFilters';
+import useSetFilters from '../../hooks/useSetFilters';
 import { categoriesTheme } from '~/config';
 import { useGetProjectQuery } from '~/store/reducers/projects-api';
 import { fetchScores } from '~/store/reducers/audits';
