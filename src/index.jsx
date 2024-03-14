@@ -9,11 +9,11 @@ import { store } from '~/store';
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
-  <StrictMode>
-    <ReduxProvider store={store}>
-      <BrowserRouter basename="/">
-        <App />
-      </BrowserRouter>
-    </ReduxProvider>
-  </StrictMode>
+  // <StrictMode>
+  <ReduxProvider store={store}>
+    <BrowserRouter basename="/">
+      <App />
+    </BrowserRouter>
+  </ReduxProvider>
+  // </StrictMode>
 );

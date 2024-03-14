@@ -12,10 +12,10 @@ import EqualizerIcon from '@mui/icons-material/Equalizer';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import ProjectDelete from './delete/ProjectDelete';
 import Indicator from './Indicator';
-import useFetchProjectScores from '~/hooks/useFetchProjectScores';
+import useFetchProjectGlobalScores from '~/hooks/useFetchProjectGlobalScores';
 
 function ProjectCard({ _id, title, domain, onViewCategory, onEditProject, onViewProject }) {
-  const scores = useFetchProjectScores(_id);
+  const scores = useFetchProjectGlobalScores(_id);
 
   const handleCategoryClick = (category) => {
     onViewCategory(_id, category);
