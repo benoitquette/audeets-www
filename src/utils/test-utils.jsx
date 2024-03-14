@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { setupStore } from '../store';
 
-export function renderWithProviders(
+export const renderWithProviders = (
   ui,
   {
     preloadedState = {},
@@ -12,13 +13,11 @@ export function renderWithProviders(
     store = setupStore(preloadedState),
     ...renderOptions
   } = {}
-) {
-  function Wrapper({ children }) {
-    return (
-      <Provider store={store}>
-        <BrowserRouter basename="/">{children}</BrowserRouter>
-      </Provider>
-    );
-  }
+) => {
+  const Wrapper = ({ children }) => (
+    <Provider store={store}>
+      <BrowserRouter basename="/">{children}</BrowserRouter>
+    </Provider>
+  );
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
-}
+};
