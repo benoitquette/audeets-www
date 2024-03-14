@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const useSetFilters = (project, scores, filter, setFilter, setScore) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   if (!filter.url && project) {
     const url = new URL(project.urls[0], `https://${project.domain}`).href;
     setFilter((state) => ({ ...state, url }));
@@ -22,8 +25,6 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
    * When mounting the component we check if there is a category in the URL
    * and potentially set the filter with it
    */
-  const navigate = useNavigate();
-  const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.has('category')) {
