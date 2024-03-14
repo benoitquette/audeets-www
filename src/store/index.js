@@ -5,17 +5,22 @@ import user from './reducers/user';
 import globalScores from './reducers/global-scores';
 import audits from './reducers/audits';
 
-const store = configureStore({
-  reducer: {
-    [menu.reducerPath]: menu.reducer,
-    [user.reducerPath]: user.reducer,
-    [globalScores.reducerPath]: globalScores.reducer,
-    [projects.reducerPath]: projects.reducer,
-    [audits.reducerPath]: audits.reducer
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projects.middleware)
-});
+const setupStore = (preloadedState) => {
+  return configureStore({
+    reducer: {
+      [menu.reducerPath]: menu.reducer,
+      [user.reducerPath]: user.reducer,
+      [globalScores.reducerPath]: globalScores.reducer,
+      [projects.reducerPath]: projects.reducer,
+      [audits.reducerPath]: audits.reducer
+    },
+    preloadedState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projects.middleware)
+  });
+};
+
+const store = setupStore({});
 
 const { dispatch } = store;
 
-export { store, dispatch };
+export { store, dispatch, setupStore };
