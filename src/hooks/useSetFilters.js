@@ -32,6 +32,7 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
       setFilter((state) => ({ ...state, category: params.get('category') }));
       navigate(location.pathname);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   /**
