@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const useSetFilters = (project, scores, filter, setFilter, setScore) => {
   if (!filter.url && project) {
-    console.log('init URL');
     const url = new URL(project.urls[0], `https://${project.domain}`).href;
     setFilter((state) => ({ ...state, url }));
   }
