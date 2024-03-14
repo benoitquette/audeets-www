@@ -10,7 +10,6 @@ import { useGetProjectQuery } from '~/store/reducers/projects-api';
 import useFetchProjectScores from '~/hooks/useFetchProjectScores';
 
 const ProjectPage = () => {
-  console.log('new');
   const projectId = useParams().projectId;
   const [score, setScore] = useState(0);
   const [filter, setFilter] = useState({ url: null, date: null, category: null });
@@ -18,7 +17,6 @@ const ProjectPage = () => {
   const { data: project } = useGetProjectQuery(projectId);
   const { scores, categories } = useFetchProjectScores(projectId, filter);
   useSetFilters(project, scores, filter, setFilter, setScore);
-  console.log(filter);
   return (
     <Grid container rowSpacing={3} columnSpacing={2.75}>
       <Grid item xs={12}>
