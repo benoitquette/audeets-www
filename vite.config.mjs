@@ -21,5 +21,9 @@ export default defineConfig({
   },
   esbuild: {
     loader: 'jsx'
+  },
+  test: {
+    global: true,
+    environment: 'jsdom'
   }
 });
