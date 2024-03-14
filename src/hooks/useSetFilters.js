@@ -13,7 +13,6 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
    */
   useEffect(() => {
     if (project) {
-      console.log('Project changed');
       const url = new URL(project.urls[0], `https://${project.domain}`).href;
       setFilter((state) => ({ ...state, url }));
     }
@@ -27,7 +26,6 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    console.log('Location changed');
     const params = new URLSearchParams(location.search);
     if (params.has('category')) {
       console.log('and we have a param');
@@ -44,7 +42,6 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
    */
   useEffect(() => {
     if (scores.length > 0) {
-      console.log('Scores changed');
       setFilter((state) => {
         const newCategory = state.category || scores[0].category;
         return {
@@ -71,7 +68,6 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
    * When the category filter or the date filters change we need to "recalculate" the score.
    */
   useEffect(() => {
-    console.log('Category or date changed');
     setScore(
       scores.reduce(
         (scoreNumber, score) =>
@@ -86,7 +82,6 @@ const useSetFilters = (project, scores, filter, setFilter, setScore) => {
    * When the category filter change, we need to ensure the selected date has data.
    */
   useEffect(() => {
-    console.log('Category filter changed');
     setFilter((state) => ({
       ...state,
       date: scores.reduce(
