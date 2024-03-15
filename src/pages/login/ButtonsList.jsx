@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery, Stack } from '@mui/material';
-import strategies from './strategies';
 import ButtonsListItem from './ButtonsListItem';
 
-const ButtonsList = ({ returnUrl }) => {
+const ButtonsList = ({ returnUrl, strategies }) => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
   const queryString = `?returnTo=${returnUrl}`;
@@ -30,7 +29,8 @@ const ButtonsList = ({ returnUrl }) => {
 };
 
 ButtonsList.propTypes = {
-  returnUrl: PropTypes.string.isRequired
+  returnUrl: PropTypes.string.isRequired,
+  strategies: PropTypes.array.isRequired
 };
 
 export default ButtonsList;

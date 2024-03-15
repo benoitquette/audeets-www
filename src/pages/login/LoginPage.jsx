@@ -3,6 +3,7 @@ import { Box, Grid } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import LoginCard from './LoginCard';
+import strategies from './strategies';
 import { sessionCookieName } from '~/config';
 
 const LoginPage = () => {
@@ -37,7 +38,7 @@ const LoginPage = () => {
             sx={{ minHeight: { xs: 'calc(100vh - 134px)', md: 'calc(100vh - 112px)' } }}
           >
             <Grid item>
-              <LoginCard returnUrl={returnUrl} />
+              <LoginCard returnUrl={returnUrl} strategies={strategies} />
             </Grid>
           </Grid>
         </Grid>

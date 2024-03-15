@@ -3,7 +3,7 @@ import { Grid, Stack, Typography, Box, Card } from '@mui/material';
 import ButtonsList from './ButtonsList';
 import logo from '~/assets/images/logo.png';
 
-const LoginCard = ({ returnUrl }) => (
+const LoginCard = ({ returnUrl, strategies }) => (
   <Card
     sx={{
       maxWidth: { xs: 400, lg: 475 },
@@ -27,7 +27,7 @@ const LoginCard = ({ returnUrl }) => (
         <Grid item xs={12}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <ButtonsList returnUrl={returnUrl} />
+              <ButtonsList strategies={strategies} returnUrl={returnUrl} />
             </Grid>
           </Grid>
         </Grid>
@@ -37,7 +37,8 @@ const LoginCard = ({ returnUrl }) => (
 );
 
 LoginCard.propTypes = {
-  returnUrl: PropTypes.string
+  returnUrl: PropTypes.string,
+  strategies: PropTypes.array.isRequired
 };
 
 export default LoginCard;
