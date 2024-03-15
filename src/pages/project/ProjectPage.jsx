@@ -1,22 +1,19 @@
-import { useState } from 'react';
-import { useParams } from 'react-router';
 import { Grid } from '@mui/material';
 import ScoreCard from './score/ScoreCard';
 import HeaderCard from './header/HeaderCard';
 import EvolutionCard from './evolution/EvolutionCard';
 import AuditCard from './audit/AuditCard';
-import useSetFilters from '~/hooks/useSetFilters';
-import { useGetProjectQuery } from '~/store/reducers/projects-api';
 import useFetchProjectScores from '~/hooks/useFetchProjectScores';
+import useFilters from '~/hooks/useFilters';
+import useScore from '~/hooks/useScore';
+import useFetchProject from '~/hooks/useFetchProject';
 
 const ProjectPage = () => {
-  const projectId = useParams().projectId;
-  const [score, setScore] = useState(0);
-  const [filter, setFilter] = useState({ url: null, date: null, category: null });
+  const project = useFetchProject();
+  const [filter, setFilter] = useFilters(project);
+  const { scores, categories } = useFetchProjectScores(project?._id, filter, setFilter);
+  const score = useScore(scores, filter);
 
-  const { data: project } = useGetProjectQuery(projectId);
-  const { scores, categories } = useFetchProjectScores(projectId, filter);
-  useSetFilters(project, scores, filter, setFilter, setScore);
   return (
     <Grid container rowSpacing={3} columnSpacing={2.75}>
       <Grid item xs={12}>
@@ -44,16 +41,18 @@ const ProjectPage = () => {
         <ScoreCard category={filter.category} score={score} />
       </Grid>
       <Grid item xs={12} sm={8} md={9} lg={10}>
-        <EvolutionCard
-          projectId={projectId}
-          selectedCategory={filter.category}
-          selectDate={(date) => {
-            setFilter((state) => ({ ...state, date }));
-          }}
-        />
+        {project && (
+          <EvolutionCard
+            projectId={project._id}
+            selectedCategory={filter.category}
+            selectDate={(date) => {
+              setFilter((state) => ({ ...state, date }));
+            }}
+          />
+        )}
       </Grid>
       <Grid item xs={12}>
-        <AuditCard projectId={projectId} filter={filter} />
+        {project && <AuditCard projectId={project._id} filter={filter} />}
       </Grid>
     </Grid>
   );
