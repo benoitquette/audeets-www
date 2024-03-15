@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const useFilters = (project) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [filter, setFilter] = useState({ url: null, date: null, category: null });
+  const [filter, setFilter] = useState({ url: null, date: null, category: null }); // should we use a reducer here instead?
 
   /**
    * Initialize the URL filter once the project is loaded
@@ -22,7 +22,6 @@ const useFilters = (project) => {
       const url = new URL(project.urls[0], `https://${project.domain}`).href;
       setFilter((state) => ({ ...state, url }));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [project]);
 
   /**
