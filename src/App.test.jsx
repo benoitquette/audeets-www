@@ -1,19 +1,18 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import App from './App';
 import { renderWithProviders } from '~/utils/test-utils';
 
 describe('App component', () => {
   it('should include theme customization', () => {
-    renderWithProviders(<App />);
     expect(true).toBeTruthy();
   });
   it('should scrolls to top', () => {
-    expect(true).toBeTruthy();
+    window.scrollTo = vi.fn(() => {});
+    renderWithProviders(<App />);
+    expect(window.scrollTo).toHaveBeenCalled();
   });
-  it('should contain the CSS basline', () => {
-    expect(true).toBeTruthy();
-  });
-  it('should injects a StyledEngine', () => {
+  it('should contain the router', () => {
+    console.log(renderWithProviders(<App />));
     expect(true).toBeTruthy();
   });
 });
