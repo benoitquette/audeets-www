@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { beforeAll, vi } from 'vitest';
+import { beforeAll } from 'vitest';
 
 beforeAll(() => {
   window.apiProjectsUrl = 'fake';
