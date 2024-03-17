@@ -8,7 +8,6 @@ describe('App component', () => {
     cleanup();
   });
   it('should render a button list ...', async () => {
-    console.log('gloabl: ' + apiProjectsUrl);
     // ARRANGE
     //ACT
     // ASSERT
