@@ -11,7 +11,7 @@ describe('App component', () => {
     const name = 'testname';
     render(<Button name={name} fullWidth />);
 
-    //ACT
+    // ACT
     await screen.findByRole('button');
 
     // ASSERT
@@ -23,7 +23,7 @@ describe('App component', () => {
     const name = 'testname';
     render(<Button name={name} />);
 
-    //ACT
+    // ACT
     await screen.findByRole('button');
 
     // ASSERT
@@ -36,7 +36,7 @@ describe('App component', () => {
     const name = 'testname';
     render(<Button name={name} icon={icon} />);
 
-    //ACT
+    // ACT
     await screen.findByRole('img');
 
     // ASSERT
@@ -49,7 +49,7 @@ describe('App component', () => {
     const url = 'myurl';
     render(<Button url={url} />);
 
-    //ACT
+    // ACT
     await screen.findByRole('link');
 
     // ASSERT
@@ -60,7 +60,7 @@ describe('App component', () => {
     // ARRANGE
     const result = render(<Button name="name" url="url" fullWidth icon="icon" />);
 
-    //ACT
+    // ACT
 
     // ASSERT
     expect(result).toMatchInlineSnapshot(`

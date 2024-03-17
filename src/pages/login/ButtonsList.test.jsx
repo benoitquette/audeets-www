@@ -9,7 +9,7 @@ describe('App component', () => {
   });
   it('should render a button list ...', async () => {
     // ARRANGE
-    //ACT
+    // ACT
     // ASSERT
   });
 
@@ -17,7 +17,7 @@ describe('App component', () => {
     // ARRANGE
     const result = render(<ButtonList returnUrl="url" strategies={strategies} />);
 
-    //ACT
+    // ACT
 
     // ASSERT
     expect(result).toMatchInlineSnapshot(`
