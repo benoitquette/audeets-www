@@ -28,7 +28,7 @@ describe('App component', () => {
             >
               <a
                 class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
-                href="http://localhost:6080/api/auth/google?returnTo=url"
+                href="fake/api/auth/google?returnTo=url"
                 tabindex="0"
               >
                 <span
@@ -53,7 +53,7 @@ describe('App component', () => {
           >
             <a
               class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
-              href="http://localhost:6080/api/auth/google?returnTo=url"
+              href="fake/api/auth/google?returnTo=url"
               tabindex="0"
             >
               <span
