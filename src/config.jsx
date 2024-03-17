@@ -18,8 +18,8 @@ export default {
 export const drawerWidth = 260;
 
 export const urlApiProjects = import.meta.env.VITE_URL_API_PROJECTS ?? globalThis['apiProjectsUrl'];
-export const urlApiUsers = import.meta.env.VITE_URL_API_USERS ?? apiUsersUrl;
-export const urlApiReports = import.meta.env.VITE_URL_API_REPORTS ?? apiReportsUrl;
+export const urlApiUsers = import.meta.env.VITE_URL_API_USERS ?? globalThis['apiUsersUrl'];
+export const urlApiReports = import.meta.env.VITE_URL_API_REPORTS ?? globalThis['apiReportsUrl'];
 
 export const severities = [
   { from: 0, color: red, name: 'bad' },
