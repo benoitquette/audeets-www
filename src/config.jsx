@@ -62,4 +62,4 @@ export const categoriesTheme = {
   }
 };
 
-export const sessionCookieName = import.meta.env.VITE_COOKIE_NAME || cookieName;
+export const sessionCookieName = import.meta.env.VITE_COOKIE_NAME || globalThis['cookieName'];
