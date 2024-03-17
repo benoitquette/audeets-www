@@ -17,8 +17,6 @@ describe('App component', () => {
     // ARRANGE
     const result = render(<ButtonList returnUrl="url" strategies={strategies} />);
 
-    // ACT
-
     // ASSERT
     expect(result).toMatchInlineSnapshot(`
       {
