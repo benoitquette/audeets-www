@@ -7,7 +7,8 @@ describe('App component', () => {
   beforeEach(() => {
     cleanup();
   });
-  it('should render a button with the name', async () => {
+  it('should render a button list ...', async () => {
+    console.log('gloabl: ' + apiProjectsUrl);
     // ARRANGE
     //ACT
     // ASSERT
