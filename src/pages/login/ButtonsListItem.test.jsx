@@ -7,7 +7,6 @@ describe('App component', () => {
     cleanup();
   });
   it('should render a button with the name', async () => {
-    console.log('gloabl: ' + apiProjectsUrl);
     // ARRANGE
     const name = 'testname';
     render(<Button name={name} fullWidth />);
