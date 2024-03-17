@@ -8,4 +8,5 @@ beforeAll(() => {
 
   globalThis.apiProjectsUrl = '';
   vi.stubGlobal('apiProjectsUrl', 100);
+  global.apiProjectsUrl = '';
 });
