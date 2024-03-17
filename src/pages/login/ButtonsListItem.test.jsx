@@ -61,6 +61,7 @@ describe('App component', () => {
     const result = render(<Button name="name" url="url" fullWidth icon="icon" />);
 
     // ACT
+    await screen.findByRole('link');
 
     // ASSERT
     expect(result).toMatchInlineSnapshot(`

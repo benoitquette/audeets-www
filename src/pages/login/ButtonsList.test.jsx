@@ -1,21 +1,47 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 import ButtonList from './ButtonsList';
-import strategies from './strategies';
 
 describe('App component', () => {
   beforeEach(() => {
     cleanup();
   });
-  it('should render a button list ...', async () => {
+  it('should render a list with 1 button', async () => {
     // ARRANGE
-    // ACT
-    // ASSERT
-  });
+    const strategies = [{ name: '11111', icon: '11111', url: `/1111` }];
+    render(<ButtonList returnUrl="url" strategies={strategies} />);
 
+    // ACT
+    await screen.findByRole('link');
+
+    // ASSERT
+    expect(screen.getAllByRole('link')).toHaveLength(1);
+  });
+  it('should render a list with 2 buttons', async () => {
+    // ARRANGE
+    const strategies = [
+      { name: '11111', icon: '11111', url: `/1111` },
+      { name: '11111', icon: '11111', url: `/1111` }
+    ];
+    render(<ButtonList returnUrl="url" strategies={strategies} />);
+
+    // ACT
+    await screen.findAllByRole('link');
+
+    // ASSERT
+    expect(screen.getAllByRole('link')).toHaveLength(2);
+  });
   it('should render a list of buttons', async () => {
     // ARRANGE
+    const strategies = [
+      { name: 'Google', icon: 'Google', url: `/api/auth/google` },
+      { name: 'GitLab', icon: 'GitLab', url: `/api/auth/gitlab` },
+      { name: 'GitHub', icon: 'GitHub', url: `/api/auth/github` }
+    ];
     const result = render(<ButtonList returnUrl="url" strategies={strategies} />);
+
+    // ACT
+    await screen.findAllByRole('link');
 
     // ASSERT
     expect(result).toMatchInlineSnapshot(`
@@ -28,7 +54,7 @@ describe('App component', () => {
             >
               <a
                 class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
-                href="fake/api/auth/google?returnTo=url"
+                href="/api/auth/google?returnTo=url"
                 tabindex="0"
               >
                 <span
@@ -36,10 +62,46 @@ describe('App component', () => {
                 >
                   <img
                     alt="Google"
-                    src="/src/assets/images/icons/google.svg"
+                    src="Google"
                   />
                 </span>
                 Google
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+              <a
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
+                href="/api/auth/gitlab?returnTo=url"
+                tabindex="0"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <img
+                    alt="GitLab"
+                    src="GitLab"
+                  />
+                </span>
+                GitLab
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+              <a
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
+                href="/api/auth/github?returnTo=url"
+                tabindex="0"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <img
+                    alt="GitHub"
+                    src="GitHub"
+                  />
+                </span>
+                GitHub
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -53,7 +115,7 @@ describe('App component', () => {
           >
             <a
               class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
-              href="fake/api/auth/google?returnTo=url"
+              href="/api/auth/google?returnTo=url"
               tabindex="0"
             >
               <span
@@ -61,10 +123,46 @@ describe('App component', () => {
               >
                 <img
                   alt="Google"
-                  src="/src/assets/images/icons/google.svg"
+                  src="Google"
                 />
               </span>
               Google
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </a>
+            <a
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
+              href="/api/auth/gitlab?returnTo=url"
+              tabindex="0"
+            >
+              <span
+                class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+              >
+                <img
+                  alt="GitLab"
+                  src="GitLab"
+                />
+              </span>
+              GitLab
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </a>
+            <a
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-jc1r49-MuiButtonBase-root-MuiButton-root"
+              href="/api/auth/github?returnTo=url"
+              tabindex="0"
+            >
+              <span
+                class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+              >
+                <img
+                  alt="GitHub"
+                  src="GitHub"
+                />
+              </span>
+              GitHub
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
